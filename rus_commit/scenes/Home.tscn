@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtna07n8e1t4e"]
+
+[ext_resource type="Script" path="res://rus_commit/script/home.gd" id="1_djykx"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.959387, 0.957962, 0.956162, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 306.0
+offset_top = -21.0
+offset_right = -306.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="guest_button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Guest"
+script = ExtResource("1_djykx")
+
+[node name="login_button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Log in"
+script = ExtResource("1_djykx")
+
+[node name="sign_up_button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Sign up"
+script = ExtResource("1_djykx")
+
+[connection signal="pressed" from="VBoxContainer/guest_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/guest_button" to="VBoxContainer/guest_button" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/login_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/login_button" to="VBoxContainer/login_button" method="_on_login_button_pressed"]
+[connection signal="tree_entered" from="VBoxContainer/login_button" to="." method="_on_login_button_tree_entered"]
+[connection signal="pressed" from="VBoxContainer/sign_up_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/sign_up_button" to="VBoxContainer/sign_up_button" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/sign_up_button" to="VBoxContainer/sign_up_button" method="_on_sign_up_button_pressed"]

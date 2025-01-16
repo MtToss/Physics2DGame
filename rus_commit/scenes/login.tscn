@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvvuxyfq5afai"]
+
+[ext_resource type="Script" path="res://rus_commit/script/login_script.gd" id="1_u6vet"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2e5nu"]
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_75ore"]
+font_size = 11
+font_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u6vet")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.959387, 0.957962, 0.956162, 1)
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 306.0
+offset_top = -21.0
+offset_right = -306.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="username" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Type the username"
+alignment = 1
+
+[node name="password" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Type the password"
+alignment = 1
+secret = true
+
+[node name="login_button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Log in"
+
+[node name="FeedbackText" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.863388, 0.355126, 0.0720554, 1)
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Don’t have an account?"
+label_settings = SubResource("LabelSettings_2e5nu")
+horizontal_alignment = 1
+
+[node name="sign_up_button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Sign up
+"
+
+[node name="Forgot_Button" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Forgot your Account?"
+label_settings = SubResource("LabelSettings_75ore")
+horizontal_alignment = 1
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="pressed" from="VBoxContainer/login_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/sign_up_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/sign_up_button" to="." method="_on_sign_up_button_pressed"]
