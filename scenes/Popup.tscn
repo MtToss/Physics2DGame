@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds8sigjdte5dk"]
+
+[ext_resource type="Script" path="res://scenes/animation_player.gd" id="1_5sym6"]
+
+[sub_resource type="Animation" id="Animation_07hc2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f400r"]
+resource_name = "slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(193, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibbad"]
+_data = {
+"RESET": SubResource("Animation_07hc2"),
+"slide": SubResource("Animation_f400r")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_n1ikc"]
+font_size = 7
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ibbad")
+}
+script = ExtResource("1_5sym6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+scale = Vector2(3.43794, 0.923203)
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_top = -1.08319
+offset_right = 40.0
+offset_bottom = 38.9168
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(1.00847, 0.976753)
+text = "You got something"
+label_settings = SubResource("LabelSettings_n1ikc")
+autowrap_mode = 3
