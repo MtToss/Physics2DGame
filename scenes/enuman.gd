@@ -1,15 +1,16 @@
 extends CharacterBody2D
 
-const SPEED = 150.0
-const JUMP_VELOCITY = -200.0
+const SPEED = 800.0
+const JUMP_VELOCITY = -1000.0
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animation_player = $Camera2D/Animation/AnimationPlayer
+@onready var control_player = $Camera2D/Animation/Control
 
 func _ready() -> void:
-	print(animation_player)
+	control_player.visible = true
 	assert(true, "This line is executed!")
-	#animation_player.play_slide()
+	
 
 
 func _physics_process(delta: float) -> void:

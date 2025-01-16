@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d12o8aniorcdh" path="res://assets/assets/Chests.png" id="1_pl8mh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0k3il"]
-size = Vector2(30, 23)
+size = Vector2(27.6, 18.6639)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfgj8"]
 atlas = ExtResource("1_pl8mh")
@@ -90,17 +90,18 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pr7s"]
-size = Vector2(25.1256, 13.066)
+size = Vector2(26.3438, 13.9543)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8jckq"]
 font_size = 10
 
 [node name="Node2D" type="Node2D"]
+scale = Vector2(30, 9.492)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-8, 3.5)
+position = Vector2(-6.8, 0.360409)
 shape = SubResource("RectangleShape2D_0k3il")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -112,7 +113,7 @@ animation = &"opened chest"
 autoplay = "closed chest"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-7.5, 3.5)
+position = Vector2(-7.6, -2.15137)
 scale = Vector2(1.3134, -1.7603)
 shape = SubResource("RectangleShape2D_4pr7s")
 
