@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d12o8aniorcdh" path="res://assets/assets/Chests.png" id="1_pl8mh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0k3il"]
-size = Vector2(27.6, 18.6639)
+size = Vector2(4.7752, 4.29274)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfgj8"]
 atlas = ExtResource("1_pl8mh")
@@ -90,7 +90,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pr7s"]
-size = Vector2(26.3438, 13.9543)
+size = Vector2(41.836, 18.7626)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8jckq"]
 font_size = 10
@@ -99,22 +99,28 @@ font_size = 10
 scale = Vector2(30, 9.492)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0.0333333, -0.632111)
+scale = Vector2(0.0819001, 0.211954)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-6.8, 0.360409)
+position = Vector2(-1.628, 2.9823)
+scale = Vector2(0.340928, 0.231577)
 shape = SubResource("RectangleShape2D_0k3il")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-0.0666667, 0)
+scale = Vector2(0.00468297, 0.0127592)
 script = ExtResource("1_lqcgi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(2.03609, 1.76671)
 sprite_frames = SubResource("SpriteFrames_udjqy")
 animation = &"opened chest"
 autoplay = "closed chest"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-7.6, -2.15137)
-scale = Vector2(1.3134, -1.7603)
+position = Vector2(-14.236, -8.25693)
+scale = Vector2(1.66975, -2.28839)
 shape = SubResource("RectangleShape2D_4pr7s")
 
 [node name="Label" type="Label" parent="Area2D"]

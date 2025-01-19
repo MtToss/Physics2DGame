@@ -9,7 +9,10 @@ extends Node2D
 @onready var animation_player = $ENUMAN/Camera2D/Animation/AnimationPlayer
 @onready var animation_label = $ENUMAN/Camera2D/Animation/Control/Label
 
-var problem1 = ["force", "speed", "angle"]
+@onready var animation_control = $ENUMAN/Camera2D/Animation/Control
+
+var problem1 = ["velocity", "angle", "time of max height", "maxheight", "range"]
+var problem_value1 = [40.0, 50.0, 6.25, 47.9, 160.78]
 
 
 	
@@ -24,11 +27,13 @@ func _process(delta: float) -> void:
 
 func interact_chess() -> void:
 	if label1.visible and Input.is_action_just_pressed("interact"):
+		animation_control.set_visible(true)
 		chest1._open_chest()
 		interact_with_chest("chest1")
 		animation_player.play_slide()
 	
 	if label2.visible and Input.is_action_just_pressed("interact"):
+		animation_control.set_visible(true)
 		chest2._open_chest()
 		interact_with_chest("chest2")
 		animation_player.play_slide()
