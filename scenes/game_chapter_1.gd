@@ -19,24 +19,60 @@ extends Node2D
 @onready var prompt_label4 = $ENUMAN/Camera2D/Panel/Label4
 @onready var prompt_label5 = $ENUMAN/Camera2D/Panel/Label5
 
-@onready var pressure_plate1 = $pressure_plate1
+@onready var pressure_plate1 = $pressure_plate1/Area2D
+var prompt_label_list = []
 
-var problem1 = ["Velocity", "Angle", "Time of Max Height", "Max Height", "Range"]
+var given_problem1 = ["Velocity", "Angle", "Time of Max Height", "Max Height", "Range"]
 var problem_value1 = [40.0, 50.0, 6.25, 47.9, 160.78]
 var get_value1 = [null, null, null, null, null]
+var get_given_value1 = [null, null, null, null, null]
+var available_indices = []
 
+var random_index = randi() % given_problem1.size()
+var problem_selector = randi() % given_problem1.size() # Aim to give emphasize on what he will need to get problem
 
-	
 func _ready() -> void:
+	
+	available_indices = range(given_problem1.size())
+	
+	prompt_label_list = [prompt_label1, prompt_label2, prompt_label3, prompt_label4, prompt_label5]
+	for label in prompt_label_list:
+		if label == null:
+			print("Error: A label in prompt_label_list is null!")
+	
+	pressure_plate1.connect("body_entered", Callable(self, "_on_pressure_plate_entered"))
+	pressure_plate1.connect("body_exited", Callable(self, "_on_pressure_plate_exited"))
+	
 	self.connect("body_entered", Callable(self, "_on_area2d_body_entered"))
 	self.connect("body_exited", Callable(self, "_on_area2d_body_exited"))
 
-func _on_area2d_body_entered(body):
+func _on_pressure_plate_entered(body):
 	if body.name == "ENUMAN":
-		print("Debug: ENUMAN entered the plate mosshing!")
-func _on_area2d_body_exited(body):
+		print("Debug: ENUMAN stepped on the pressure plate!")
+		open_panel()
+
+# Triggered when a body exits the pressure plate area
+func _on_pressure_plate_exited(body):
 	if body.name == "ENUMAN":
-		print("Debug: ENUMAN left the plate mosshing!")
+		print("Debug: ENUMAN left the pressure plate!")
+		close_panel()
+
+# Opens the panel and sets the text
+func open_panel() -> void:
+	print("Debug: Open_panel opened")
+	prompt_panel.set_visible(true)
+	for index in range(given_problem1.size()):
+		if (prompt_label_list[index].text == "Prompt"|| prompt_label_list[index].text == "?") && get_value1[index] == null:
+			prompt_label_list[index].text = "?"
+			print("Skipped %s" %[index])
+		else:
+			prompt_label_list[index].text = "%s" % [get_given_value1[index]] + ": %s" % [get_value1[index]]
+	
+
+# Closes the panel
+func close_panel() -> void:
+	prompt_panel.set_visible(false)
+	print("Debug: Panel closed.")
 
 	# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -44,44 +80,42 @@ func _process(delta: float) -> void:
 	pass
 
 func interact_chess() -> void:
-	if label1.visible and Input.is_action_just_pressed("interact"):
-		prompt_panel.set_visible(true)
-		
+	if label1.visible and Input.is_action_just_pressed("interact"):		
 		animation_control.set_visible(true)
 		chest1._open_chest()
 		interact_with_chest("chest1")
 		animation_player.play_slide()
 	
-	if label2.visible and Input.is_action_just_pressed("interact"):
-		prompt_panel.set_visible(true)
-		
-		
+	if label2.visible and Input.is_action_just_pressed("interact"):				
 		animation_control.set_visible(true)
 		chest2._open_chest()
 		interact_with_chest("chest2")
 		animation_player.play_slide()
-
-func interact_with_chest(chest_name: String) -> void:
-	if problem1.size() > 0:
-
-		var random_index = randi() % problem1.size()
-		var problem_selector = randi() % problem1.size() # Aim to give emphasize on what he will need to get problem
 		
-		var selected_given = problem1[random_index]
-		var selected_value = problem_value1[random_index]
+func insremove(random_index: int) -> void:
+	if get_value1[random_index] == null:
 		get_value1.remove_at(random_index)
 		get_value1.insert(random_index, problem_value1[random_index])
+		get_given_value1.remove_at(random_index)
+		get_given_value1.insert(random_index, given_problem1[random_index])
+		
+func interact_with_chest(chest_name: String) -> void:
+	if given_problem1.size() > 0 and available_indices.size() > 0:
+		# Get a random index from the available indices
+		var random_index = available_indices[randi() % available_indices.size()]
+		
+		var selected_given = given_problem1[random_index]
+		var selected_value = problem_value1[random_index]
+		insremove(random_index)
+		# Remove the used index from available_indices
+		available_indices.erase(random_index)
+
 		print("Debug: the get_value1 list inserted another value of %s" % [selected_value] + "\nDebug: its given is/are %s" % [selected_given])
 		print("Debug: the value it inserted in %s" % [selected_value] + "\nDebug: at random index: %s" % [random_index])
-	
-		problem_value1.remove_at(random_index)
-		
 
 		animation_label.text = "You got: %s" % [selected_given] + "\n Value: %s" % [selected_value]
-		
 
 		print("Debug: The list get_value1 var are: %s" % [get_value1])
-		print("Debug: %s interacted with. Got '%s'. Remaining: %s" % [chest_name, selected_value, problem1])
 	else:
 		print("Debug: There are no more chests formulas left")
 

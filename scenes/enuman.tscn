@@ -134,7 +134,7 @@ radius = 0.110771
 height = 6.20761
 
 [sub_resource type="LabelSettings" id="LabelSettings_j6pck"]
-font_size = 100
+font_size = 60
 
 [node name="ENUMAN" type="CharacterBody2D"]
 script = ExtResource("1_ovy3n")
@@ -163,10 +163,10 @@ scale = Vector2(0.381215, 0.409193)
 [node name="Panel" type="Panel" parent="Camera2D"]
 visible = false
 offset_left = -48.2796
-offset_top = -27.1814
+offset_top = -25.9459
 offset_right = 12.7204
-offset_bottom = -14.1814
-scale = Vector2(1.37554, 2.32861)
+offset_bottom = -12.9459
+scale = Vector2(1.74655, 3.09073)
 
 [node name="Label1" type="Label" parent="Camera2D/Panel"]
 layout_mode = 0
@@ -175,7 +175,7 @@ offset_top = 1.25554
 offset_right = 423.393
 offset_bottom = 138.256
 scale = Vector2(0.0351782, 0.0150187)
-text = "Prompt1"
+text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="Label2" type="Label" parent="Camera2D/Panel"]
@@ -185,35 +185,35 @@ offset_top = 3.76662
 offset_right = 423.393
 offset_bottom = 140.767
 scale = Vector2(0.0351782, 0.0150187)
-text = "Prompt2"
+text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="Label3" type="Label" parent="Camera2D/Panel"]
 layout_mode = 0
-offset_left = 15.5994
-offset_top = 6.89756
-offset_right = 435.599
-offset_bottom = 143.898
+offset_left = 3.07142
+offset_top = 7.99499
+offset_right = 423.071
+offset_bottom = 144.995
 scale = Vector2(0.0351782, 0.0150187)
-text = "Prompt3"
+text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="Label4" type="Label" parent="Camera2D/Panel"]
 layout_mode = 0
-offset_left = 27.14
-offset_top = 1.25554
-offset_right = 447.14
-offset_bottom = 138.256
+offset_left = 33.7856
+offset_top = 1.19925
+offset_right = 453.786
+offset_bottom = 138.2
 scale = Vector2(0.0351782, 0.0150187)
-text = "Prompt4"
+text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="Label5" type="Label" parent="Camera2D/Panel"]
 layout_mode = 0
-offset_left = 27.14
-offset_top = 3.76662
-offset_right = 447.14
-offset_bottom = 140.767
+offset_left = 33.7856
+offset_top = 3.99749
+offset_right = 453.786
+offset_bottom = 140.998
 scale = Vector2(0.0351782, 0.0150187)
-text = "Prompt5"
+text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
