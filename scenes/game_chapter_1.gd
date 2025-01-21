@@ -51,7 +51,6 @@ func _on_pressure_plate_entered(body):
 		print("Debug: ENUMAN stepped on the pressure plate!")
 		open_panel()
 
-# Triggered when a body exits the pressure plate area
 func _on_pressure_plate_exited(body):
 	if body.name == "ENUMAN":
 		print("Debug: ENUMAN left the pressure plate!")
@@ -69,10 +68,9 @@ func open_panel() -> void:
 			prompt_label_list[index].text = "%s" % [get_given_value1[index]] + ": %s" % [get_value1[index]]
 	
 
-# Closes the panel
 func close_panel() -> void:
 	prompt_panel.set_visible(false)
-	print("Debug: Panel closed.")
+	print("Debug: Panel is now closed sa bahay ni kuya")
 
 	# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -101,13 +99,11 @@ func insremove(random_index: int) -> void:
 		
 func interact_with_chest(chest_name: String) -> void:
 	if given_problem1.size() > 0 and available_indices.size() > 0:
-		# Get a random index from the available indices
 		var random_index = available_indices[randi() % available_indices.size()]
 		
 		var selected_given = given_problem1[random_index]
 		var selected_value = problem_value1[random_index]
 		insremove(random_index)
-		# Remove the used index from available_indices
 		available_indices.erase(random_index)
 
 		print("Debug: the get_value1 list inserted another value of %s" % [selected_value] + "\nDebug: its given is/are %s" % [selected_given])
