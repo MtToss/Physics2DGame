@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0t12b51hf0vy"]
+[gd_scene load_steps=23 format=3 uid="uid://0t12b51hf0vy"]
 
 [ext_resource type="Script" path="res://scenes/enuman.gd" id="1_ovy3n"]
 [ext_resource type="Texture2D" uid="uid://cvw8e4bpdt3p8" path="res://assets/characters/ENU MAN/OGsize_EnyuMan_Run-Sheet.png" id="2_aop32"]
@@ -97,7 +97,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -126,12 +126,15 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysnjn"]
 radius = 0.110771
 height = 6.20761
+
+[sub_resource type="LabelSettings" id="LabelSettings_j6pck"]
+font_size = 100
 
 [node name="ENUMAN" type="CharacterBody2D"]
 script = ExtResource("1_ovy3n")
@@ -140,7 +143,7 @@ script = ExtResource("1_ovy3n")
 position = Vector2(-20, 22)
 scale = Vector2(0.106454, 0.120732)
 sprite_frames = SubResource("SpriteFrames_1jhyd")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -156,3 +159,61 @@ zoom = Vector2(12, 12)
 [node name="Animation" parent="Camera2D" instance=ExtResource("7_xx60k")]
 position = Vector2(107.288, -30.888)
 scale = Vector2(0.381215, 0.409193)
+
+[node name="Panel" type="Panel" parent="Camera2D"]
+visible = false
+offset_left = -48.2796
+offset_top = -27.1814
+offset_right = 12.7204
+offset_bottom = -14.1814
+scale = Vector2(1.37554, 2.32861)
+
+[node name="Label1" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 3.3925
+offset_top = 1.25554
+offset_right = 423.393
+offset_bottom = 138.256
+scale = Vector2(0.0351782, 0.0150187)
+text = "Prompt1"
+label_settings = SubResource("LabelSettings_j6pck")
+
+[node name="Label2" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 3.39251
+offset_top = 3.76662
+offset_right = 423.393
+offset_bottom = 140.767
+scale = Vector2(0.0351782, 0.0150187)
+text = "Prompt2"
+label_settings = SubResource("LabelSettings_j6pck")
+
+[node name="Label3" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 15.5994
+offset_top = 6.89756
+offset_right = 435.599
+offset_bottom = 143.898
+scale = Vector2(0.0351782, 0.0150187)
+text = "Prompt3"
+label_settings = SubResource("LabelSettings_j6pck")
+
+[node name="Label4" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 27.14
+offset_top = 1.25554
+offset_right = 447.14
+offset_bottom = 138.256
+scale = Vector2(0.0351782, 0.0150187)
+text = "Prompt4"
+label_settings = SubResource("LabelSettings_j6pck")
+
+[node name="Label5" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
+offset_left = 27.14
+offset_top = 3.76662
+offset_right = 447.14
+offset_bottom = 140.767
+scale = Vector2(0.0351782, 0.0150187)
+text = "Prompt5"
+label_settings = SubResource("LabelSettings_j6pck")

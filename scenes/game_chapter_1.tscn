@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=4 uid="uid://3g0ef8y2thgt"]
+[gd_scene load_steps=8 format=4 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
 [ext_resource type="Script" path="res://scenes/game_chapter_1.gd" id="1_xt0vt"]
 [ext_resource type="PackedScene" uid="uid://yo8b15jwvv2i" path="res://scenes/buildings.tscn" id="3_8ccfd"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="4_kui56"]
+[ext_resource type="PackedScene" uid="uid://2dgm4th40cyt" path="res://scenes/pressureplate.tscn" id="5_r24kr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nne4d"]
 distance = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imyng"]
+size = Vector2(18.9091, 27.2632)
 
 [node name="Game_Chapter_1" type="Node2D"]
 position = Vector2(1, 5)
@@ -32,3 +36,12 @@ position = Vector2(-532, -174)
 [node name="chest1" parent="." instance=ExtResource("4_kui56")]
 position = Vector2(-711, -190)
 scale = Vector2(30.0721, 9.492)
+
+[node name="pressure_plate1" parent="." instance=ExtResource("5_r24kr")]
+position = Vector2(-442, -179)
+scale = Vector2(0.423077, 0.463415)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pressure_plate1"]
+position = Vector2(0, 4.31578)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_imyng")

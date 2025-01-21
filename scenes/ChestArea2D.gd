@@ -19,7 +19,6 @@ func _on_area2d_body_entered(body):
 			$Label.show()
 
 		print("Debug: ENUMAN entered the chest 2D area mosshing!")
-
 func _on_area2d_body_exited(body):
 	if body.name == "ENUMAN":
 		print("Debug: ENUMAN left the chest 2D area mosshing!")
