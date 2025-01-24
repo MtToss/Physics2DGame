@@ -1,15 +1,20 @@
 extends CharacterBody2D
 
-const SPEED =350.0
-const JUMP_VELOCITY = -300.0
+const SPEED = 100.0
+const JUMP_VELOCITY = -250.0
 
-@onready var animated_sprite = $AnimatedSprite2D  # Ensure the AnimatedSprite2D is a child of this node
+@onready var animated_sprite = $AnimatedSprite2D
+@onready var animation_player = $Camera2D/Animation/AnimationPlayer
+
+func _ready() -> void:
+	assert(true, "This line is executed!")
+	
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
@@ -18,14 +23,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-
-
+	
+	dynamic_animation()
+	flip_body()
 	move_and_slide()
 	
+		
 func flip_body() -> void:
 	if velocity.x < 0:
 		animated_sprite.flip_h = true  
+
 	elif velocity.x > 0:
 		animated_sprite.flip_h = false 
 		
@@ -35,4 +42,3 @@ func dynamic_animation() -> void:
 		animated_sprite.animation = "walk"
 	else:
 		animated_sprite.animation = "idle"
-	

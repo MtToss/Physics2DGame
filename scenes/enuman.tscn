@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://0t12b51hf0vy"]
 
-[ext_resource type="Script" path="res://scenes/enuman.gd" id="1_ovy3n"]
+[ext_resource type="Script" path="res://scripts/enuman.gd" id="1_ovy3n"]
 [ext_resource type="Texture2D" uid="uid://cvw8e4bpdt3p8" path="res://assets/characters/ENU MAN/OGsize_EnyuMan_Run-Sheet.png" id="2_aop32"]
 [ext_resource type="PackedScene" uid="uid://ds8sigjdte5dk" path="res://scenes/Popup.tscn" id="7_xx60k"]
 

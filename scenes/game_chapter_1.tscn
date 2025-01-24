@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
-[ext_resource type="Script" path="res://scenes/game_chapter_1.gd" id="1_xt0vt"]
+[ext_resource type="Script" path="res://scripts/game_chapter_1.gd" id="1_xt0vt"]
 [ext_resource type="PackedScene" uid="uid://yo8b15jwvv2i" path="res://scenes/buildings.tscn" id="3_8ccfd"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="4_kui56"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="5_lamfs"]
@@ -38,3 +38,9 @@ scale = Vector2(30.0721, 9.492)
 [node name="pressure_plate1" parent="." instance=ExtResource("5_lamfs")]
 position = Vector2(-550, -199)
 scale = Vector2(0.184353, 0.288158)
+
+[node name="chest3" parent="." instance=ExtResource("4_kui56")]
+position = Vector2(-630, -193)
+
+[node name="chest4" parent="." instance=ExtResource("4_kui56")]
+position = Vector2(-654, -193)
