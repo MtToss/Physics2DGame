@@ -26,35 +26,50 @@ extends Node2D
 @onready var pressure_plate1 = $pressure_plate1/Area2D
 var prompt_label_list = []
 
-var given_problem1 = ["Velocity", "Angle", "Time of Max Height", "Max Height", "Range"]
-var problem_value1 = [40.0, 50.0, 6.25, 47.9, 160.78]
+var given_problem1 = ["Velocity", "Angle", "Time of Flight", "Max Height", "Range"]
+var problem_value1 = [null, null, null, null, null]
 var get_value1 = [null, null, null, null, null]
 var get_given_value1 = [null, null, null, null, null]
 var available_indices = []
 
-var random_index = randi() % given_problem1.size()
-var problem_selector = randi() % given_problem1.size() # Aim to give emphasize on what he will need to get problem
+var gravity = 9.8
+
+func randomize_problem_values() -> void:
+	# Randomize velocity and angle
+	var velocity = (randi() % 100) + 30  # Velocity between 30 and 130 m/s
+	var angle = (randi() % 60) + 30      # Angle between 30 and 90 degrees
+
+	# Calculate time of flight, max height, and range using physics formulas
+	var time_of_flight = (2 * velocity * sin(deg_to_rad(angle))) / gravity
+	var max_height = (velocity * velocity * sin(deg_to_rad(angle)) * sin(deg_to_rad(angle))) / (2 * gravity)
+	var range = (velocity * velocity * sin(2 * deg_to_rad(angle))) / gravity
+
+	# Store the values
+	problem_value1 = [velocity, angle, time_of_flight, max_height, range]
+
+	# Debug prints
+	print("Debug: Velocity is %s" % [velocity])
+	print("Debug: Angle is %s" % [angle])
+	print("Debug: Time of Flight is %s" % [time_of_flight])
+	print("Debug: Max Height is %s" % [max_height])
+	print("Debug: Range is %s" % [range])
 
 func _ready() -> void:
-	
+	randomize_problem_values()
 	available_indices = range(given_problem1.size())
-	
+
+	# Initialize prompt labels
 	prompt_label_list = [prompt_label1, prompt_label2, prompt_label3, prompt_label4, prompt_label5]
-	for label in prompt_label_list:
-		if label == null:
-			print("Error: A label in prompt_label_list is null!")
-	
+
 	pressure_plate1.connect("body_entered", Callable(self, "_on_pressure_plate_entered"))
 	pressure_plate1.connect("body_exited", Callable(self, "_on_pressure_plate_exited"))
-	
-	self.connect("body_entered", Callable(self, "_on_area2d_body_entered"))
-	self.connect("body_exited", Callable(self, "_on_area2d_body_exited"))
 
 func _on_pressure_plate_entered(body):
 	if body.name == "ENUMAN":
 		print("Debug: ENUMAN stepped on the pressure plate!")
 		open_panel()
-	
+		perform_calculations()
+
 func _on_pressure_plate_exited(body):
 	if body.name == "ENUMAN":
 		print("Debug: ENUMAN left the pressure plate!")
@@ -65,25 +80,25 @@ func open_panel() -> void:
 	print("Debug: Open_panel opened")
 	prompt_panel.set_visible(true)
 	for index in range(given_problem1.size()):
-		if (prompt_label_list[index].text == "Prompt"|| prompt_label_list[index].text == "?") && get_value1[index] == null:
+		if get_value1[index] == null:
 			prompt_label_list[index].text = "?"
-			print("Skipped %s" %[index])
+			print("Missing value for: %s" % [given_problem1[index]])
 		else:
-			prompt_label_list[index].text = "%s" % [get_given_value1[index]] + ": %s" % [get_value1[index]]
-	
+			prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
 
 func close_panel() -> void:
 	prompt_panel.set_visible(false)
-	print("Debug: Panel is now closed sa bahay ni kuya")
+	print("Debug: Panel is now closed")
 
-	# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	interact_chess()
-	pass
 
 func interact_chess() -> void:
 	handle_chest_interaction(label1, chest1, animation_control, animation_player, "chest1")
 	handle_chest_interaction(label2, chest2, animation_control, animation_player, "chest2")
+	handle_chest_interaction(label3, chest3, animation_control, animation_player, "chest3")
+	handle_chest_interaction(label4, chest4, animation_control, animation_player, "chest4")
 
 func handle_chest_interaction(label: Label, chest, animation_control: Control, animation_player: AnimationPlayer, chest_name: String) -> void:
 	if label.visible and Input.is_action_just_pressed("interact"):
@@ -92,31 +107,63 @@ func handle_chest_interaction(label: Label, chest, animation_control: Control, a
 		interact_with_chest(chest_name)
 		animation_player.play_slide()
 
-func insremove(random_index: int) -> void:
-	if get_value1[random_index] == null:
-		get_value1.remove_at(random_index)
-		get_value1.insert(random_index, problem_value1[random_index])
-		get_given_value1.remove_at(random_index)
-		get_given_value1.insert(random_index, given_problem1[random_index])
-		
 func interact_with_chest(chest_name: String) -> void:
 	if given_problem1.size() > 0 and available_indices.size() > 0:
 		var random_index = available_indices[randi() % available_indices.size()]
-		
 		var selected_given = given_problem1[random_index]
 		var selected_value = problem_value1[random_index]
-		insremove(random_index)
-		available_indices.erase(random_index)
 
-		print("Debug: the get_value1 list inserted another value of %s" % [selected_value] + "\nDebug: its given is/are %s" % [selected_given])
-		print("Debug: the value it inserted in %s" % [selected_value] + "\nDebug: at random index: %s" % [random_index])
+		# Update the get_value1 and get_given_value1 arrays
+		get_value1[random_index] = selected_value
+		get_given_value1[random_index] = selected_given
 
+		# Update the animation label
 		animation_label.text = "You got: %s" % [selected_given] + "\n Value: %s" % [selected_value]
 
-		print("Debug: The list get_value1 var are: %s" % [get_value1])
-	else:
-		print("Debug: There are no more chests formulas left")
+		# Remove the index from available_indices
+		available_indices.erase(random_index)
 
-func refresh_panel() -> void:
-	
-	pass
+# Perform calculations to fill in missing values
+func perform_calculations() -> void:
+	for index in range(given_problem1.size()):
+		if get_value1[index] == null:
+			match given_problem1[index]:
+				"Velocity":
+					if get_value1[given_problem1.find("Angle")] != null and get_value1[given_problem1.find("Time of Flight")] != null:
+						var angle = get_value1[given_problem1.find("Angle")]
+						var time_of_flight = get_value1[given_problem1.find("Time of Flight")]
+						var velocity = (gravity * time_of_flight) / (2 * sin(deg_to_rad(angle)))
+						get_value1[index] = velocity
+						print("Debug: Velocity calculated: %s" % [velocity])
+
+				"Angle":
+					if get_value1[given_problem1.find("Velocity")] != null and get_value1[given_problem1.find("Time of Flight")] != null:
+						var velocity = get_value1[given_problem1.find("Velocity")]
+						var time_of_flight = get_value1[given_problem1.find("Time of Flight")]
+						var angle = rad_to_deg(asin((gravity * time_of_flight) / (2 * velocity)))
+						get_value1[index] = angle
+						print("Debug: Angle calculated: %s" % [angle])
+
+				"Time of Flight":
+					if get_value1[given_problem1.find("Velocity")] != null and get_value1[given_problem1.find("Angle")] != null:
+						var velocity = get_value1[given_problem1.find("Velocity")]
+						var angle = get_value1[given_problem1.find("Angle")]
+						var time_of_flight = (2 * velocity * sin(deg_to_rad(angle))) / gravity
+						get_value1[index] = time_of_flight
+						print("Debug: Time of Flight calculated: %s" % [time_of_flight])
+
+				"Max Height":
+					if get_value1[given_problem1.find("Velocity")] != null and get_value1[given_problem1.find("Angle")] != null:
+						var velocity = get_value1[given_problem1.find("Velocity")]
+						var angle = get_value1[given_problem1.find("Angle")]
+						var max_height = (velocity * velocity * sin(deg_to_rad(angle)) * sin(deg_to_rad(angle))) / (2 * gravity)
+						get_value1[index] = max_height
+						print("Debug: Max Height calculated: %s" % [max_height])
+
+				"Range":
+					if get_value1[given_problem1.find("Velocity")] != null and get_value1[given_problem1.find("Angle")] != null:
+						var velocity = get_value1[given_problem1.find("Velocity")]
+						var angle = get_value1[given_problem1.find("Angle")]
+						var range = (velocity * velocity * sin(2 * deg_to_rad(angle))) / gravity
+						get_value1[index] = range
+						print("Debug: Range calculated: %s" % [range])
