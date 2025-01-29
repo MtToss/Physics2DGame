@@ -1,7 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://0t12b51hf0vy"]
+[gd_scene load_steps=25 format=3 uid="uid://0t12b51hf0vy"]
 
 [ext_resource type="Script" path="res://scripts/enuman.gd" id="1_ovy3n"]
 [ext_resource type="Texture2D" uid="uid://cvw8e4bpdt3p8" path="res://assets/characters/ENU MAN/OGsize_EnyuMan_Run-Sheet.png" id="2_aop32"]
+[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="4_eb1cg"]
+[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="5_nvhmn"]
 [ext_resource type="PackedScene" uid="uid://ds8sigjdte5dk" path="res://scenes/Popup.tscn" id="7_xx60k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6g8sl"]
@@ -217,3 +219,9 @@ offset_bottom = 140.998
 scale = Vector2(0.0351782, 0.0150187)
 text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("4_eb1cg")]
+
+[node name="Node" parent="CanvasLayer" instance=ExtResource("5_nvhmn")]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://3g0ef8y2thgt"]
+[gd_scene load_steps=9 format=4 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
 [ext_resource type="Script" path="res://scripts/game_chapter_1.gd" id="1_xt0vt"]
 [ext_resource type="PackedScene" uid="uid://yo8b15jwvv2i" path="res://scenes/buildings.tscn" id="3_8ccfd"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="4_kui56"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="5_lamfs"]
+[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="6_flrwj"]
+[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="6_sxtrt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nne4d"]
 distance = 3.0
@@ -12,6 +14,16 @@ distance = 3.0
 [node name="Game_Chapter_1" type="Node2D"]
 position = Vector2(1, 5)
 script = ExtResource("1_xt0vt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("6_flrwj")]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
+
+[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("6_sxtrt")]
 
 [node name="ENUMAN" parent="." instance=ExtResource("1_huqj3")]
 z_index = 100
