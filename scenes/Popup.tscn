@@ -29,7 +29,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 1), Vector2(-107.426, 1)]
+"values": [Vector2(0, 20), Vector2(-157.426, 20)]
 }
 
 [sub_resource type="Animation" id="Animation_q6qse"]
@@ -44,7 +44,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-107.426, 1), Vector2(0, 1)]
+"values": [Vector2(-157.426, 20), Vector2(0, 20)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ibbad"]
@@ -74,8 +74,9 @@ visible = false
 z_index = 15
 layout_mode = 3
 anchors_preset = 0
+offset_left = -157.426
 offset_top = 1.0
-offset_right = 40.0
+offset_right = -117.426
 offset_bottom = 41.0
 scale = Vector2(0.19691, 0.285076)
 

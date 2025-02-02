@@ -1,5 +1,5 @@
 extends Node2D
-
+# game chapter 1
 @onready var label1 = $chest1/Area2D/Label
 @onready var label2 = $chest2/Area2D/Label
 @onready var label3 = $chest3/Area2D/Label
@@ -9,6 +9,8 @@ extends Node2D
 @onready var chest2 = $chest2/Area2D
 @onready var chest3 = $chest3/Area2D
 @onready var chest4 = $chest4/Area2D
+
+@onready var animation_sprite_2D = $ENUMAN/AnimatedSprite2D
 
 @onready var animation_player = $ENUMAN/Camera2D/Animation/AnimationPlayer
 @onready var animation_label = $ENUMAN/Camera2D/Animation/Control/Label
@@ -24,6 +26,13 @@ extends Node2D
 @onready var prompt_label5 = $ENUMAN/Camera2D/Panel/Label5
 
 @onready var pressure_plate1 = $pressure_plate1/Area2D
+
+@onready var stopwatch = $CanvasLayer/Hud 
+
+@onready var camera = $ENUMAN
+
+var is_paused = false
+#var pause_decision = tru
 var prompt_label_list = []
 
 var given_problem1 = ["Velocity", "Angle", "Time of Flight", "Max Height", "Range"]
@@ -35,19 +44,15 @@ var available_indices = []
 var gravity = 9.8
 
 func randomize_problem_values() -> void:
-	# Randomize velocity and angle
-	var velocity = (randi() % 100) + 30  # Velocity between 30 and 130 m/s
-	var angle = (randi() % 60) + 30      # Angle between 30 and 90 degrees
+	var velocity = (randi() % 100) + 30  
+	var angle = (randi() % 60) + 30      
 
-	# Calculate time of flight, max height, and range using physics formulas
 	var time_of_flight = (2 * velocity * sin(deg_to_rad(angle))) / gravity
 	var max_height = (velocity * velocity * sin(deg_to_rad(angle)) * sin(deg_to_rad(angle))) / (2 * gravity)
 	var range = (velocity * velocity * sin(2 * deg_to_rad(angle))) / gravity
 
-	# Store the values
 	problem_value1 = [velocity, angle, time_of_flight, max_height, range]
 
-	# Debug prints
 	print("Debug: Velocity is %s" % [velocity])
 	print("Debug: Angle is %s" % [angle])
 	print("Debug: Time of Flight is %s" % [time_of_flight])
@@ -55,10 +60,13 @@ func randomize_problem_values() -> void:
 	print("Debug: Range is %s" % [range])
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	print('Debug: ito po ang gumagana game_chapter_1.gd/script')
 	randomize_problem_values()
 	available_indices = range(given_problem1.size())
 
-	# Initialize prompt labels
+
 	prompt_label_list = [prompt_label1, prompt_label2, prompt_label3, prompt_label4, prompt_label5]
 
 	pressure_plate1.connect("body_entered", Callable(self, "_on_pressure_plate_entered"))
@@ -70,12 +78,23 @@ func _on_pressure_plate_entered(body):
 		open_panel()
 		perform_calculations()
 
+func pop_main_menu() -> void:
+	if Input.is_action_just_pressed("escape"):
+		is_paused = !is_paused
+		if is_paused:
+			stopwatch.stop() 
+			animation_sprite_2D.stop()
+			print("Debug: Game Paused")	
+		else:
+			stopwatch.play()
+			animation_sprite_2D.play()
+			print("Debug: Game Resumed")
+			
 func _on_pressure_plate_exited(body):
 	if body.name == "ENUMAN":
 		print("Debug: ENUMAN left the pressure plate!")
 		close_panel()
 
-# Opens the panel and sets the text
 func open_panel() -> void:
 	print("Debug: Open_panel opened")
 	prompt_panel.set_visible(true)
@@ -90,8 +109,10 @@ func close_panel() -> void:
 	prompt_panel.set_visible(false)
 	print("Debug: Panel is now closed")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
+	camera.adjust_camera(60,60)
+	pop_main_menu()
 	interact_chess()
 
 func interact_chess() -> void:
@@ -113,17 +134,13 @@ func interact_with_chest(chest_name: String) -> void:
 		var selected_given = given_problem1[random_index]
 		var selected_value = problem_value1[random_index]
 
-		# Update the get_value1 and get_given_value1 arrays
 		get_value1[random_index] = selected_value
 		get_given_value1[random_index] = selected_given
 
-		# Update the animation label
 		animation_label.text = "You got: %s" % [selected_given] + "\n Value: %s" % [selected_value]
 
-		# Remove the index from available_indices
 		available_indices.erase(random_index)
 
-# Perform calculations to fill in missing values
 func perform_calculations() -> void:
 	for index in range(given_problem1.size()):
 		if get_value1[index] == null:

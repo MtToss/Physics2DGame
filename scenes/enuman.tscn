@@ -137,6 +137,7 @@ height = 6.20761
 font_size = 60
 
 [node name="ENUMAN" type="CharacterBody2D"]
+position = Vector2(50, 48)
 script = ExtResource("1_ovy3n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -157,7 +158,7 @@ scale = Vector2(0.745657, 0.809377)
 zoom = Vector2(12, 12)
 
 [node name="Animation" parent="Camera2D" instance=ExtResource("7_xx60k")]
-position = Vector2(33.5275, -22.2393)
+position = Vector2(109.97, -22.2393)
 scale = Vector2(0.381215, 0.409193)
 
 [node name="Panel" type="Panel" parent="Camera2D"]
