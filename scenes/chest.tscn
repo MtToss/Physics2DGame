@@ -115,7 +115,7 @@ script = ExtResource("1_lqcgi")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 scale = Vector2(2.03609, 1.76671)
 sprite_frames = SubResource("SpriteFrames_udjqy")
-animation = &"opened chest"
+animation = &"closed chest"
 autoplay = "closed chest"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

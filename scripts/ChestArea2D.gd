@@ -30,5 +30,11 @@ func _open_chest():
 	is_chest_opened = true
 	$Label.hide
 	print("The chest is opening!")
-
 	
+func play():
+	print("Debug: Gumagana ang closed chest animation")
+	$AnimatedSprite2D.play("closed chest")
+
+func stop():
+	print("Debug: nag pause na ang chest")
+	$AnimatedSprite2D.stop()

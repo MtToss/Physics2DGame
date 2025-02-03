@@ -10,7 +10,9 @@ extends Node2D
 @onready var chest3 = $chest3/Area2D
 @onready var chest4 = $chest4/Area2D
 
-@onready var animation_sprite_2D = $ENUMAN/AnimatedSprite2D
+@onready var chest1animation = $chest1
+
+@onready var character_animation_sprite_2D = $ENUMAN/AnimatedSprite2D
 
 @onready var animation_player = $ENUMAN/Camera2D/Animation/AnimationPlayer
 @onready var animation_label = $ENUMAN/Camera2D/Animation/Control/Label
@@ -83,11 +85,13 @@ func pop_main_menu() -> void:
 		is_paused = !is_paused
 		if is_paused:
 			stopwatch.stop() 
-			animation_sprite_2D.stop()
+			character_animation_sprite_2D.stop()
+			chest1.stop()
 			print("Debug: Game Paused")	
 		else:
 			stopwatch.play()
-			animation_sprite_2D.play()
+			character_animation_sprite_2D.play()
+			chest1.play()
 			print("Debug: Game Resumed")
 			
 func _on_pressure_plate_exited(body):
