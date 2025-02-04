@@ -99,6 +99,13 @@ func _on_pressure_plate_exited(body):
 		print("Debug: ENUMAN left the pressure plate!")
 		close_panel()
 
+func insremove(random_index: int) -> void:
+	if get_value1[random_index] == null:
+		get_value1.remove_at(random_index)
+		get_value1.insert(random_index, problem_value1[random_index])
+		get_given_value1.remove_at(random_index)
+		get_given_value1.insert(random_index, given_problem1[random_index])
+
 func open_panel() -> void:
 	print("Debug: Open_panel opened")
 	prompt_panel.set_visible(true)
@@ -138,9 +145,7 @@ func interact_with_chest(chest_name: String) -> void:
 		var selected_given = given_problem1[random_index]
 		var selected_value = problem_value1[random_index]
 
-		get_value1[random_index] = selected_value
-		get_given_value1[random_index] = selected_given
-
+		insremove(random_index)
 		animation_label.text = "You got: %s" % [selected_given] + "\n Value: %s" % [selected_value]
 
 		available_indices.erase(random_index)
