@@ -1,0 +1,157 @@
+[gd_scene load_steps=8 format=3 uid="uid://c53fp4t8ndaut"]
+
+[ext_resource type="Script" path="res://mainMenu/how_to_play.gd" id="1_ccbed"]
+
+[sub_resource type="Animation" id="Animation_5vfea"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qjj1e"]
+resource_name = "next_slide_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3000, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t8h3n"]
+resource_name = "next_slide_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3000, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yjdwj"]
+resource_name = "slide_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3000, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nwc8b"]
+resource_name = "slide_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3000, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_glgco"]
+_data = {
+"RESET": SubResource("Animation_5vfea"),
+"next_slide_in": SubResource("Animation_qjj1e"),
+"next_slide_out": SubResource("Animation_t8h3n"),
+"slide_in": SubResource("Animation_yjdwj"),
+"slide_out": SubResource("Animation_nwc8b")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ccbed")
+
+[node name="how" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="page1" type="Panel" parent="how"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 49.0
+offset_right = 931.0
+offset_bottom = 515.0
+
+[node name="TextureRect" type="TextureRect" parent="how/page1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="how/page1"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_glgco")
+}
+
+[node name="back" type="Button" parent="how"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 558.0
+offset_right = 231.0
+offset_bottom = 606.0
+text = "<---"
+
+[node name="next" type="Button" parent="how"]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 563.0
+offset_right = 881.0
+offset_bottom = 614.0
+text = "--->"
+
+[node name="main_back" type="Button" parent="how"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 28.0
+offset_right = 74.0
+offset_bottom = 66.0
+text = "Back"
+
+[connection signal="pressed" from="how/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="how/next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="how/main_back" to="." method="_on_main_back_pressed"]

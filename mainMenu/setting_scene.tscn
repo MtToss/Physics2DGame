@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://ugnawfs0l1wi"]
+
+[ext_resource type="Script" path="res://mainMenu/setting_scene.gd" id="1_oqppn"]
+[ext_resource type="PackedScene" uid="uid://pne641hfv2nu" path="res://mainMenu/volume_slider.tscn" id="2_c3ioe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvbor"]
+bg_color = Color(0, 0.262745, 0.568627, 1)
+
+[node name="setting_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oqppn")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cvbor")
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 21.0
+offset_right = 95.0
+offset_bottom = 59.0
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 203.0
+offset_top = 212.0
+offset_right = 821.0
+offset_bottom = 436.0
+theme_override_constants/separation = 10
+
+[node name="master_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="master" parent="VBoxContainer" instance=ExtResource("2_c3ioe")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="music_;abel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="music" parent="VBoxContainer" instance=ExtResource("2_c3ioe")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="sfx_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="sfx" parent="VBoxContainer" instance=ExtResource("2_c3ioe")]
+layout_mode = 2
+bus_name = "Sfx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
