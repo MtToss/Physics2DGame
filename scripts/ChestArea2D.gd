@@ -38,3 +38,5 @@ func play():
 func stop():
 	print("Debug: nag pause na ang chest")
 	$AnimatedSprite2D.stop()
+	
+	
