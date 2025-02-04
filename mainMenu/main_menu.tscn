@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://dg0pqyx1b3v73"]
+
+[ext_resource type="Script" path="res://mainMenu/main_menu.gd" id="1_26fsk"]
+[ext_resource type="Texture2D" uid="uid://djfhr16s0irxx" path="res://mainMenu/download.svg" id="2_k8jig"]
+[ext_resource type="FontFile" uid="uid://cruhiyd0cmroe" path="res://mainMenu/upheavtt.ttf" id="3_o0gc5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fvew"]
+texture = ExtResource("2_k8jig")
+modulate_color = Color(0.493545, 0.493546, 0.493546, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4tyk"]
+bg_color = Color(0.501407, 0.501406, 0.501406, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yjaf"]
+bg_color = Color(0.396889, 0.396889, 0.396889, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84nn1"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_26fsk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7fvew")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 176.5
+offset_top = 111.0
+offset_right = 847.5
+offset_bottom = 537.0
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_o0gc5")
+theme_override_font_sizes/font_size = 90
+text = "Enyu Man"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="start_button" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_k4tyk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3yjaf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84nn1")
+text = "Start"
+
+[node name="how_to_play_button" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_k4tyk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3yjaf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84nn1")
+text = "How to Play"
+
+[node name="settings_button" type="Button" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_k4tyk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3yjaf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84nn1")
+text = "Settings"
+
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/start_button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/how_to_play_button" to="." method="_on_how_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/settings_button" to="." method="_on_settings_pressed"]

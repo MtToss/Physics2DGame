@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0h5gx2cay5k2"]
+
+[ext_resource type="Script" path="res://mainMenu/music_player.gd" id="1_x4gek"]
+[ext_resource type="AudioStream" uid="uid://cngif7hjts6to" path="res://mainMenu/Mingle Game Song Round and Round Lyric Video  Squid Game_ Season 2  Netflix.mp3" id="2_moop5"]
+[ext_resource type="Script" path="res://mainMenu/audio_stream_player.gd" id="3_v825d"]
+
+[node name="music_player" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x4gek")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_moop5")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+script = ExtResource("3_v825d")
