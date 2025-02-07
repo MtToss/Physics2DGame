@@ -1,5 +1,5 @@
 extends Node2D
-# game chapter 1
+# game chapter 2
 @onready var label1 = $chest1/Area2D/Label
 @onready var label2 = $chest2/Area2D/Label
 @onready var label3 = $chest3/Area2D/Label
@@ -33,11 +33,6 @@ extends Node2D
 
 @onready var camera = $ENUMAN
 
-@onready var hallwayman = $HallwayMan/CharacterBody2D
-@onready var hallwayman_area_2D = $HallwayMan/CharacterBody2D/Area2D
-
-#var is_fire_paused = true
-
 var is_paused = false
 #var pause_decision = tru
 var prompt_label_list = []
@@ -47,6 +42,7 @@ var problem_value1 = [null, null, null, null, null]
 var get_value1 = [null, null, null, null, null]
 var get_given_value1 = [null, null, null, null, null]
 var available_indices = []
+
 var gravity = 9.8
 
 func randomize_problem_values() -> void:
@@ -77,21 +73,7 @@ func _ready() -> void:
 
 	pressure_plate1.connect("body_entered", Callable(self, "_on_pressure_plate_entered"))
 	pressure_plate1.connect("body_exited", Callable(self, "_on_pressure_plate_exited"))
-	hallwayman_area_2D.connect("body_entered", Callable(self, "_on_hallway_enemy_entered"))
-	hallwayman_area_2D.connect("body_exited", Callable(self,"_on_hallway_enemy_exited"))
 
-func _on_hallway_enemy_entered(body):
-
-		if body.name == "ENUMAN":
-			hallwayman.decision_to_pause(true)
-			hallwayman.fire()
-			print("Debug: ENUMAN entered Hallway man body")
-
-func _on_hallway_enemy_exited(body):
-	if body.name == "ENUMAN":
-		hallwayman.decision_to_pause(false)
-		print("Debug: ENUMAN Exited Hallway man body")
-	
 func _on_pressure_plate_entered(body):
 	if body.name == "ENUMAN":
 		print("Debug: ENUMAN stepped on the pressure plate!")
@@ -140,7 +122,7 @@ func close_panel() -> void:
 
 
 func _process(delta: float) -> void:
-	camera.adjust_camera(50,50)
+	camera.adjust_camera(60,60)
 	pop_main_menu()
 	interact_chess()
 

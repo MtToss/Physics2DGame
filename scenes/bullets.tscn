@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv6vdnjm0okj1"]
+
+[ext_resource type="Script" path="res://scenes/bullets.gd" id="1_es3yg"]
+[ext_resource type="Texture2D" uid="uid://dddswk1j1etbf" path="res://assets/assets/Charge_2.png" id="2_w5lge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2b6ci"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlpnc"]
+atlas = ExtResource("2_w5lge")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3msn5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlpnc")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[node name="bullets" type="Area2D"]
+script = ExtResource("1_es3yg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2b6ci")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3msn5")
+animation = &"shoot"

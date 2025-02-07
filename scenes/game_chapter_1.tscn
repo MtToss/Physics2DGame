@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://3g0ef8y2thgt"]
+[gd_scene load_steps=17 format=3 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
 [ext_resource type="Script" path="res://scripts/game_chapter_1.gd" id="1_xt0vt"]
+[ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="2_krcld"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="4_kui56"]
+[ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="5_2m2j8"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="5_lamfs"]
 [ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="6_flrwj"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="6_sxtrt"]
@@ -29,6 +31,10 @@ script = ExtResource("1_xt0vt")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_avp0r")
 
+[node name="HallwayMan" parent="." instance=ExtResource("2_krcld")]
+position = Vector2(-1021, 178)
+scale = Vector2(0.142402, 0.119979)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="CanvasLayer" instance=ExtResource("6_flrwj")]
@@ -42,6 +48,10 @@ offset_bottom = 5.0
 [node name="ENUMAN" parent="." instance=ExtResource("1_huqj3")]
 z_index = 100
 position = Vector2(-987, 182)
+
+[node name="Benson" parent="." instance=ExtResource("5_2m2j8")]
+position = Vector2(-951.48, 177.69)
+scale = Vector2(0.155, 0.149)
 
 [node name="chest2" parent="." instance=ExtResource("4_kui56")]
 position = Vector2(-847, 186)
@@ -124,3 +134,19 @@ scale = Vector2(0.360009, 0.371271)
 [node name="StaticBody2D3" parent="." instance=ExtResource("13_ltcbo")]
 position = Vector2(-802, 221)
 scale = Vector2(0.213976, 0.214708)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("13_ltcbo")]
+position = Vector2(-754, 145)
+scale = Vector2(0.410508, 0.768042)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("13_ltcbo")]
+position = Vector2(-630, 131)
+scale = Vector2(0.548623, 0.961886)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("13_ltcbo")]
+position = Vector2(-513, 131)
+scale = Vector2(0.632448, 0.913423)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("13_ltcbo")]
+position = Vector2(-374, 115)
+scale = Vector2(0.546959, 1.01784)
