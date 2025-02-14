@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://c3u4povsm3px5"]
+
+[ext_resource type="Script" path="res://scripts/game_chapter_2.gd" id="1_4w3sb"]
+[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="2_rvx6x"]
+[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="3_h7jyj"]
+[ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="4_v1b10"]
+[ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="5_o2oyw"]
+[ext_resource type="Texture2D" uid="uid://d2ey3rj3wteyp" path="res://assets/assets/Chapter_1_Background.png" id="6_akcu5"]
+[ext_resource type="Texture2D" uid="uid://bkk2jbp45pkla" path="res://assets/assets/Chapter_1_Sun.png" id="7_5rpip"]
+[ext_resource type="Texture2D" uid="uid://7poohk5oby33" path="res://assets/assets/Chapter_1_Silhouette4.png" id="8_qs6nb"]
+[ext_resource type="Texture2D" uid="uid://cxs8a0ydm4idh" path="res://assets/assets/Chapter_1_Silhouette3.png" id="9_cmw61"]
+[ext_resource type="Texture2D" uid="uid://4vuvtdr4s6u0" path="res://assets/assets/Chapter_1_Silhouette2.png" id="10_piman"]
+[ext_resource type="Texture2D" uid="uid://cnfb22xve25qv" path="res://assets/assets/Chapter_1_Silhouette1.png" id="11_dy7st"]
+
+[sub_resource type="Environment" id="Environment_i522t"]
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+glow_strength = 1.5
+glow_blend_mode = 1
+
+[node name="GameChapter2" type="Node2D"]
+script = ExtResource("1_4w3sb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i522t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("2_rvx6x")]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
+
+[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("3_h7jyj")]
+
+[node name="ENUMAN" parent="." instance=ExtResource("4_v1b10")]
+z_index = 100
+position = Vector2(-987, 182)
+
+[node name="chest1" parent="." instance=ExtResource("5_o2oyw")]
+position = Vector2(-994, 183)
+scale = Vector2(30.0721, 9.492)
+
+[node name="chest2" parent="." instance=ExtResource("5_o2oyw")]
+position = Vector2(-847, 186)
+
+[node name="chest3" parent="." instance=ExtResource("5_o2oyw")]
+position = Vector2(-913, 180)
+
+[node name="chest4" parent="." instance=ExtResource("5_o2oyw")]
+position = Vector2(-937, 180)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
+position = Vector2(-517, 127)
+texture = ExtResource("6_akcu5")
+
+[node name="Sun" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sun"]
+position = Vector2(-517, 127)
+texture = ExtResource("7_5rpip")
+
+[node name="Silhouette4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.4, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette4"]
+position = Vector2(-517, 127)
+texture = ExtResource("8_qs6nb")
+
+[node name="Silhouette3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.6, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette3"]
+position = Vector2(-517, 127)
+texture = ExtResource("9_cmw61")
+
+[node name="Silhouette2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.95, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette2"]
+position = Vector2(-517, 127)
+texture = ExtResource("10_piman")
+
+[node name="Silhouette" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette"]
+position = Vector2(-517, 127)
+texture = ExtResource("11_dy7st")
