@@ -47,6 +47,10 @@ extends Node2D
 @onready var line_edit = $ENUMAN/Camera2D/Panel/LineEdit
 
 
+@onready var dialogue_panel = $ENUMAN/Camera2D/Panel2
+@onready var dialogue_label = $ENUMAN/Camera2D/Panel2/Dialogue
+
+
 var correct_answer = 0
 
 var bullet_scene
@@ -61,6 +65,17 @@ var get_value1 = [null, null, null, null, null]
 var get_given_value1 = [null, null, null, null, null]
 var available_indices = []
 var gravity = 9.8
+
+var dialogue = [
+		"The possibilities are endless. The world is your canvas, waiting for your brushstrokes of imagination to breathe life into it.",
+		"From the depths of the ocean to the vastness of space, there are stories to be told and adventures to be had. ",
+		" Take a leap of faith into the unknown, for it is there that the magic happens. ",
+		"Embrace the uncertainty, the challenges, and the beauty that lies within every step of the journey. So, go forth, and create your own masterpiece."
+	]
+
+var index = 0  # Tracks the current line
+var typing_speed = 0.0005  # Adjust typing speed (seconds per character)
+var is_typing = false  # Prevent skipping during typing
 
 var new_bullet
 
@@ -96,6 +111,7 @@ func _ready() -> void:
 	hallwayman_area_2D.connect("body_entered", Callable(self, "_on_hallway_enemy_entered"))
 	hallwayman_area_2D.connect("body_exited", Callable(self,"_on_hallway_enemy_exited"))
 	line_edit.text_submitted.connect($ENUMAN._on_line_edit_text_submitted)
+	show_dialogue_panel()
 	
 
 func _on_bullet_entered(body):
@@ -186,6 +202,53 @@ func open_panel() -> void:
 func close_panel() -> void:
 	prompt_panel.set_visible(false)
 	print("Debug: Panel is now closed")
+
+func show_dialogue_panel() -> void:
+	print("Debug: dialogue_panel opened")
+	dialogue_panel.set_visible(true)
+	dialogue_label.text = ""  # Clear text before showing dialogue
+
+func close_dialogue_panel() -> void:
+	dialogue_panel.set_visible(false)
+	print("Debug: Dialogue Panel is now closed")
+
+func show_typing_effect(text: String, speed: float) -> void:
+	is_typing = true  # Set typing flag to true
+	dialogue_label.text = ""  # Clear label before typing
+	for i in range(text.length()):
+		dialogue_label.text += text[i]
+		await get_tree().create_timer(speed).timeout  # Wait before adding next character
+	is_typing = false  # Typing finished
+
+	
+
+func play_scene() -> void:
+	if index < dialogue.size():  # Ensure index is within bounds
+		if !is_typing:  # Only start typing if we are not already typing
+			await show_typing_effect(dialogue[index], typing_speed)  # Type text
+			index += 1  # Move to the next dialogue line
+			print('play scene')
+			
+		else:
+			print("Already typing, please wait.")  # Debugging statement
+	else:	
+		close_dialogue_panel()  # Close the dialogue panel if no more dialogue lines
+		stopwatch.play()
+		character_animation_sprite_2D.play()
+		chest1.play()
+		print("Debug: Game Resumed")
+		get_tree().paused = false
+	
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		print("Mouse clicked!")  # Debugging: Check if it prints
+		if !is_typing:
+			print('play')
+			play_scene()
+			
+			return
+			
 
 func _process(delta: float) -> void:
 	camera.adjust_camera(50,50)

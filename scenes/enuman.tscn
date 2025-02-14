@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://0t12b51hf0vy"]
+[gd_scene load_steps=24 format=3 uid="uid://0t12b51hf0vy"]
 
 [ext_resource type="Script" path="res://scripts/enuman.gd" id="1_ovy3n"]
 [ext_resource type="Texture2D" uid="uid://cvw8e4bpdt3p8" path="res://assets/characters/ENU MAN/OGsize_EnyuMan_Run-Sheet.png" id="2_aop32"]
@@ -133,6 +133,9 @@ animations = [{
 radius = 0.0526178
 height = 6.20761
 
+[sub_resource type="LabelSettings" id="LabelSettings_jh3n4"]
+font_size = 200
+
 [sub_resource type="LabelSettings" id="LabelSettings_j6pck"]
 font_size = 60
 
@@ -161,6 +164,23 @@ position_smoothing_enabled = true
 [node name="Animation" parent="Camera2D" instance=ExtResource("7_xx60k")]
 position = Vector2(162.273, -29.6524)
 scale = Vector2(0.381215, 0.409193)
+
+[node name="Panel2" type="Panel" parent="Camera2D"]
+visible = false
+offset_left = -56.3262
+offset_top = 17.2973
+offset_right = 55.6738
+offset_bottom = 30.2973
+
+[node name="Dialogue" type="Label" parent="Camera2D/Panel2"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 7265.0
+offset_bottom = 741.0
+scale = Vector2(0.015, 0.015)
+text = "Prompt"
+label_settings = SubResource("LabelSettings_jh3n4")
+autowrap_mode = 2
 
 [node name="Panel" type="Panel" parent="Camera2D"]
 visible = false
@@ -224,9 +244,9 @@ label_settings = SubResource("LabelSettings_j6pck")
 light_mask = 31
 layout_mode = 0
 offset_left = 2.30359
-offset_top = 12.792
+offset_top = 11.9925
 offset_right = 69.3661
-offset_bottom = 43.792
+offset_bottom = 42.9925
 scale = Vector2(0.495614, 0.109811)
 
 [connection signal="text_submitted" from="Camera2D/Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]
