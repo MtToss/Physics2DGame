@@ -1,7 +1,6 @@
 extends Area2D
 
 var is_chest_opened = false
-@onready var animation_player = $Camera2D/Animation/AnimationPlayer
 
 
 func _ready() -> void:

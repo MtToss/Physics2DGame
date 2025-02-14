@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://csxvl5yjvxdsl"]
+[gd_scene load_steps=28 format=3 uid="uid://csxvl5yjvxdsl"]
 
 [ext_resource type="Texture2D" uid="uid://q2gt16ixuguh" path="res://assets/hallway man/Shot_1.png" id="1_n0ojp"]
 [ext_resource type="Script" path="res://scripts/gun.gd" id="1_txva0"]
@@ -142,6 +142,44 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3ayn"]
+
+[sub_resource type="Animation" id="Animation_wq6fm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"shot"]
+}
+
+[sub_resource type="Animation" id="Animation_j127u"]
+resource_name = "walking"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"shot", &"walk"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rh1t0"]
+_data = {
+"RESET": SubResource("Animation_wq6fm"),
+"walking": SubResource("Animation_j127u")
+}
+
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -161,9 +199,25 @@ shape = SubResource("RectangleShape2D_b8ut6")
 sprite_frames = SubResource("SpriteFrames_17j0d")
 animation = &"shot"
 autoplay = "walk"
+frame_progress = 0.802846
 
 [node name="Timer" type="Timer" parent="CharacterBody2D/AnimatedSprite2D"]
 
-[node name="Node2D" type="Node2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-6, 22)
+shape = SubResource("RectangleShape2D_h3ayn")
+
+[node name="FirePosition" type="Marker2D" parent="CharacterBody2D"]
+position = Vector2(22, 10)
+
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(15, 20)
+collision_mask = 4
+collide_with_areas = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rh1t0")
+}
 
 [connection signal="timeout" from="CharacterBody2D/AnimatedSprite2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]

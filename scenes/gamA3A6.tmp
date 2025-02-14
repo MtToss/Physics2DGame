@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://3g0ef8y2thgt"]
+[gd_scene load_steps=17 format=3 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
 [ext_resource type="Script" path="res://scripts/game_chapter_1.gd" id="1_xt0vt"]
@@ -24,14 +24,6 @@ glow_normalized = true
 glow_strength = 1.5
 glow_blend_mode = 1
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5v5df"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j20op"]
-size = Vector2(45, 61.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tpct"]
-size = Vector2(46, 3.25)
-
 [node name="Game_Chapter_1" type="Node2D"]
 position = Vector2(1030, 6)
 script = ExtResource("1_xt0vt")
@@ -39,11 +31,9 @@ script = ExtResource("1_xt0vt")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_avp0r")
 
-[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("6_sxtrt")]
-
-[node name="ENUMAN" parent="." instance=ExtResource("1_huqj3")]
-z_index = 100
-position = Vector2(-987, 181)
+[node name="HallwayMan" parent="." instance=ExtResource("2_krcld")]
+position = Vector2(-1021, 178)
+scale = Vector2(0.142402, 0.119979)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -53,6 +43,12 @@ offset_top = 5.0
 offset_right = 1.0
 offset_bottom = 5.0
 
+[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("6_sxtrt")]
+
+[node name="ENUMAN" parent="." instance=ExtResource("1_huqj3")]
+z_index = 100
+position = Vector2(-987, 182)
+
 [node name="Benson" parent="." instance=ExtResource("5_2m2j8")]
 position = Vector2(-951.48, 177.69)
 scale = Vector2(0.155, 0.149)
@@ -61,7 +57,7 @@ scale = Vector2(0.155, 0.149)
 position = Vector2(-847, 186)
 
 [node name="chest1" parent="." instance=ExtResource("4_kui56")]
-position = Vector2(-926, 180)
+position = Vector2(-994, 183)
 scale = Vector2(30.0721, 9.492)
 
 [node name="pressure_plate1" parent="." instance=ExtResource("5_lamfs")]
@@ -72,7 +68,7 @@ scale = Vector2(0.184353, 0.288158)
 position = Vector2(-913, 180)
 
 [node name="chest4" parent="." instance=ExtResource("4_kui56")]
-position = Vector2(-901, 180)
+position = Vector2(-937, 180)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -120,9 +116,12 @@ texture = ExtResource("12_g2jnj")
 position = Vector2(1029, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette"]
-light_mask = 5
 position = Vector2(-517, 127)
 texture = ExtResource("13_tecjy")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("13_ltcbo")]
+position = Vector2(-1022, 189)
+scale = Vector2(0.306087, 0.294063)
 
 [node name="StaticBody2D1" parent="." instance=ExtResource("13_ltcbo")]
 position = Vector2(-955, 188)
@@ -151,28 +150,3 @@ scale = Vector2(0.632448, 0.913423)
 [node name="StaticBody2D7" parent="." instance=ExtResource("13_ltcbo")]
 position = Vector2(-374, 115)
 scale = Vector2(0.546959, 1.01784)
-
-[node name="HallwayMan" parent="." instance=ExtResource("2_krcld")]
-light_mask = 4
-position = Vector2(-1004, 179)
-scale = Vector2(0.1, 0.1)
-
-[node name="FireTimer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 4
-physics_material_override = SubResource("PhysicsMaterial_5v5df")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1003, 216.75)
-shape = SubResource("RectangleShape2D_j20op")
-
-[node name="StaticBody2D8" type="StaticBody2D" parent="StaticBody2D"]
-position = Vector2(-1000, 189)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D8"]
-position = Vector2(-3, -1.375)
-shape = SubResource("RectangleShape2D_2tpct")
-
-[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

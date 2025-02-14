@@ -1,31 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://dv6vdnjm0okj1"]
+[gd_scene load_steps=8 format=3 uid="uid://0enredgfc8hj"]
 
-[ext_resource type="Script" path="res://scenes/bullets.gd" id="1_es3yg"]
-[ext_resource type="Texture2D" uid="uid://dddswk1j1etbf" path="res://assets/assets/Charge_2.png" id="2_w5lge"]
+[ext_resource type="Script" path="res://scripts/bullets.gd" id="1_rdjoa"]
+[ext_resource type="Texture2D" uid="uid://dddswk1j1etbf" path="res://assets/assets/Charge_2.png" id="2_1a5v5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2b6ci"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ch8l"]
+size = Vector2(17.0589, 8.00233)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tlpnc"]
-atlas = ExtResource("2_w5lge")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcgxk"]
+atlas = ExtResource("2_1a5v5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsgrl"]
+atlas = ExtResource("2_1a5v5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x68yu"]
+atlas = ExtResource("2_1a5v5")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3msn5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_1q46k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tlpnc")
+"texture": SubResource("AtlasTexture_tcgxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsgrl")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x68yu")
 }],
 "loop": true,
 "name": &"shoot",
 "speed": 5.0
 }]
 
-[node name="bullets" type="Area2D"]
-script = ExtResource("1_es3yg")
+[node name="Bullets" type="Node2D"]
+position = Vector2(0, 3)
+scale = Vector2(0.424994, 0.124964)
+script = ExtResource("1_rdjoa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_2b6ci")
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_3msn5")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.35297, -9.53674e-07)
+shape = SubResource("RectangleShape2D_1ch8l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = SubResource("SpriteFrames_1q46k")
 animation = &"shoot"
+autoplay = "shoot"

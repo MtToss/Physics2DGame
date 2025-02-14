@@ -130,7 +130,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysnjn"]
-radius = 0.110771
+radius = 0.0526178
 height = 6.20761
 
 [sub_resource type="LabelSettings" id="LabelSettings_j6pck"]
@@ -144,11 +144,11 @@ script = ExtResource("1_ovy3n")
 position = Vector2(-1.90735e-06, 1.90735e-06)
 scale = Vector2(0.106454, 0.120732)
 sprite_frames = SubResource("SpriteFrames_1jhyd")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.90735e-06, 0)
+position = Vector2(-1.90735e-06, 0)
 scale = Vector2(19.0049, -1.23956)
 shape = SubResource("CapsuleShape2D_ysnjn")
 
@@ -156,9 +156,10 @@ shape = SubResource("CapsuleShape2D_ysnjn")
 position = Vector2(0, 1.19209e-07)
 scale = Vector2(0.745657, 0.809377)
 zoom = Vector2(12, 12)
+position_smoothing_enabled = true
 
 [node name="Animation" parent="Camera2D" instance=ExtResource("7_xx60k")]
-position = Vector2(109.97, -22.2393)
+position = Vector2(162.273, -29.6524)
 scale = Vector2(0.381215, 0.409193)
 
 [node name="Panel" type="Panel" parent="Camera2D"]
@@ -218,3 +219,14 @@ offset_bottom = 140.998
 scale = Vector2(0.0351782, 0.0150187)
 text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
+
+[node name="LineEdit" type="LineEdit" parent="Camera2D/Panel"]
+light_mask = 31
+layout_mode = 0
+offset_left = 2.30359
+offset_top = 12.792
+offset_right = 69.3661
+offset_bottom = 43.792
+scale = Vector2(0.495614, 0.109811)
+
+[connection signal="text_submitted" from="Camera2D/Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]

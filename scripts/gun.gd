@@ -1,23 +1,32 @@
 extends CharacterBody2D
 
-@onready var timer = $AnimatedSprite2D/Timer
-var bullet_path = preload("res://scenes/bullets.tscn")
 
-var is_fire_paused = true
+@onready var bullet_scene = preload("res://scenes/bullets.tscn") # Load bullet scene
+var is_moving_left = false
 
-func _process(delta: float) -> void:
-	pass
+var gravity = 10
+var speed = 7 
 
-func fire():
-	_on_timer_timeout()
+func change_animation_to_shoot():
+	$AnimatedSprite2D.play("shot")
+	
+func change_animation_to_walk():
+	$AnimatedSprite2D.play("walk")
 
+func _ready():
+	up_direction = Vector2.UP  
 
-func _on_timer_timeout() -> void:
-	if(is_fire_paused):
-		timer.start()
-		var bullet = bullet_path.instantiate()
-		bullet.direction = -1
-		add_child(bullet)
+func _process(_delta):
+	move_character()
+	detect_turn_around()
+		
+func move_character():
+	velocity.x = -speed if is_moving_left else speed
+	velocity.y += gravity
+	move_and_slide() 
+	
 
-func decision_to_pause(choice: bool) -> void:
-	is_fire_paused = choice
+func detect_turn_around():
+	if not $RayCast2D.is_colliding():
+		is_moving_left = !is_moving_left
+		scale.x = -scale.x
