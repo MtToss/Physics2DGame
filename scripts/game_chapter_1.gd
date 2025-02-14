@@ -20,6 +20,8 @@ extends Node2D
 @onready var animation_control = $ENUMAN/Camera2D/Animation/Control
 
 @onready var prompt_panel = $ENUMAN/Camera2D/Panel
+@onready var dialogue_panel = $ENUMAN/Camera2D/Panel2
+@onready var dialogue_label = $ENUMAN/Camera2D/Panel2/Dialogue
 
 @onready var prompt_label1 = $ENUMAN/Camera2D/Panel/Label1
 @onready var prompt_label2 = $ENUMAN/Camera2D/Panel/Label2
@@ -33,6 +35,8 @@ extends Node2D
 
 @onready var camera = $ENUMAN
 
+
+
 var is_paused = false
 #var pause_decision = tru
 var prompt_label_list = []
@@ -42,6 +46,18 @@ var problem_value1 = [null, null, null, null, null]
 var get_value1 = [null, null, null, null, null]
 var get_given_value1 = [null, null, null, null, null]
 var available_indices = []
+
+var dialogue = [
+		"The possibilities are endless. The world is your canvas, waiting for your brushstrokes of imagination to breathe life into it.",
+		"From the depths of the ocean to the vastness of space, there are stories to be told and adventures to be had. ",
+		" Take a leap of faith into the unknown, for it is there that the magic happens. ",
+		"Embrace the uncertainty, the challenges, and the beauty that lies within every step of the journey. So, go forth, and create your own masterpiece."
+	]
+
+var index = 0  # Tracks the current line
+var typing_speed = 0.0005  # Adjust typing speed (seconds per character)
+var is_typing = false  # Prevent skipping during typing
+
 
 var gravity = 9.8
 
@@ -62,7 +78,10 @@ func randomize_problem_values() -> void:
 	print("Debug: Range is %s" % [range])
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+
+	
+	
 	
 	print('Debug: ito po ang gumagana game_chapter_1.gd/script')
 	randomize_problem_values()
@@ -73,6 +92,9 @@ func _ready() -> void:
 
 	pressure_plate1.connect("body_entered", Callable(self, "_on_pressure_plate_entered"))
 	pressure_plate1.connect("body_exited", Callable(self, "_on_pressure_plate_exited"))
+	show_dialogue_panel()
+	
+	
 
 func _on_pressure_plate_entered(body):
 	if body.name == "ENUMAN":
@@ -83,16 +105,7 @@ func _on_pressure_plate_entered(body):
 func pop_main_menu() -> void:
 	if Input.is_action_just_pressed("escape"):
 		is_paused = !is_paused
-		if is_paused:
-			stopwatch.stop() 
-			character_animation_sprite_2D.stop()
-			chest1.stop()
-			print("Debug: Game Paused")	
-		else:
-			stopwatch.play()
-			character_animation_sprite_2D.play()
-			chest1.play()
-			print("Debug: Game Resumed")
+		get_tree().paused = is_paused
 			
 func _on_pressure_plate_exited(body):
 	if body.name == "ENUMAN":
@@ -120,11 +133,58 @@ func close_panel() -> void:
 	prompt_panel.set_visible(false)
 	print("Debug: Panel is now closed")
 
+func show_dialogue_panel() -> void:
+	print("Debug: dialogue_panel opened")
+	dialogue_panel.set_visible(true)
+	dialogue_label.text = ""  # Clear text before showing dialogue
+
+func close_dialogue_panel() -> void:
+	dialogue_panel.set_visible(false)
+	print("Debug: Dialogue Panel is now closed")
+
+func show_typing_effect(text: String, speed: float) -> void:
+	is_typing = true  # Set typing flag to true
+	dialogue_label.text = ""  # Clear label before typing
+	for i in range(text.length()):
+		dialogue_label.text += text[i]
+		await get_tree().create_timer(speed).timeout  # Wait before adding next character
+	is_typing = false  # Typing finished
+
+	
+
+func play_scene() -> void:
+	if index < dialogue.size():  # Ensure index is within bounds
+		if !is_typing:  # Only start typing if we are not already typing
+			await show_typing_effect(dialogue[index], typing_speed)  # Type text
+			index += 1  # Move to the next dialogue line
+			print('play scene')
+			
+		else:
+			print("Already typing, please wait.")  # Debugging statement
+	else:	
+		close_dialogue_panel()  # Close the dialogue panel if no more dialogue lines
+		stopwatch.play()
+		character_animation_sprite_2D.play()
+		chest1.play()
+		print("Debug: Game Resumed")
+		get_tree().paused = false
+	
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		print("Mouse clicked!")  # Debugging: Check if it prints
+		if !is_typing:
+			print('play')
+			play_scene()
+			
+			return
+			
 
 func _process(delta: float) -> void:
 	camera.adjust_camera(60,60)
 	pop_main_menu()
 	interact_chess()
+	
 
 func interact_chess() -> void:
 	handle_chest_interaction(label1, chest1, animation_control, animation_player, "chest1")

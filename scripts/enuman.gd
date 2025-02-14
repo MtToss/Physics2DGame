@@ -8,6 +8,7 @@ const JUMP_VELOCITY = -250.0
 @onready var camera_2D = $Camera2D
 
 func _ready() -> void:
+	
 	assert(true, "This line is executed!")
 
 func _process(delta: float) -> void:
@@ -47,3 +48,9 @@ func adjust_camera(x: float, y: float) -> void:
 	var target_zoom = Vector2(x, y) * sprite_scale
 	
 	camera_2D.zoom = camera_2D.zoom.lerp(target_zoom, 0.1)
+
+func resume():
+	get_tree().paused = false
+
+func pause():
+	get_tree().paused = true
