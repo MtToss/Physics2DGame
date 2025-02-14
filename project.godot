@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PauseMenu="*res://PauseMenu.gd"
 music_player="*res://mainMenu/music_player.tscn"
 
 [display]
