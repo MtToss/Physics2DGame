@@ -20,6 +20,8 @@ extends Node2D
 @onready var animation_control = $ENUMAN/Camera2D/Animation/Control
 
 @onready var prompt_panel = $ENUMAN/Camera2D/Panel
+@onready var dialogue_panel = $ENUMAN/Camera2D/Panel2
+@onready var dialogue_label = $ENUMAN/Camera2D/Panel2/Dialogue
 
 @onready var prompt_label1 = $ENUMAN/Camera2D/Panel/Label1
 @onready var prompt_label2 = $ENUMAN/Camera2D/Panel/Label2
@@ -34,12 +36,23 @@ extends Node2D
 
 @onready var camera = $ENUMAN
 
+<<<<<<< HEAD
 @onready var answer = $ENUMAN
 
 @onready var hallwayman = $HallwayMan/CharacterBody2D
 @onready var hallwayman_area_2D = $HallwayMan/CharacterBody2D/Area2D
 
 @onready var hallway_bullet = $HallwayMan/CharacterBody2D/CollisionShape2D2
+=======
+<<<<<<< HEAD
+
+=======
+@onready var hallwayman = $HallwayMan/CharacterBody2D
+@onready var hallwayman_area_2D = $HallwayMan/CharacterBody2D/Area2D
+
+#var is_fire_paused = true
+>>>>>>> 764ec59febe39b50328ea4437107ebb11d61b38c
+>>>>>>> f0537111bd1032f3c63e465d80a1ec923044218a
 
 @onready var gun = $HallwayMan/CharacterBody2D
 @onready var fire_timer = $FireTimer
@@ -60,6 +73,22 @@ var problem_value1 = [null, null, null, null, null]
 var get_value1 = [null, null, null, null, null]
 var get_given_value1 = [null, null, null, null, null]
 var available_indices = []
+<<<<<<< HEAD
+
+var dialogue = [
+		"The possibilities are endless. The world is your canvas, waiting for your brushstrokes of imagination to breathe life into it.",
+		"From the depths of the ocean to the vastness of space, there are stories to be told and adventures to be had. ",
+		" Take a leap of faith into the unknown, for it is there that the magic happens. ",
+		"Embrace the uncertainty, the challenges, and the beauty that lies within every step of the journey. So, go forth, and create your own masterpiece."
+	]
+
+var index = 0  # Tracks the current line
+var typing_speed = 0.0005  # Adjust typing speed (seconds per character)
+var is_typing = false  # Prevent skipping during typing
+
+
+=======
+>>>>>>> 764ec59febe39b50328ea4437107ebb11d61b38c
 var gravity = 9.8
 
 var new_bullet
@@ -81,7 +110,10 @@ func randomize_problem_values() -> void:
 	print("Debug: Range is %s" % [range])
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+
+	
+	
 	
 	print('Debug: ito po ang gumagana game_chapter_1.gd/script')
 	randomize_problem_values()
@@ -92,6 +124,7 @@ func _ready() -> void:
 
 	pressure_plate1.connect("body_entered", Callable(self, "_on_pressure_plate_entered"))
 	pressure_plate1.connect("body_exited", Callable(self, "_on_pressure_plate_exited"))
+<<<<<<< HEAD
 	
 	hallwayman_area_2D.connect("body_entered", Callable(self, "_on_hallway_enemy_entered"))
 	hallwayman_area_2D.connect("body_exited", Callable(self,"_on_hallway_enemy_exited"))
@@ -111,6 +144,16 @@ func game_over_panel():
 func _on_bullet_exited(body):
 	if body.name == "ENUMAN":
 		print("tumagos gago!")
+=======
+<<<<<<< HEAD
+	show_dialogue_panel()
+	
+	
+=======
+	hallwayman_area_2D.connect("body_entered", Callable(self, "_on_hallway_enemy_entered"))
+	hallwayman_area_2D.connect("body_exited", Callable(self,"_on_hallway_enemy_exited"))
+>>>>>>> 764ec59febe39b50328ea4437107ebb11d61b38c
+>>>>>>> f0537111bd1032f3c63e465d80a1ec923044218a
 
 func _on_hallway_enemy_entered(body):
 	if body.name == "ENUMAN":
@@ -141,6 +184,7 @@ func _on_pressure_plate_entered(body):
 func pop_main_menu() -> void:
 	if Input.is_action_just_pressed("escape"):
 		is_paused = !is_paused
+<<<<<<< HEAD
 		if is_paused:
 			stopwatch.stop() 
 			character_animation_sprite_2D.stop()
@@ -159,6 +203,10 @@ func change_of_hitting() -> void:
 	else:
 		new_bullet.hitting_right = true
 
+=======
+		get_tree().paused = is_paused
+			
+>>>>>>> f0537111bd1032f3c63e465d80a1ec923044218a
 func _on_pressure_plate_exited(body):
 	if body.name == "ENUMAN":
 		print("Debug: ENUMAN left the pressure plate!")
@@ -187,11 +235,65 @@ func close_panel() -> void:
 	prompt_panel.set_visible(false)
 	print("Debug: Panel is now closed")
 
+<<<<<<< HEAD
+=======
+func show_dialogue_panel() -> void:
+	print("Debug: dialogue_panel opened")
+	dialogue_panel.set_visible(true)
+	dialogue_label.text = ""  # Clear text before showing dialogue
+
+func close_dialogue_panel() -> void:
+	dialogue_panel.set_visible(false)
+	print("Debug: Dialogue Panel is now closed")
+
+func show_typing_effect(text: String, speed: float) -> void:
+	is_typing = true  # Set typing flag to true
+	dialogue_label.text = ""  # Clear label before typing
+	for i in range(text.length()):
+		dialogue_label.text += text[i]
+		await get_tree().create_timer(speed).timeout  # Wait before adding next character
+	is_typing = false  # Typing finished
+
+	
+
+func play_scene() -> void:
+	if index < dialogue.size():  # Ensure index is within bounds
+		if !is_typing:  # Only start typing if we are not already typing
+			await show_typing_effect(dialogue[index], typing_speed)  # Type text
+			index += 1  # Move to the next dialogue line
+			print('play scene')
+			
+		else:
+			print("Already typing, please wait.")  # Debugging statement
+	else:	
+		close_dialogue_panel()  # Close the dialogue panel if no more dialogue lines
+		stopwatch.play()
+		character_animation_sprite_2D.play()
+		chest1.play()
+		print("Debug: Game Resumed")
+		get_tree().paused = false
+	
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		print("Mouse clicked!")  # Debugging: Check if it prints
+		if !is_typing:
+			print('play')
+			play_scene()
+			
+			return
+			
+
+>>>>>>> f0537111bd1032f3c63e465d80a1ec923044218a
 func _process(delta: float) -> void:
 	camera.adjust_camera(50,50)
 	pop_main_menu()
 	interact_chess()
+<<<<<<< HEAD
 	comparing_answer(answer.user_input, answer.correct_answer)
+=======
+	
+>>>>>>> f0537111bd1032f3c63e465d80a1ec923044218a
 
 func interact_chess() -> void:
 	handle_chest_interaction(label1, chest1, animation_control, animation_player, "chest1")

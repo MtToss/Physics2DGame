@@ -12,7 +12,11 @@ var correct_answer: int = 42
 var user_input: int
 
 func _ready() -> void:
+<<<<<<< HEAD
 	line_edit.grab_focus()
+=======
+	
+>>>>>>> f0537111bd1032f3c63e465d80a1ec923044218a
 	assert(true, "This line is executed!")
 
 func _process(delta: float) -> void:
@@ -53,6 +57,7 @@ func adjust_camera(x: float, y: float) -> void:
 	
 	camera_2D.zoom = camera_2D.zoom.lerp(target_zoom, 0.1)
 
+<<<<<<< HEAD
 
 
 
@@ -66,3 +71,10 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 		print("Debug: Correct answer!")
 	else:
 		print("Incorrect answer. Try again.")
+=======
+func resume():
+	get_tree().paused = false
+
+func pause():
+	get_tree().paused = true
+>>>>>>> f0537111bd1032f3c63e465d80a1ec923044218a
