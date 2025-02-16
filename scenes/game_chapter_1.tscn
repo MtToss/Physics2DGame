@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://3g0ef8y2thgt"]
+[gd_scene load_steps=22 format=3 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
 [ext_resource type="Script" path="res://scripts/game_chapter_1.gd" id="1_xt0vt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="4_kui56"]
 [ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="5_2m2j8"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="5_lamfs"]
+[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="5_vxkdo"]
 [ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="6_flrwj"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="6_sxtrt"]
 [ext_resource type="Texture2D" uid="uid://d2ey3rj3wteyp" path="res://assets/assets/Chapter_1_Background.png" id="8_15mh7"]
@@ -45,14 +46,6 @@ environment = SubResource("Environment_avp0r")
 [node name="ENUMAN" parent="." instance=ExtResource("1_huqj3")]
 z_index = 100
 position = Vector2(-938, 172)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Hud" parent="CanvasLayer" instance=ExtResource("6_flrwj")]
-offset_left = 1.0
-offset_top = 5.0
-offset_right = 1.0
-offset_bottom = 5.0
 
 [node name="Benson" parent="." instance=ExtResource("5_2m2j8")]
 position = Vector2(-951.48, 177.69)
@@ -203,5 +196,15 @@ position = Vector2(-1000, 189)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D8"]
 position = Vector2(-3, -1.375)
 shape = SubResource("RectangleShape2D_2tpct")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("6_flrwj")]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("5_vxkdo")]
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

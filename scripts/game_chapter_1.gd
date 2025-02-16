@@ -62,6 +62,8 @@ var current_shooter: int = 1
 
 @onready var line_edit = $ENUMAN/Camera2D/Panel/LineEdit
 
+@onready var manual_pause = $CanvasLayer/pause_menu
+
 
 @onready var dialogue_panel = $ENUMAN/Camera2D/Panel2
 @onready var dialogue_label = $ENUMAN/Camera2D/Panel2/Dialogue
@@ -126,7 +128,7 @@ func randomize_problem_values() -> void:
 
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	randomize_problem_values()
 	available_indices1 = range(given_problem1.size())
 	available_indices2 = range(given_problem2.size())
@@ -148,6 +150,7 @@ func _ready() -> void:
 	
 	line_edit.text_submitted.connect($ENUMAN._on_line_edit_text_submitted)
 	show_dialogue_panel()
+	
 	
 
 	if answer.has_signal("answer_submitted"):
@@ -209,19 +212,7 @@ func _on_pressure_plate_entered(body, problem_number: int):
 		open_panel()
 		perform_calculations()
 
-func pop_main_menu() -> void:
-	if Input.is_action_just_pressed("escape"):
-		is_paused = !is_paused
-		if is_paused:
-			stopwatch.stop() 
-			character_animation_sprite_2D.stop()
-			chest1.stop()
-			print("Debug: Game Paused")
-		else:
-			stopwatch.play()
-			character_animation_sprite_2D.play()
-			chest1.play()
-			print("Debug: Game Resumed")
+
 
 func change_of_hitting(enemy_id: int) -> void:
 	match enemy_id:
@@ -321,8 +312,8 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	camera.adjust_camera(50,50)
-	pop_main_menu()
 	interact_chess()
+
 
 func interact_chess() -> void:
 	handle_chest_interaction(label1, chest1, animation_control, animation_player, "chest1", 1)
