@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmq1rdhthhvrp"
-path="res://.godot/imported/pixil-frame-0 (2).png-9440565deb69525631c9046068925fbc.ctex"
+uid="uid://vdks2m21fu1s"
+path="res://.godot/imported/Attack_EnyuMan-Sheet.png-52efabd184d85cc573c3a460eb9c5c26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/ENU MAN/pixil-frame-0 (2).png"
-dest_files=["res://.godot/imported/pixil-frame-0 (2).png-9440565deb69525631c9046068925fbc.ctex"]
+source_file="res://assets/characters/ENU MAN/Attack_EnyuMan-Sheet.png"
+dest_files=["res://.godot/imported/Attack_EnyuMan-Sheet.png-52efabd184d85cc573c3a460eb9c5c26.ctex"]
 
 [params]
 

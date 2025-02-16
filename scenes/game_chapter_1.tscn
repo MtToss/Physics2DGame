@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://3g0ef8y2thgt"]
+[gd_scene load_steps=21 format=3 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
 [ext_resource type="Script" path="res://scripts/game_chapter_1.gd" id="1_xt0vt"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://4vuvtdr4s6u0" path="res://assets/assets/Chapter_1_Silhouette2.png" id="12_g2jnj"]
 [ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="13_ltcbo"]
 [ext_resource type="Texture2D" uid="uid://cnfb22xve25qv" path="res://assets/assets/Chapter_1_Silhouette1.png" id="13_tecjy"]
+[ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="16_jpg23"]
 
 [sub_resource type="Environment" id="Environment_avp0r"]
 sdfgi_enabled = true
@@ -43,7 +44,7 @@ environment = SubResource("Environment_avp0r")
 
 [node name="ENUMAN" parent="." instance=ExtResource("1_huqj3")]
 z_index = 100
-position = Vector2(-987, 181)
+position = Vector2(-938, 172)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -57,22 +58,46 @@ offset_bottom = 5.0
 position = Vector2(-951.48, 177.69)
 scale = Vector2(0.155, 0.149)
 
-[node name="chest2" parent="." instance=ExtResource("4_kui56")]
-position = Vector2(-847, 186)
-
 [node name="chest1" parent="." instance=ExtResource("4_kui56")]
 position = Vector2(-926, 180)
 scale = Vector2(30.0721, 9.492)
 
-[node name="pressure_plate1" parent="." instance=ExtResource("5_lamfs")]
-position = Vector2(-833, 180)
-scale = Vector2(0.184353, 0.288158)
+[node name="chest2" parent="." instance=ExtResource("4_kui56")]
+position = Vector2(-877, 186)
 
 [node name="chest3" parent="." instance=ExtResource("4_kui56")]
 position = Vector2(-913, 180)
 
 [node name="chest4" parent="." instance=ExtResource("4_kui56")]
 position = Vector2(-901, 180)
+
+[node name="pressure_plate1" parent="." instance=ExtResource("5_lamfs")]
+position = Vector2(-864, 180)
+scale = Vector2(0.184353, 0.288158)
+
+[node name="Barrier1" parent="." instance=ExtResource("16_jpg23")]
+position = Vector2(-833, 108)
+scale = Vector2(0.456523, 0.802858)
+
+[node name="chest5" parent="." instance=ExtResource("4_kui56")]
+position = Vector2(-784, 216)
+
+[node name="chest6" parent="." instance=ExtResource("4_kui56")]
+position = Vector2(-702, 135)
+
+[node name="chest7" parent="." instance=ExtResource("4_kui56")]
+position = Vector2(-584, 119)
+
+[node name="chest8" parent="." instance=ExtResource("4_kui56")]
+position = Vector2(-729, 134)
+
+[node name="Barrier2" parent="." instance=ExtResource("16_jpg23")]
+position = Vector2(-427, 68)
+scale = Vector2(0.373794, 0.528427)
+
+[node name="pressure_plate2" parent="." instance=ExtResource("5_lamfs")]
+position = Vector2(-439, 116)
+scale = Vector2(0.166911, 0.194044)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -152,9 +177,13 @@ scale = Vector2(0.632448, 0.913423)
 position = Vector2(-374, 115)
 scale = Vector2(0.546959, 1.01784)
 
-[node name="HallwayMan" parent="." instance=ExtResource("2_krcld")]
+[node name="HallwayMan1" parent="." instance=ExtResource("2_krcld")]
 light_mask = 4
-position = Vector2(-1004, 179)
+position = Vector2(-625, 114)
+scale = Vector2(0.1, 0.1)
+
+[node name="HallwayMan2" parent="." instance=ExtResource("2_krcld")]
+position = Vector2(-1016, 180)
 scale = Vector2(0.1, 0.1)
 
 [node name="FireTimer" type="Timer" parent="."]

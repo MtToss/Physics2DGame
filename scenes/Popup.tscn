@@ -73,9 +73,9 @@ script = ExtResource("1_5sym6")
 z_index = 15
 layout_mode = 3
 anchors_preset = 0
-offset_top = 20.0
+offset_top = 1.0
 offset_right = 40.0
-offset_bottom = 60.0
+offset_bottom = 41.0
 scale = Vector2(0.19691, 0.285076)
 
 [node name="Panel" type="Panel" parent="Control"]

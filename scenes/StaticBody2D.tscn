@@ -9,9 +9,11 @@ size = Vector2(46, 3.25)
 [node name="Node2D" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(2, -1)
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(67.5, 61)
+position = Vector2(68, 61)
 shape = SubResource("RectangleShape2D_5s5cm")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="StaticBody2D"]

@@ -16,11 +16,8 @@ func _on_area2d_body_entered(body):
 			
 		else:
 			$Label.show()
-
-		print("Debug: ENUMAN entered the chest 2D area mosshing!")
 func _on_area2d_body_exited(body):
 	if body.name == "ENUMAN":
-		print("Debug: ENUMAN left the chest 2D area mosshing!")
 		$Label.hide()
 
 func _open_chest():
@@ -28,14 +25,11 @@ func _open_chest():
 	
 	is_chest_opened = true
 	$Label.hide
-	print("The chest is opening!")
 	
 func play():
-	print("Debug: Gumagana ang closed chest animation")
 	$AnimatedSprite2D.play("closed chest")
 
 func stop():
-	print("Debug: nag pause na ang chest")
 	$AnimatedSprite2D.stop()
 	
 	

@@ -14,12 +14,10 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	if(is_play == true):
-		print("Debug: Playing Laugh")
 		animated_sprite.play("laugh")
 		is_play = false
 		timer.start()
 	else:
-		print("Debug: Playing Default Animation")
 		animated_sprite.play("default")
 		is_play = true
 		timer.start()

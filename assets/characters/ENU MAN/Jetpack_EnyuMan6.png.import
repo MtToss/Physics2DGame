@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7oifnfuq0o2t"
-path="res://.godot/imported/hood-idle4.png-ccd3aa2c3a17e7f294861b26350aa77c.ctex"
+uid="uid://cy8wtqofg7gr0"
+path="res://.godot/imported/Jetpack_EnyuMan6.png-1a22dd7ecaffe0087a3edc34ff83543f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/ENU MAN/hood-idle4.png"
-dest_files=["res://.godot/imported/hood-idle4.png-ccd3aa2c3a17e7f294861b26350aa77c.ctex"]
+source_file="res://assets/characters/ENU MAN/Jetpack_EnyuMan6.png"
+dest_files=["res://.godot/imported/Jetpack_EnyuMan6.png-1a22dd7ecaffe0087a3edc34ff83543f.ctex"]
 
 [params]
 

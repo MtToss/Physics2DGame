@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rgvl2jwute5d"
-path="res://.godot/imported/pixil-frame-0 (10).png-c1bd192e62a13ad2fc6116238708fda2.ctex"
+uid="uid://c4ylpnyw2c2bp"
+path="res://.godot/imported/Jetpack_EnyuMan2.png-290ebe6015aa8f9bca0e0df4cfc02d9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/ENU MAN/pixil-frame-0 (10).png"
-dest_files=["res://.godot/imported/pixil-frame-0 (10).png-c1bd192e62a13ad2fc6116238708fda2.ctex"]
+source_file="res://assets/characters/ENU MAN/Jetpack_EnyuMan2.png"
+dest_files=["res://.godot/imported/Jetpack_EnyuMan2.png-290ebe6015aa8f9bca0e0df4cfc02d9f.ctex"]
 
 [params]
 

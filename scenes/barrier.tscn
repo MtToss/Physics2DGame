@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://r66ov7m83ypm"]
+
+[ext_resource type="Script" path="res://scripts/barrier.gd" id="1_5njhn"]
+[ext_resource type="Texture2D" uid="uid://dv28p1skgwxdt" path="res://icon.svg" id="1_laa5p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ya3o"]
+atlas = ExtResource("1_laa5p")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nelqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ya3o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbwwh"]
+
+[node name="Barrier" type="Node2D"]
+script = ExtResource("1_5njhn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.52588e-05, 1.00003)
+scale = Vector2(0.0952486, 1.57804)
+sprite_frames = SubResource("SpriteFrames_nelqb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.52588e-05, 0.999985)
+scale = Vector2(-0.567144, -9.97322)
+shape = SubResource("RectangleShape2D_jbwwh")
