@@ -27,24 +27,24 @@ extends Node2D
 
 @onready var character_animation_sprite_2D = $ENUMAN/AnimatedSprite2D
 
-@onready var animation_player = $ENUMAN/Camera2D/Animation/AnimationPlayer
-@onready var animation_label = $ENUMAN/Camera2D/Animation/Control/Label
+@onready var animation_player = $Character_Handler/ENUMAN/Camera2D/Animation/AnimationPlayer
+@onready var animation_label = $Character_Handler/ENUMAN/Camera2D/Animation/Control/Label
 
-@onready var animation_control = $ENUMAN/Camera2D/Animation/Control
+@onready var animation_control = $Character_Handler/ENUMAN/Camera2D/Animation/Control
 
-@onready var prompt_panel = $ENUMAN/Camera2D/Panel
+@onready var prompt_panel = $Character_Handler/ENUMAN/Camera2D/Panel
 
-@onready var prompt_label1 = $ENUMAN/Camera2D/Panel/Label1
-@onready var prompt_label2 = $ENUMAN/Camera2D/Panel/Label2
-@onready var prompt_label3 = $ENUMAN/Camera2D/Panel/Label3
-@onready var prompt_label4 = $ENUMAN/Camera2D/Panel/Label4
-@onready var prompt_label5 = $ENUMAN/Camera2D/Panel/Label5
+@onready var prompt_label1 = $Character_Handler/ENUMAN/Camera2D/Panel/Label1
+@onready var prompt_label2 = $Character_Handler/ENUMAN/Camera2D/Panel/Label2
+@onready var prompt_label3 = $Character_Handler/ENUMAN/Camera2D/Panel/Label3
+@onready var prompt_label4 = $Character_Handler/ENUMAN/Camera2D/Panel/Label4
+@onready var prompt_label5 = $Character_Handler/ENUMAN/Camera2D/Panel/Label5
 
 @onready var stopwatch = $CanvasLayer/Hud 
 
-@onready var camera = $ENUMAN
+@onready var camera = $Character_Handler/ENUMAN
 
-@onready var answer = $ENUMAN
+@onready var answer = $Character_Handler/ENUMAN
 
 var current_shooter: int = 1 
 @onready var hallwayman1 = $HallwayMan1/CharacterBody2D
@@ -53,6 +53,8 @@ var current_shooter: int = 1
 @onready var hallwayman2 = $HallwayMan2/CharacterBody2D
 @onready var hallwayman_area_2D2 = $HallwayMan2/CharacterBody2D/Area2D
 
+@onready var enuman = $Character_Handler/ENUMAN
+
 @onready var hallway_bullet1 = $HallwayMan1/CharacterBody2D/CollisionShape2D2
 @onready var hallway_bullet2 = $HallwayMan2/CharacterBody2D/CollisionShape2D2
 
@@ -60,13 +62,16 @@ var current_shooter: int = 1
 @onready var gun2 = $HallwayMan2/CharacterBody2D
 @onready var fire_timer = $FireTimer
 
-@onready var line_edit = $ENUMAN/Camera2D/Panel/LineEdit
+@onready var gun_enuman = $Character_Handler/ENUMAN
+@onready var fire_timer_enuman = $FireTimerEnuman
+
+
+@onready var line_edit = $Character_Handler/ENUMAN/Camera2D/Panel/LineEdit
 
 @onready var manual_pause = $CanvasLayer/pause_menu
 
-
-@onready var dialogue_panel = $ENUMAN/Camera2D/Panel2
-@onready var dialogue_label = $ENUMAN/Camera2D/Panel2/Dialogue
+@onready var dialogue_panel = $Character_Handler/ENUMAN/Camera2D/Panel2
+@onready var dialogue_label = $Character_Handler/ENUMAN/Camera2D/Panel2/Dialogue
 
 var current_problem: int = 0
 
@@ -74,7 +79,10 @@ var correct_answer = 0
 var last_problem = 0
 
 var bullet_scene
+
 var bullet_collision
+var bullet_collision_enuman
+
 var is_fire_paused = true
 var is_paused = false
 var prompt_label_list = []
@@ -105,6 +113,7 @@ var index = 0  # Tracks the current line
 var typing_speed = 0.0005  # Adjust typing speed (seconds per character)
 var is_typing = false  # Prevent skipping during typing
 var new_bullet
+var new_bullet_enuman
 
 func randomize_problem_values() -> void:
 	var velocity = (randi() % 100) + 30  
@@ -125,7 +134,6 @@ func randomize_problem_values() -> void:
 	problem_value2 = [work, force, distance, time, power]
 	print("Debug: Velocity = ", velocity, "Detta | Angle = ", angle, "T | Time of Flight = ", time_of_flight, "M | Max Height = ", max_height, "R | Range = ", range)
 	print("Debug: Work = ", work, " J | Force = ", force, " N | Distance = ", distance, " m | Angle = ", angle1, "° | Time = ", time, " s | Power = ", power, " W")
-
 
 func _ready() -> void:
 
@@ -148,11 +156,13 @@ func _ready() -> void:
 	hallwayman_area_2D2.connect("body_entered", Callable(self,"_on_hallway_enemy_entered").bind(2))
 	hallwayman_area_2D2.connect("body_exited", Callable(self,"_on_hallway_enemy_exited").bind(2))
 	
-	line_edit.text_submitted.connect($ENUMAN._on_line_edit_text_submitted)
+	
+	
+	line_edit.text_submitted.connect($Character_Handler/ENUMAN._on_line_edit_text_submitted)
 	show_dialogue_panel()
 	
+	new_bullet_enuman = gun_enuman.bullet_scene.instantiate()
 	
-
 	if answer.has_signal("answer_submitted"):
 		answer.connect("answer_submitted", Callable(self, "_on_answer_submitted"))
 		print("Debug: Successfully connected answer_submitted signal")
@@ -165,6 +175,18 @@ func _on_bullet_entered(body):
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
 		print("napatay siya")
+		
+func _on_bullet_entered_hallwayman(body):
+	print("Debug: it satisfies", body.name)
+	if body.get_parent() == $HallwayMan1:
+		$HallwayMan1/CharacterBody2D.change_animation_to_dead()
+		new_bullet_enuman.change_animation_hit()
+		new_bullet_enuman.is_hit = true
+	elif body.get_parent() == $HallwayMan2:
+		$HallwayMan2/CharacterBody2D.change_animation_to_dead()
+		new_bullet_enuman.change_animation_hit()
+		new_bullet_enuman.is_hit = true
+		
 
 func game_over_panel():
 	print("game over")
@@ -181,10 +203,13 @@ func _on_hallway_enemy_entered(body, enemy_id: int):
 			1:
 				hallwayman1.change_animation_to_shoot()
 				hallwayman1.speed = 0
+
 			2:
 				print("Debug: on hallway enemy entered 2")
 				hallwayman2.change_animation_to_shoot()
 				hallwayman2.speed = 0
+
+
 		is_fire_paused = false
 		print("Debug: is_fire_paused status: ", is_fire_paused)
 		get_bullet_collision()
@@ -212,13 +237,15 @@ func _on_pressure_plate_entered(body, problem_number: int):
 		open_panel()
 		perform_calculations()
 
-
-
 func change_of_hitting(enemy_id: int) -> void:
 	match enemy_id:
 		1:
+			if(new_bullet == null):
+				new_bullet = gun1.bullet_scene.instantiate()
 			new_bullet.hitting_right = !hallwayman1.is_moving_left
 		2:
+			if(new_bullet == null):
+				new_bullet = gun2.bullet_scene.instantiate()
 			new_bullet.hitting_right = !hallwayman2.is_moving_left
 
 func _on_pressure_plate_exited(body):
@@ -313,7 +340,14 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	camera.adjust_camera(50,50)
 	interact_chess()
+	firing()
 
+func firing() -> void:
+	if(Input.is_action_just_pressed("fire")):
+		fire_timer_enuman.start()
+		enuman.change_animation_to_shoot()
+		await fire_timer_enuman.timeout
+		enuman.speed = 50
 
 func interact_chess() -> void:
 	handle_chest_interaction(label1, chest1, animation_control, animation_player, "chest1", 1)
@@ -342,7 +376,7 @@ func interact_with_chest(chest_name: String, current_problem: int) -> void:
 				var selected_given = given_problem1[random_index]
 				var selected_value = problem_value1[random_index]
 				available_indices1.erase(random_index)
-				insremove(random_index, current_problem)
+				insremove(random_index, current_problem)	
 				animation_label.text = "You got: %s" % [selected_given] + "\n Value: %s" % [selected_value]
 		2:
 			if given_problem2.size() > 0 and available_indices2.size() > 0:
@@ -500,3 +534,13 @@ func comparing_answer(user_input: float, machine_calculated: float, current_prob
 					barrier2.disable_barrier()
 				else:
 					print("Debug: Incorrect Answer!")
+
+
+func _on_fire_timer_enuman_timeout() -> void:
+		new_bullet_enuman.change_to_visible()
+		new_bullet_enuman.hitting_right = !enuman.is_moving_left
+		add_child(new_bullet_enuman)
+		new_bullet_enuman.global_position = enuman.get_global_transform().origin + Vector2(6, -1.9)
+		bullet_collision_enuman = new_bullet_enuman.get_node("Area2D")
+		bullet_collision_enuman.connect("body_entered", Callable(self, "_on_bullet_entered_hallwayman"))
+		

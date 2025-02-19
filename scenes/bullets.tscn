@@ -27,7 +27,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lsgrl")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 5.0
 }, {
@@ -55,3 +55,9 @@ shape = SubResource("RectangleShape2D_1ch8l")
 sprite_frames = SubResource("SpriteFrames_1q46k")
 animation = &"shoot"
 autoplay = "shoot"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

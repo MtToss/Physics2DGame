@@ -1,17 +1,20 @@
 extends CharacterBody2D
 
-const SPEED = 50.0
-const JUMP_VELOCITY = -105.0
+var speed = 50.0
+var JUMP_VELOCITY = -105.0
 var multiplier = 7 #will remove this comment after use in the game chapter 1,2,3,4 
 var JETPACK_VELOCITY = JUMP_VELOCITY * multiplier
+var shooting = false
 const GRAVITY = 350.0
 const JETPACK_SLOW_DESCENT = 50.0
-
+var is_moving_left: bool = false
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animation_player = $Camera2D/Animation/AnimationPlayer
 @onready var camera_2D = $Camera2D
 @onready var line_edit = $Camera2D/Panel/LineEdit
+@onready var timer = $Timer
 
+@onready var bullet_scene = preload("res://scenes/bullets.tscn")
 
 signal answer_submitted(user_input: float)
 
@@ -23,6 +26,7 @@ func _ready() -> void:
 	line_edit.grab_focus()
 
 func _process(delta: float) -> void:
+	
 	pass
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and not is_using_jetpack:
@@ -45,15 +49,21 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_axis("backward", "forward")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-
-	dynamic_animation()
-
-	flip_body()
+		velocity.x = move_toward(velocity.x, 0, speed)
+	
 	move_and_slide()
+	
+	if is_on_ceiling():
+		velocity.y = 0
+	
+	if is_on_wall():
+		velocity.x = 0 
+	
+	dynamic_animation()
+	flip_body()
+
 
 func flip_body() -> void:
 	if velocity.x < 0:
@@ -62,7 +72,7 @@ func flip_body() -> void:
 		animated_sprite.flip_h = false 
 
 func dynamic_animation() -> void:
-	if not is_on_floor():
+	if not is_on_floor() && shooting == false:
 		if is_using_jetpack:
 			if velocity.y < 0:
 				animated_sprite.animation = "jetpack_jump"  
@@ -73,9 +83,9 @@ func dynamic_animation() -> void:
 				animated_sprite.animation = "jump"
 			else: 
 				animated_sprite.animation = "fall"
-	elif velocity.x != 0:
+	elif velocity.x != 0 && shooting == false:
 		animated_sprite.animation = "walk"  
-	else:
+	elif velocity.x == 0 && shooting == false:
 		animated_sprite.animation = "idle" 
 
 func adjust_camera(x: float, y: float) -> void:
@@ -85,8 +95,11 @@ func adjust_camera(x: float, y: float) -> void:
 	
 	camera_2D.zoom = camera_2D.zoom.lerp(target_zoom, 0.1)
 
-
-
+func change_animation_to_shoot() -> void:
+	timer.start()
+	speed = 0
+	shooting = true
+	animated_sprite.animation = "shoot" 
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	print("Entered: ", new_text)
@@ -101,3 +114,11 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 		print("Debug: korique")
 	else:
 		print("Incorrect answer. Try again.")
+
+
+func _on_timer_timeout() -> void:
+	shooting = false
+	if animated_sprite.flip_h == true:
+		is_moving_left = true
+	elif animated_sprite.flip_h == false:
+		is_moving_left = false

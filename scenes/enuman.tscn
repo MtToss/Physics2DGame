@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://0t12b51hf0vy"]
+[gd_scene load_steps=57 format=3 uid="uid://0t12b51hf0vy"]
 
 [ext_resource type="Script" path="res://scripts/enuman.gd" id="1_ovy3n"]
 [ext_resource type="Texture2D" uid="uid://dj6ii04ng6qfd" path="res://assets/characters/ENU MAN/Idle_EnyuMan-Sheet.png" id="2_hc4kd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c4ylpnyw2c2bp" path="res://assets/characters/ENU MAN/Jetpack_EnyuMan2.png" id="7_p4xfv"]
 [ext_resource type="PackedScene" uid="uid://ds8sigjdte5dk" path="res://scenes/Popup.tscn" id="7_xx60k"]
 [ext_resource type="Texture2D" uid="uid://bbuirjdnbeelc" path="res://assets/characters/ENU MAN/Jetpack_EnyuMan3.png" id="8_3hn0n"]
+[ext_resource type="Texture2D" uid="uid://vdks2m21fu1s" path="res://assets/characters/ENU MAN/Attack_EnyuMan-Sheet.png" id="9_fa7rx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oi7t2"]
 atlas = ExtResource("3_0yc7d")
@@ -86,6 +87,54 @@ region = Rect2(320, 0, 64, 88)
 [sub_resource type="AtlasTexture" id="AtlasTexture_huymp"]
 atlas = ExtResource("3_0yc7d")
 region = Rect2(384, 0, 64, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yohg2"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrcxv"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(72, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuik7"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lno1i"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(216, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iaip"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(288, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0w5y"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(360, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnkld"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(432, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i86in"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(504, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6y6w"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(576, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk26d"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(648, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84nga"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(720, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l41o2"]
+atlas = ExtResource("9_fa7rx")
+region = Rect2(792, 0, 72, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nw4g2"]
 atlas = ExtResource("3_44pjw")
@@ -213,6 +262,47 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_yohg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrcxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuik7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lno1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iaip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0w5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnkld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i86in")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6y6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk26d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84nga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l41o2")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_nw4g2")
 }, {
 "duration": 1.0,
@@ -258,18 +348,21 @@ font_size = 200
 font_size = 60
 
 [node name="ENUMAN" type="CharacterBody2D"]
+z_index = 2
 position = Vector2(50, 48)
+collision_mask = 3
 script = ExtResource("1_ovy3n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.90735e-06, 1.90735e-06)
 scale = Vector2(0.106454, 0.120732)
 sprite_frames = SubResource("SpriteFrames_1jhyd")
-animation = &"jetpack_jump"
+animation = &"shoot"
 autoplay = "idle"
+frame_progress = 0.456208
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.90735e-06, 0)
+position = Vector2(-2, 0)
 scale = Vector2(19.0049, -1.23956)
 shape = SubResource("CapsuleShape2D_ysnjn")
 
@@ -280,7 +373,7 @@ zoom = Vector2(12, 12)
 position_smoothing_enabled = true
 
 [node name="Animation" parent="Camera2D" instance=ExtResource("7_xx60k")]
-position = Vector2(162.273, -29.6524)
+position = Vector2(179.707, -29.6524)
 scale = Vector2(0.381215, 0.409193)
 
 [node name="Panel2" type="Panel" parent="Camera2D"]
@@ -368,4 +461,7 @@ offset_right = 69.3661
 offset_bottom = 42.9925
 scale = Vector2(0.495614, 0.109811)
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="text_submitted" from="Camera2D/Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

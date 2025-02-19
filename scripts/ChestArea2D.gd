@@ -29,7 +29,6 @@ func _open_chest():
 func play():
 	$AnimatedSprite2D.play("closed chest")
 
-func stop():
-	$AnimatedSprite2D.stop()
+func stop():	$AnimatedSprite2D.stop()
 	
 	

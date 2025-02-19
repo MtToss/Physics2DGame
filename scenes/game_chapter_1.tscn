@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="4_kui56"]
 [ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="5_2m2j8"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="5_lamfs"]
-[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="5_vxkdo"]
+[ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="5_vxkdo"]
 [ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="6_flrwj"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="6_sxtrt"]
 [ext_resource type="Texture2D" uid="uid://d2ey3rj3wteyp" path="res://assets/assets/Chapter_1_Background.png" id="8_15mh7"]
@@ -43,9 +43,12 @@ environment = SubResource("Environment_avp0r")
 
 [node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("6_sxtrt")]
 
-[node name="ENUMAN" parent="." instance=ExtResource("1_huqj3")]
+[node name="Character_Handler" type="Node2D" parent="."]
+position = Vector2(-995, 181)
+
+[node name="ENUMAN" parent="Character_Handler" instance=ExtResource("1_huqj3")]
 z_index = 100
-position = Vector2(-938, 172)
+position = Vector2(0, 0)
 
 [node name="Benson" parent="." instance=ExtResource("5_2m2j8")]
 position = Vector2(-951.48, 177.69)
@@ -172,15 +175,18 @@ scale = Vector2(0.546959, 1.01784)
 
 [node name="HallwayMan1" parent="." instance=ExtResource("2_krcld")]
 light_mask = 4
-position = Vector2(-625, 114)
+position = Vector2(-616, 114)
 scale = Vector2(0.1, 0.1)
 
 [node name="HallwayMan2" parent="." instance=ExtResource("2_krcld")]
-position = Vector2(-1016, 180)
+position = Vector2(-502, 114)
 scale = Vector2(0.1, 0.1)
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="FireTimerEnuman" type="Timer" parent="."]
+one_shot = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -208,3 +214,4 @@ offset_bottom = 5.0
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource("5_vxkdo")]
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]
