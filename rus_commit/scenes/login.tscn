@@ -43,10 +43,10 @@ offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="username" type="LineEdit" parent="VBoxContainer"]
+[node name="email" type="LineEdit" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-placeholder_text = "Type the username"
+placeholder_text = "Type Your Email"
 alignment = 1
 
 [node name="password" type="LineEdit" parent="VBoxContainer"]

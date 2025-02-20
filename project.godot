@@ -18,11 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 music_player="*res://mainMenu/music_player.tscn"
+FirebaseManager="*res://firebase_manager.gd"
 
 [display]
 
 window/size/viewport_width=1024
-window/stretch/mode="viewport"
 
 [dotnet]
 

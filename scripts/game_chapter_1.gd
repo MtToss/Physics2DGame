@@ -25,7 +25,7 @@ extends Node2D
 
 @onready var chest1animation = $chest1
 
-@onready var character_animation_sprite_2D = $Character_Handler/ENUMAN/AnimatedSprite2D
+@onready var character_animation_sprite_2D = $ENUMAN/AnimatedSprite2D
 
 @onready var animation_player = $Character_Handler/ENUMAN/Camera2D/Animation/AnimationPlayer
 @onready var animation_label = $Character_Handler/ENUMAN/Camera2D/Animation/Control/Label
@@ -41,7 +41,6 @@ extends Node2D
 @onready var prompt_label5 = $Character_Handler/ENUMAN/Camera2D/Panel/Label5
 
 @onready var stopwatch = $CanvasLayer/Hud 
-@onready var act_stopwatch = $Stopwatch
 
 @onready var camera = $Character_Handler/ENUMAN
 
@@ -56,8 +55,8 @@ var current_shooter: int = 1
 
 @onready var enuman = $Character_Handler/ENUMAN
 
-@onready var hallway_bullet1 = $HallwayMan1/CharacterBody2D/CollisionShape2D
-@onready var hallway_bullet2 = $HallwayMan2/CharacterBody2D/CollisionShape2D
+@onready var hallway_bullet1 = $HallwayMan1/CharacterBody2D/CollisionShape2D2
+@onready var hallway_bullet2 = $HallwayMan2/CharacterBody2D/CollisionShape2D2
 
 @onready var gun1 = $HallwayMan1/CharacterBody2D
 @onready var gun2 = $HallwayMan2/CharacterBody2D
@@ -71,12 +70,8 @@ var current_shooter: int = 1
 
 @onready var manual_pause = $CanvasLayer/pause_menu
 
-
-@onready var form_book = $CanvasLayer/formula_book
-
-
-@onready var dialogue_data = $CanvasLayer/dialogue
-
+@onready var dialogue_panel = $Character_Handler/ENUMAN/Camera2D/Panel2
+@onready var dialogue_label = $Character_Handler/ENUMAN/Camera2D/Panel2/Dialogue
 
 var current_problem: int = 0
 
@@ -107,7 +102,12 @@ var available_indices2 = []
 
 var gravity = 9.8
 
-
+var dialogue = [
+		"The possibilities are endless. The world is your canvas, waiting for your brushstrokes of imagination to breathe life into it.",
+		"From the depths of the ocean to the vastness of space, there are stories to be told and adventures to be had. ",
+		" Take a leap of faith into the unknown, for it is there that the magic happens. ",
+		"Embrace the uncertainty, the challenges, and the beauty that lies within every step of the journey. So, go forth, and create your own masterpiece."
+	]
 var formula1: float = 0.0
 var index = 0  # Tracks the current line
 var typing_speed = 0.0005  # Adjust typing speed (seconds per character)
@@ -140,12 +140,10 @@ func _ready() -> void:
 	randomize_problem_values()
 	available_indices1 = range(given_problem1.size())
 	available_indices2 = range(given_problem2.size())
-	dialogue_data.set_dialogue([
-	"The possibilities are endless. The world is your canvas, waiting for your brushstrokes of imagination to breathe life into it.",
-	"From the depths of the ocean to the vastness of space, there are stories to be told and adventures to be had.",
-	"Take a leap of faith into the unknown, for it is there that the magic happens.",
-	"Embrace the uncertainty, the challenges, and the beauty that lies within every step of the journey. So, go forth, and create your own masterpiece."])
+
+
 	prompt_label_list = [prompt_label1, prompt_label2, prompt_label3, prompt_label4, prompt_label5]
+
 	pressure_plate1.connect("body_entered", Callable(self, "_on_pressure_plate_entered").bind(1))
 	pressure_plate1.connect("body_exited", Callable(self, "_on_pressure_plate_exited"))
 	
@@ -161,6 +159,7 @@ func _ready() -> void:
 	
 	
 	line_edit.text_submitted.connect($Character_Handler/ENUMAN._on_line_edit_text_submitted)
+	show_dialogue_panel()
 	
 	new_bullet_enuman = gun_enuman.bullet_scene.instantiate()
 	
@@ -169,28 +168,6 @@ func _ready() -> void:
 		print("Debug: Successfully connected answer_submitted signal")
 	else:
 		print("Debug: ERROR - answer_submitted signal not found in ENUMAN")
-	
-	camera.adjust_camera(50,50)
-	interact_chess()
-	dialogue_data.pause()
-
-
-
-func hideorshow_panels():
-	if form_book.visible == true and manual_pause.visible == false:
-		form_book.visible = false
-		manual_pause.visible = true
-	elif form_book.visible == false and manual_pause.visible == true:
-		form_book.visible = true
-		manual_pause.visible = false
-
-
-
-func pause_by_pause_menu():
-	act_stopwatch.process_mode = Node.PROCESS_MODE_PAUSABLE
-
-func pause_by_formula_button():
-	act_stopwatch.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_bullet_entered(body):
 	if body.name == "ENUMAN":
@@ -317,7 +294,48 @@ func close_panel() -> void:
 	prompt_panel.set_visible(false)
 	print("Debug: Panel is now closed")
 
+func show_dialogue_panel() -> void:
+	print("Debug: dialogue_panel opened")
+	dialogue_panel.set_visible(true)
+	dialogue_label.text = ""  # Clear text before showing dialogue
 
+func close_dialogue_panel() -> void:
+	dialogue_panel.set_visible(false)
+	print("Debug: Dialogue Panel is now closed")
+
+func show_typing_effect(text: String, speed: float) -> void:
+	is_typing = true 
+	dialogue_label.text = ""  
+	for i in range(text.length()):
+		dialogue_label.text += text[i]
+		await get_tree().create_timer(speed).timeout  
+	is_typing = false
+
+func play_scene() -> void:
+	if index < dialogue.size():  
+		if !is_typing:  
+			await show_typing_effect(dialogue[index], typing_speed) 
+			index += 1 
+			print('play scene')
+			
+		else:
+			print("Already typing, please wait.")
+	else:	
+		close_dialogue_panel()  
+		stopwatch.play()
+		character_animation_sprite_2D.play()
+		chest1.play()
+		print("Debug: Game Resumed")
+		get_tree().paused = false
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		print("Mouse clicked!") 
+		if !is_typing:
+			print('play')
+			play_scene()
+			
+			return
 
 func _process(delta: float) -> void:
 	camera.adjust_camera(50,50)

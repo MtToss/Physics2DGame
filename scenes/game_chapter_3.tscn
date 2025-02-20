@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c47lfhiyqiqag"]
+[gd_scene load_steps=10 format=3 uid="uid://drik6gvgguak1"]
 
 [ext_resource type="Script" path="res://scripts/game_chapter_3.gd" id="1_f2chw"]
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_icr61"]
@@ -9,11 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="7_1n2wv"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="8_uh2n2"]
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="9_0euxa"]
-[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="10_1q2j0"]
-[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="11_etb7c"]
-[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="12_5ha24"]
-[ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="13_bohdh"]
-[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="14_onjcq"]
 
 [node name="GameChapter3" type="Node2D"]
 script = ExtResource("1_f2chw")
@@ -212,23 +207,6 @@ one_shot = true
 
 [node name="ElevatorTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("10_1q2j0")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Hud" parent="CanvasLayer" instance=ExtResource("11_etb7c")]
-offset_left = 1.0
-offset_top = 5.0
-offset_right = 1.0
-offset_bottom = 5.0
-
-[node name="dialogue" parent="CanvasLayer" instance=ExtResource("12_5ha24")]
-
-[node name="formula_book" parent="CanvasLayer" instance=ExtResource("13_bohdh")]
-
-[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("14_onjcq")]
-visible = false
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]

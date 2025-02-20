@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhr21cj32c0ys"]
+[gd_scene load_steps=17 format=3 uid="uid://dhr21cj32c0ys"]
 
 [ext_resource type="Script" path="res://scripts/game_chapter_2.gd" id="1_4w3sb"]
 [ext_resource type="Texture2D" uid="uid://djalb313rlba3" path="res://assets/assets/Chapter_2.png" id="1_hk8qa"]
@@ -12,11 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c1ac7obm3gaip" path="res://scenes/door.tscn" id="8_fnmdd"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="8_krhrc"]
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="9_o4unc"]
-[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="13_lri0l"]
-[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="14_7wair"]
-[ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="15_cjj7l"]
-[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="16_fboio"]
-[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="17_txcjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xslv"]
 
@@ -32,8 +27,6 @@ size = Vector2(15, 80)
 [node name="GameChapter2" type="Node2D"]
 position = Vector2(0, -3)
 script = ExtResource("1_4w3sb")
-
-[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("17_txcjj")]
 
 [node name="HallwayMan1" parent="." instance=ExtResource("5_hftij")]
 position = Vector2(887, 175)
@@ -100,7 +93,7 @@ position = Vector2(-924, 125)
 scale = Vector2(13.1953, 0.0489552)
 
 [node name="StaticBody3" parent="." instance=ExtResource("3_ikg2l")]
-position = Vector2(-928, -1)
+position = Vector2(-930, -5)
 scale = Vector2(13.261, 0.04369)
 
 [node name="StaticBody4" parent="." instance=ExtResource("3_ikg2l")]
@@ -192,8 +185,9 @@ position = Vector2(-4, 215)
 position = Vector2(-4, 87)
 
 [node name="Elevator3" parent="." instance=ExtResource("7_u61cu")]
-position = Vector2(-4, -39)
+position = Vector2(-4, -43)
 scale = Vector2(1, 1.0816)
+script = null
 
 [node name="Elevator4" parent="." instance=ExtResource("7_u61cu")]
 position = Vector2(-5, -169)
@@ -263,21 +257,6 @@ shape = SubResource("RectangleShape2D_7i02y")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(4984.5, 1226)
 shape = SubResource("RectangleShape2D_7wkud")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Hud" parent="CanvasLayer" instance=ExtResource("13_lri0l")]
-offset_left = 1.0
-offset_top = 5.0
-offset_right = 1.0
-offset_bottom = 5.0
-
-[node name="dialogue" parent="CanvasLayer" instance=ExtResource("14_7wair")]
-
-[node name="formula_book" parent="CanvasLayer" instance=ExtResource("15_cjj7l")]
-
-[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("16_fboio")]
-visible = false
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]

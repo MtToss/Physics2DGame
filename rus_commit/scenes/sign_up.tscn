@@ -32,34 +32,11 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 306.0
-offset_top = -21.0
+offset_top = 102.0
 offset_right = -306.0
-offset_bottom = 22.0
+offset_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="username" type="LineEdit" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-placeholder_text = "Type the username"
-alignment = 1
-
-[node name="password" type="LineEdit" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-placeholder_text = "Type the password"
-alignment = 1
-secret = true
-
-[node name="sign_up_button" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-text = "Sign up"
-
-[node name="FeedbackText" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.863388, 0.355126, 0.0720554, 1)
-horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -73,6 +50,57 @@ layout_mode = 2
 text = "Log in
 "
 
+[node name="FeedbackText" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.863388, 0.355126, 0.0720554, 1)
+text = "..."
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 306.0
+offset_top = -221.0
+offset_right = -306.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="full_name" type="LineEdit" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Type Your Full Name"
+alignment = 1
+clear_button_enabled = true
+
+[node name="username" type="LineEdit" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Type Your Username"
+alignment = 1
+clear_button_enabled = true
+
+[node name="email" type="LineEdit" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Type Your Email"
+alignment = 1
+
+[node name="password" type="LineEdit" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Type Your Password"
+alignment = 1
+secret = true
+
+[node name="sign_up_button" type="Button" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Sign Up"
+
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
-[connection signal="pressed" from="VBoxContainer/sign_up_button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/log_in_button" to="." method="_on_log_in_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/sign_up_button" to="." method="_on_button_pressed"]
