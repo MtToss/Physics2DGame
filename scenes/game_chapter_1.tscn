@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://3g0ef8y2thgt"]
+[gd_scene load_steps=24 format=3 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
 [ext_resource type="Script" path="res://scripts/game_chapter_1.gd" id="1_xt0vt"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="4_kui56"]
 [ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="5_2m2j8"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="5_lamfs"]
-[ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="5_vxkdo"]
+[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="5_vxkdo"]
 [ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="6_flrwj"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="6_sxtrt"]
 [ext_resource type="Texture2D" uid="uid://d2ey3rj3wteyp" path="res://assets/assets/Chapter_1_Background.png" id="8_15mh7"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="13_ltcbo"]
 [ext_resource type="Texture2D" uid="uid://cnfb22xve25qv" path="res://assets/assets/Chapter_1_Silhouette1.png" id="13_tecjy"]
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="16_jpg23"]
+[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="17_wb6gk"]
+[ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="18_i00bt"]
 
 [sub_resource type="Environment" id="Environment_avp0r"]
 sdfgi_enabled = true
@@ -211,7 +213,12 @@ offset_top = 5.0
 offset_right = 1.0
 offset_bottom = 5.0
 
+[node name="dialogue" parent="CanvasLayer" instance=ExtResource("17_wb6gk")]
+
+[node name="formula_book" parent="CanvasLayer" instance=ExtResource("18_i00bt")]
+
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource("5_vxkdo")]
+visible = false
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://crf16ys08eyly"]
+
+[ext_resource type="Script" path="res://scripts/dialogue.gd" id="1_spxpr"]
+
+[node name="dialogue" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_spxpr")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 63.0
+offset_top = -166.0
+offset_right = -62.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="skip" type="Button" parent="Panel"]
+process_mode = 3
+layout_mode = 0
+offset_left = 747.0
+offset_top = -35.0
+offset_right = 898.0
+offset_bottom = -1.0
+theme_override_font_sizes/font_size = 18
+text = "Skip"
+
+[node name="dialogue_panel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Prompt"
+autowrap_mode = 2
+
+[connection signal="pressed" from="Panel/skip" to="." method="_on_button_pressed"]

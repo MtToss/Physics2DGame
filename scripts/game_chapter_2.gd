@@ -27,10 +27,10 @@ extends Node2D
 @onready var hallwayman8 = $HallwayMan8/CharacterBody2D
 @onready var hallwayman_area_2D8 = $HallwayMan8/CharacterBody2D/Area2D
 
-@onready var hallway_bullet1 = $HallwayMan1/CharacterBody2D/CollisionShape2D2
-@onready var hallway_bullet2 = $HallwayMan2/CharacterBody2D/CollisionShape2D2
-@onready var hallway_bullet3 = $HallwayMan3/CharacterBody2D/CollisionShape2D2
-@onready var hallway_bullet4 = $HallwayMan4/CharacterBody2D/CollisionShape2D2
+@onready var hallway_bullet1 = $HallwayMan1/CharacterBody2D/CollisionShape2D
+@onready var hallway_bullet2 = $HallwayMan2/CharacterBody2D/CollisionShape2D
+@onready var hallway_bullet3 = $HallwayMan3/CharacterBody2D/CollisionShape2D
+@onready var hallway_bullet4 = $HallwayMan4/CharacterBody2D/CollisionShape2D
 @onready var hallway_bullet5 = $HallwayMan5/CharacterBody2D/CollisionShape2D
 @onready var hallway_bullet6 = $HallwayMan6/CharacterBody2D/CollisionShape2D
 @onready var hallway_bullet7 = $HallwayMan7/CharacterBody2D/CollisionShape2D
@@ -89,6 +89,13 @@ extends Node2D
 @onready var animation_control = $Character_Handler/ENUMAN/Camera2D/Animation/Control
 @onready var animation_label = $Character_Handler/ENUMAN/Camera2D/Animation/Control/Label
 @onready var animation_panel = $Character_Handler/ENUMAN/Camera2D/Panel
+
+@onready var stopwatch = $CanvasLayer/Hud 
+
+@onready var form_book = $CanvasLayer/formula_book
+@onready var manual_pause = $CanvasLayer/pause_menu
+@onready var act_stopwatch = $Stopwatch
+@onready var dialogue_data = $CanvasLayer/dialogue
 
 var current_shooter: int = 1 
 var current_problem: int = 0
@@ -231,7 +238,26 @@ func _ready() -> void:
 		print("Debug: Successfully connected answer_submitted signal")
 	else:
 		print("Debug: ERROR - answer_submitted signal not found in ENUMAN")
+	interact_chess()
+	dialogue_data.pause()
 
+
+
+func hideorshow_panels():
+	if form_book.visible == true and manual_pause.visible == false:
+		form_book.visible = false
+		manual_pause.visible = true
+	elif form_book.visible == false and manual_pause.visible == true:
+		form_book.visible = true
+		manual_pause.visible = false
+
+
+
+func pause_by_pause_menu():
+	act_stopwatch.process_mode = Node.PROCESS_MODE_PAUSABLE
+
+func pause_by_formula_button():
+	act_stopwatch.process_mode = Node.PROCESS_MODE_ALWAYS
 func _on_answer_submitted(user_input: int) -> void:
 	current_problem = last_problem
 	comparing_answer(user_input, answer.correct_answer, current_problem)

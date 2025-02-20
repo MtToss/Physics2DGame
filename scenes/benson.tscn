@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dfy0yoy0e3ecm"]
 
-[ext_resource type="Script" path="res://scenes/benson.gd" id="1_tfk1t"]
+[ext_resource type="Script" path="res://scripts/benson.gd" id="1_tfk1t"]
 [ext_resource type="Texture2D" uid="uid://wa2wg7amtwf5" path="res://assets/characters/Benson/Idle_Benson/Idle_Benson1.png" id="1_vjr0x"]
 [ext_resource type="Texture2D" uid="uid://82rfvp6gjlkl" path="res://assets/characters/Benson/Idle_Benson/Idle_Benson2.png" id="2_568x1"]
 [ext_resource type="Texture2D" uid="uid://dadupamxwlej1" path="res://assets/characters/Benson/Idle_Benson/Idle_Benson3.png" id="3_dktxr"]
