@@ -1,8 +1,96 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciejolr8fp3tg"]
+[gd_scene load_steps=10 format=3 uid="uid://ciejolr8fp3tg"]
 
 [ext_resource type="Script" path="res://scripts/formula_book.gd" id="1_2utw1"]
 [ext_resource type="Texture2D" uid="uid://v3havo3n1l8y" path="res://assets/assets/closed_book-removebg-preview.png" id="2_bwq7y"]
 [ext_resource type="Texture2D" uid="uid://bv5hu5l7my50g" path="res://assets/assets/opened_book-removebg-preview.png" id="3_q2pnq"]
+
+[sub_resource type="Animation" id="Animation_5vfea"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qjj1e"]
+resource_name = "next_slide_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3000, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t8h3n"]
+resource_name = "next_slide_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3000, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yjdwj"]
+resource_name = "slide_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3000, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nwc8b"]
+resource_name = "slide_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("page1/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3000, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_glgco"]
+_data = {
+"RESET": SubResource("Animation_5vfea"),
+"next_slide_in": SubResource("Animation_qjj1e"),
+"next_slide_out": SubResource("Animation_t8h3n"),
+"slide_in": SubResource("Animation_yjdwj"),
+"slide_out": SubResource("Animation_nwc8b")
+}
 
 [node name="formula_book" type="Control"]
 process_mode = 3
@@ -25,12 +113,43 @@ focus_mode = 0
 texture_normal = ExtResource("2_bwq7y")
 texture_hover = ExtResource("3_q2pnq")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="page1" type="Panel" parent="."]
 visible = false
 layout_mode = 1
 offset_left = 111.5
 offset_top = 65.0
 offset_right = 912.5
 offset_bottom = 583.0
+
+[node name="TextureRect" type="TextureRect" parent="page1"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -259.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="back" type="Button" parent="page1"]
+layout_mode = 0
+offset_left = 99.5
+offset_top = 435.0
+offset_right = 238.5
+offset_bottom = 497.0
+
+[node name="next" type="Button" parent="page1"]
+layout_mode = 0
+offset_left = 560.5
+offset_top = 440.0
+offset_right = 699.5
+offset_bottom = 502.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="page1"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_glgco")
+}
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

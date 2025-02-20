@@ -141,6 +141,9 @@ var current_floor: int = 5
 @onready var elevator4 = $elevator4
 @onready var elevator4_body = $elevator4/Area2D
 @onready var elevator4_label = $elevator4/Label1
+@onready var elevator5 = $elevator5
+@onready var elevator5_body = $elevator5/Area2D
+@onready var elevator5_label = $elevator5/Label1
 
 
 
@@ -215,8 +218,11 @@ func _ready() -> void:
 	elevator4_body.body_entered.connect(_on_elevator_area_entered.bind(elevator4))
 	elevator4_body.body_exited.connect(_on_elevator_area_exited.bind(elevator4))
 	
+	elevator5_body.body_entered.connect(_on_elevator_area_entered.bind(elevator5))
+	elevator5_body.body_exited.connect(_on_elevator_area_exited.bind(elevator5))
+	
 	elevator1.label2_hide()
-	elevator4.label1_hide()
+	elevator5.label1_hide()
 	
 	new_bullet_enuman = gun_enuman.bullet_scene.instantiate()
 	
@@ -433,8 +439,8 @@ func _on_elevator_area_exited(body, elevator):
 		current_elevator = null
 
 func _input(event):
-	if event.is_action_pressed("interact_go_up"):
-		if current_floor < 5:
+	if event.is_action_pressed("interact_go_up") and get_node("elevator" + str(current_floor) + "/Label1").visible:
+		if current_floor < 6:
 			enuman.hide()
 			enuman.speed = 0
 			$ElevatorTimer.start()
@@ -443,7 +449,7 @@ func _input(event):
 			enuman.global_position = get_node("elevator" + str(current_floor)).global_position
 			print("Debug: Moved Up to Floor", current_floor)
 
-	elif event.is_action_pressed("interact_go_down"):
+	elif event.is_action_pressed("interact_go_down") and get_node("elevator" + str(current_floor) + "/Label2").visible:
 		if current_floor > 1:
 			enuman.hide()
 			enuman.speed = 0

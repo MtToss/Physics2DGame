@@ -12,9 +12,9 @@ var current_page = 0
 
 
 # References to UI elements
-@onready var texture_rect = $how/page1/TextureRect	
+@onready var texture_rect = $how/page1/TextureRect
 @onready var back_button = $how/back
-@onready var next_button = $how/next	
+@onready var next_button = $how/next
 @onready var animation_player = $how/page1/AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.

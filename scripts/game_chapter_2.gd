@@ -446,7 +446,7 @@ func _on_elevator_area_exited(body, elevator):
 		current_elevator = null
 
 func _input(event):
-	if event.is_action_pressed("interact_go_up"):
+	if event.is_action_pressed("interact_go_up") and get_node("Elevator" + str(current_floor) + "/Label1").visible:
 		if current_floor < 4:
 			enuman.hide()
 			enuman.speed = 0
@@ -456,7 +456,7 @@ func _input(event):
 			enuman.global_position = get_node("Elevator" + str(current_floor)).global_position
 			print("Debug: Moved Up to Floor", current_floor)
 
-	elif event.is_action_pressed("interact_go_down"):
+	elif event.is_action_pressed("interact_go_down") and get_node("Elevator" + str(current_floor) + "/Label2").visible:
 		if current_floor > 1:
 			enuman.hide()
 			enuman.speed = 0

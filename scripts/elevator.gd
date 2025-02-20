@@ -10,10 +10,10 @@ func _ready() -> void:
 	$Area2D.connect("body_exited", Callable(self, "_on_area2d_body_exited"))
 	
 func label1_hide() -> void:
-	$Label1.queue_free()
+	$Label1.hide()
 	is_label1_removed = true
 func label2_hide() -> void:
-	$Label2.queue_free()
+	$Label2.hide()
 	is_label2_removed = true
 func _on_area2d_body_entered(body):
 	if body.name == "ENUMAN":
