@@ -56,5 +56,5 @@ script = ExtResource("1_djykx")
 [connection signal="pressed" from="VBoxContainer/login_button" to="VBoxContainer/login_button" method="_on_login_button_pressed"]
 [connection signal="tree_entered" from="VBoxContainer/login_button" to="." method="_on_login_button_tree_entered"]
 [connection signal="pressed" from="VBoxContainer/sign_up_button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/sign_up_button" to="VBoxContainer/sign_up_button" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/sign_up_button" to="VBoxContainer/sign_up_button" method="_on_sign_up_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/sign_up_button" to="VBoxContainer/sign_up_button" method="_on_pressed"]
