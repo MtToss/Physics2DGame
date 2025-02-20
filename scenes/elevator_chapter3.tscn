@@ -1,0 +1,118 @@
+[gd_scene load_steps=22 format=3 uid="uid://ci066dj5550ks"]
+
+[ext_resource type="Script" path="res://scenes/elevator_chapter_3.gd" id="1_syyvn"]
+[ext_resource type="Texture2D" uid="uid://bb4vqqk3qdm3f" path="res://assets/assets/Elevator_Door_Chapter3_72x64p6.png" id="2_c6ay7"]
+[ext_resource type="Texture2D" uid="uid://ctr7tsniommyg" path="res://assets/assets/Elevator_Door_Chapter3_72x64p7.png" id="3_jpoes"]
+[ext_resource type="Texture2D" uid="uid://lbjbudkwrpsg" path="res://assets/assets/Elevator_Door_Chapter3_72x64p8.png" id="4_40wff"]
+[ext_resource type="Texture2D" uid="uid://5ydx5dwb40h1" path="res://assets/assets/Elevator_Door_Chapter3_72x64p1.png" id="5_sbkq8"]
+[ext_resource type="Texture2D" uid="uid://djngl55y32ra1" path="res://assets/assets/Elevator_Door_Chapter3_72x64p2.png" id="6_np78c"]
+[ext_resource type="Texture2D" uid="uid://befo66rq04ntw" path="res://assets/assets/Elevator_Door_Chapter3_72x64p3.png" id="7_vrs6h"]
+[ext_resource type="Texture2D" uid="uid://dro7r2oarpqxx" path="res://assets/assets/Elevator_Door_Chapter3_72x64p4.png" id="8_lowjl"]
+[ext_resource type="Texture2D" uid="uid://bhwovr6jcaac6" path="res://assets/assets/Elevator_Door_Chapter3_72x64p5.png" id="9_mnqec"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sp2d"]
+atlas = ExtResource("2_c6ay7")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tde5h"]
+atlas = ExtResource("3_jpoes")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7femo"]
+atlas = ExtResource("4_40wff")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n337k"]
+atlas = ExtResource("5_sbkq8")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo5ac"]
+atlas = ExtResource("6_np78c")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbohx"]
+atlas = ExtResource("7_vrs6h")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7kps"]
+atlas = ExtResource("8_lowjl")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t2vo"]
+atlas = ExtResource("9_mnqec")
+region = Rect2(0, 0, 64, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmy8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sp2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tde5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7femo")
+}],
+"loop": false,
+"name": &"closing",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n337k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo5ac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbohx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7kps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t2vo")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdgvg"]
+size = Vector2(53, 81)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xs040"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jikyv"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_syyvn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lmy8w")
+animation = &"opening"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 2.5)
+shape = SubResource("RectangleShape2D_wdgvg")
+
+[node name="Label1" type="Label" parent="."]
+offset_left = -59.0
+offset_top = -57.0
+offset_right = 71.0
+offset_bottom = -34.0
+scale = Vector2(0.55, 0.55)
+text = "Press 'T' to go up"
+label_settings = SubResource("LabelSettings_xs040")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 19.0
+offset_top = -56.0
+offset_right = 149.0
+offset_bottom = -33.0
+scale = Vector2(0.55, 0.55)
+text = "Press 'G' to go down"
+label_settings = SubResource("LabelSettings_jikyv")

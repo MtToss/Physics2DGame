@@ -1,0 +1,213 @@
+[gd_scene load_steps=10 format=3 uid="uid://bk17siibp2h2r"]
+
+[ext_resource type="Script" path="res://scripts/game_chapter_3.gd" id="1_f2chw"]
+[ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_icr61"]
+[ext_resource type="Texture2D" uid="uid://dukek7m0bfmqf" path="res://assets/assets/Chapter_3.png" id="2_8eqar"]
+[ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="3_a00jn"]
+[ext_resource type="PackedScene" uid="uid://ci066dj5550ks" path="res://scenes/elevator_chapter3.tscn" id="5_bjvep"]
+[ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="6_xlv5m"]
+[ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="7_1n2wv"]
+[ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="8_uh2n2"]
+[ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="9_0euxa"]
+
+[node name="GameChapter3" type="Node2D"]
+script = ExtResource("1_f2chw")
+
+[node name="Character_Handler" type="Node2D" parent="."]
+position = Vector2(-927, -164)
+scale = Vector2(6.53, 4.555)
+
+[node name="ENUMAN" parent="Character_Handler" instance=ExtResource("1_icr61")]
+position = Vector2(-6.99252e-06, -2.14577e-06)
+scale = Vector2(1.43923, 1.65966)
+
+[node name="Camera2D2" type="Camera2D" parent="Character_Handler/ENUMAN"]
+position = Vector2(-2.06976, -0.695995)
+scale = Vector2(0.694816, 0.602533)
+zoom = Vector2(1.5, 1.5)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_8eqar")
+
+[node name="StaticBody2D1" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-954, 393)
+scale = Vector2(13.6054, 1.06182)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-1063, -345)
+rotation = 1.5708
+scale = Vector2(5.79329, 3.50779)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(1049, 344)
+rotation = -1.5708
+scale = Vector2(4.91581, 2.6802)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(920, -384)
+rotation = 3.14159
+scale = Vector2(13.3259, 1.8837)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-995, -132)
+scale = Vector2(5.59814, 0.0296133)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-288, -1)
+rotation = 3.14159
+scale = Vector2(4.95284, -0.0306164)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-947, 125)
+scale = Vector2(13.3693, 0.0682383)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-1024, 252)
+scale = Vector2(8.64755, 0.0405908)
+
+[node name="StaticBody2D9" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(247, -130)
+scale = Vector2(5.23918, 0.0407684)
+
+[node name="StaticBody2D10" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-259, -120)
+rotation = 1.5708
+scale = Vector2(1.13357, -0.0502262)
+
+[node name="StaticBody2D11" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-391, -128)
+rotation = 1.5708
+scale = Vector2(0.326305, -0.0448582)
+
+[node name="StaticBody2D12" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-391, 5)
+rotation = 1.5708
+scale = Vector2(0.27762, -0.052937)
+
+[node name="StaticBody2D13" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-385, 136)
+rotation = 1.5708
+scale = Vector2(0.269689, 0.0513158)
+
+[node name="StaticBody2D14" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-253, 141)
+rotation = 1.5708
+scale = Vector2(1.09858, 0.0461409)
+
+[node name="StaticBody2D15" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(259, 143)
+rotation = 1.5708
+scale = Vector2(1.06755, 0.0567111)
+
+[node name="StaticBody2D16" parent="." instance=ExtResource("3_a00jn")]
+position = Vector2(-392, 260)
+scale = Vector2(0.0498637, 0.339966)
+
+[node name="elevator1" parent="." instance=ExtResource("5_bjvep")]
+position = Vector2(-320, 343)
+
+[node name="elevator2" parent="." instance=ExtResource("5_bjvep")]
+position = Vector2(-320, 216)
+
+[node name="elevator3" parent="." instance=ExtResource("5_bjvep")]
+position = Vector2(-320, 88)
+
+[node name="elevator4" parent="." instance=ExtResource("5_bjvep")]
+position = Vector2(-320, -40)
+
+[node name="elevator5" parent="." instance=ExtResource("5_bjvep")]
+position = Vector2(-320, -168)
+
+[node name="HallwayMan1" parent="." instance=ExtResource("6_xlv5m")]
+position = Vector2(-801, -187)
+scale = Vector2(1, 0.85)
+
+[node name="HallwayMan2" parent="." instance=ExtResource("6_xlv5m")]
+position = Vector2(-973, -52)
+scale = Vector2(1, 0.7225)
+
+[node name="HallwayMan3" parent="." instance=ExtResource("6_xlv5m")]
+position = Vector2(-888, 78)
+scale = Vector2(1, 0.7225)
+
+[node name="HallwayMan4" parent="." instance=ExtResource("6_xlv5m")]
+position = Vector2(332, -178)
+scale = Vector2(1, 0.7225)
+
+[node name="HallwayMan5" parent="." instance=ExtResource("6_xlv5m")]
+position = Vector2(347, 78)
+scale = Vector2(1, 0.7225)
+
+[node name="HallwayMan6" parent="." instance=ExtResource("6_xlv5m")]
+position = Vector2(-776, 337)
+scale = Vector2(1, 0.614125)
+
+[node name="HallwayMan7" parent="." instance=ExtResource("6_xlv5m")]
+position = Vector2(417, 336)
+scale = Vector2(1, 0.614125)
+
+[node name="HallwayMan8" parent="." instance=ExtResource("6_xlv5m")]
+position = Vector2(725, -168)
+scale = Vector2(1, 0.522006)
+
+[node name="chest1" parent="." instance=ExtResource("7_1n2wv")]
+position = Vector2(-432, -151)
+scale = Vector2(180, 60)
+
+[node name="chest2" parent="." instance=ExtResource("7_1n2wv")]
+position = Vector2(-842, -21)
+scale = Vector2(180, 60)
+
+[node name="chest3" parent="." instance=ExtResource("7_1n2wv")]
+position = Vector2(798, -151)
+scale = Vector2(180, 60)
+
+[node name="chest4" parent="." instance=ExtResource("7_1n2wv")]
+position = Vector2(-939, 233)
+scale = Vector2(180, 60)
+
+[node name="chest5" parent="." instance=ExtResource("7_1n2wv")]
+position = Vector2(-954, 361)
+scale = Vector2(180, 60)
+
+[node name="chest6" parent="." instance=ExtResource("7_1n2wv")]
+position = Vector2(981, 102)
+scale = Vector2(180, 60)
+
+[node name="chest7" parent="." instance=ExtResource("7_1n2wv")]
+position = Vector2(-920, 102)
+scale = Vector2(180, 60)
+
+[node name="chest8" parent="." instance=ExtResource("7_1n2wv")]
+position = Vector2(-873, 360)
+scale = Vector2(180, 60)
+
+[node name="pressure_plate1" parent="." instance=ExtResource("8_uh2n2")]
+position = Vector2(-444, 347)
+
+[node name="pressure_plate2" parent="." instance=ExtResource("8_uh2n2")]
+position = Vector2(160, 348)
+
+[node name="barrier1" parent="." instance=ExtResource("9_0euxa")]
+position = Vector2(-491, 319)
+scale = Vector2(1.04632, 0.596917)
+
+[node name="barrier2" parent="." instance=ExtResource("9_0euxa")]
+position = Vector2(226, 319)
+scale = Vector2(1.02871, 0.62234)
+
+[node name="FireTimer" type="Timer" parent="."]
+
+[node name="FireTimerEnuman" type="Timer" parent="."]
+one_shot = true
+
+[node name="ElevatorTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]
+[connection signal="timeout" from="ElevatorTimer" to="." method="_on_elevator_timer_timeout"]
