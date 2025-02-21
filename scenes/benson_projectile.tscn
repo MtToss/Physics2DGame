@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://d38pvr7g0e3ns"]
+
+[ext_resource type="Script" path="res://scripts/benson_projectile.gd" id="1_d2bfj"]
+[ext_resource type="Texture2D" uid="uid://ddx3k8m63mq25" path="res://assets/assets/All_Fire_Bullet_Pixel_16x16.png" id="1_kgiq3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clu1i"]
+size = Vector2(176.452, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyvxa"]
+atlas = ExtResource("1_kgiq3")
+region = Rect2(448, 196, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrqyx"]
+atlas = ExtResource("1_kgiq3")
+region = Rect2(480, 196, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k66am"]
+atlas = ExtResource("1_kgiq3")
+region = Rect2(512, 196, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44hff"]
+atlas = ExtResource("1_kgiq3")
+region = Rect2(544, 196, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c06wc"]
+atlas = ExtResource("1_kgiq3")
+region = Rect2(576, 196, 32, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8dhuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyvxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrqyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k66am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44hff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c06wc")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[node name="BensonProjectile" type="Node2D"]
+script = ExtResource("1_d2bfj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(113.521, 1)
+scale = Vector2(0.118774, 0.75)
+shape = SubResource("RectangleShape2D_clu1i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+position = Vector2(110.069, 0)
+scale = Vector2(0.539429, -0.632284)
+sprite_frames = SubResource("SpriteFrames_8dhuh")
+animation = &"shoot"
+frame_progress = 0.0624513
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

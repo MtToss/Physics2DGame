@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_icr61"]
 [ext_resource type="Texture2D" uid="uid://dukek7m0bfmqf" path="res://assets/assets/Chapter_3.png" id="2_8eqar"]
 [ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="3_a00jn"]
-[ext_resource type="PackedScene" path="res://scenes/elevator_chapter3.tscn" id="5_bjvep"]
+[ext_resource type="PackedScene" uid="uid://ci066dj5550ks" path="res://scenes/elevator_chapter3.tscn" id="5_bjvep"]
 [ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="6_xlv5m"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="7_1n2wv"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="8_uh2n2"]

@@ -39,6 +39,7 @@ extends Node2D
 @onready var prompt_label3 = $Character_Handler/ENUMAN/Camera2D/Panel/Label3
 @onready var prompt_label4 = $Character_Handler/ENUMAN/Camera2D/Panel/Label4
 @onready var prompt_label5 = $Character_Handler/ENUMAN/Camera2D/Panel/Label5
+@onready var prompt_label6 = $Character_Handler/ENUMAN/Camera2D/Panel/Label6
 
 @onready var stopwatch = $CanvasLayer/Hud 
 @onready var act_stopwatch = $Stopwatch
@@ -76,6 +77,8 @@ var current_shooter: int = 1
 
 
 @onready var dialogue_data = $CanvasLayer/dialogue
+
+@onready var problem_identifier = $Character_Handler/ENUMAN/Camera2D/Panel/problem_identifier
 
 
 var current_problem: int = 0
@@ -298,26 +301,28 @@ func open_panel() -> void:
 	line_edit.grab_focus()
 	match (current_problem):
 		1:
+			problem_identifier.text = "Problem: Kinematics"
 			for index in range(given_problem1.size()):
 				if get_value1[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s : ?" % [given_problem1[index]]
 					print("Missing value for: %s" % [given_problem1[index]])
 				else:
 					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
-		2:
+			prompt_label6.text = ""
+		2:	
+			problem_identifier.text = "Problem: Work and Power"
 			for index in range(given_problem2.size()):
 				if get_value2[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s : ?" % [given_problem1[index]]
 					print("Missing value for: %s" % [given_problem2[index]])
 				else:
 					print("Debug: %s: %s" % [given_problem2[index], get_value2[index]])
 					prompt_label_list[index].text = "%s: %s" % [given_problem2[index], get_value2[index]]
+			prompt_label6.text = "Angle: %s"  % [angle1]
 
 func close_panel() -> void:
 	prompt_panel.set_visible(false)
 	print("Debug: Panel is now closed")
-
-
 
 func _process(delta: float) -> void:
 	camera.adjust_camera(50,50)

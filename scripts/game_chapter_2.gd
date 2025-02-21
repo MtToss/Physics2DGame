@@ -57,6 +57,7 @@ extends Node2D
 @onready var prompt_label3 = $Character_Handler/ENUMAN/Camera2D/Panel/Label3
 @onready var prompt_label4 = $Character_Handler/ENUMAN/Camera2D/Panel/Label4
 @onready var prompt_label5 = $Character_Handler/ENUMAN/Camera2D/Panel/Label5
+@onready var prompt_label6 = $Character_Handler/ENUMAN/Camera2D/Panel/Label6
 
 @onready var answer = $Character_Handler/ENUMAN
 
@@ -155,6 +156,8 @@ var current_floor: int = 1
 
 @onready var door4 = $door4
 @onready var door4_label = $door4/Label1
+
+@onready var problem_identifier = $Character_Handler/ENUMAN/Camera2D/Panel/problem_identifier
 
 
 # Called when the node enters the scene tree for the first time.
@@ -369,9 +372,10 @@ func open_panel() -> void:
 	line_edit.grab_focus()
 	match (current_problem):
 		1:
+			prompt_label6.text = ""
 			for index in range(given_problem1.size()):
 				if get_value1[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s: ?" % [given_problem1[index]]
 					print("Missing value for: %s" % [given_problem1[index]])
 				else:
 					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
@@ -383,6 +387,7 @@ func open_panel() -> void:
 				else:
 					print("Debug: %s: %s" % [given_problem2[index], get_value2[index]])
 					prompt_label_list[index].text = "%s: %s" % [given_problem2[index], get_value2[index]]
+			prompt_label6.text = "Angle: %s" % [angle1]
 
 func formula(get_value: Array, given_problem: Array, given_problem_given1: String, given_problem_given2: String, find: String) -> float:
 	if get_value[given_problem.find(given_problem_given1)] != null and get_value[given_problem.find(given_problem_given2)] != null:

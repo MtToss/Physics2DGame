@@ -8,6 +8,7 @@ var shooting = false
 const GRAVITY = 350.0
 const JETPACK_SLOW_DESCENT = 50.0
 var is_moving_left: bool = false
+var hit_dmg = 7
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animation_player = $Camera2D/Animation/AnimationPlayer
 @onready var camera_2D = $Camera2D
@@ -21,6 +22,7 @@ signal answer_submitted(user_input: float)
 var is_using_jetpack: bool = false
 var correct_answer: int = 42
 var user_input: int
+var hp: int = 100
 
 func _ready() -> void:
 	line_edit.grab_focus()

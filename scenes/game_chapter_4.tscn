@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://pw1y2e4f56dt"]
+
+[ext_resource type="Script" path="res://scripts/game_chapter_4.gd" id="1_dokhx"]
+[ext_resource type="Texture2D" uid="uid://ct3nnjdjygc5h" path="res://assets/assets/Chapter_4.png" id="1_t0joh"]
+[ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="2_5dsjx"]
+[ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="4_4f1gn"]
+[ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="5_er856"]
+
+[node name="GameChapter4" type="Node2D"]
+script = ExtResource("1_dokhx")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_t0joh")
+
+[node name="StaticBody2D1" parent="." instance=ExtResource("2_5dsjx")]
+position = Vector2(-611, 107)
+scale = Vector2(4.15729, 1.09114)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_5dsjx")]
+position = Vector2(-651, -146)
+rotation = 1.5708
+scale = Vector2(1.77692, 0.735849)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_5dsjx")]
+position = Vector2(580, -161)
+rotation = 3.14159
+scale = Vector2(8.35216, 1.14411)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("2_5dsjx")]
+position = Vector2(651, 145)
+rotation = -1.5708
+scale = Vector2(2.01596, 0.951502)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("2_5dsjx")]
+position = Vector2(208, 108)
+scale = Vector2(3.00551, 1.13181)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("2_5dsjx")]
+position = Vector2(-194, 39)
+scale = Vector2(0.138555, 0.433405)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("2_5dsjx")]
+position = Vector2(-506, -4)
+scale = Vector2(0.825439, 0.051185)
+
+[node name="Benson" parent="." instance=ExtResource("5_er856")]
+position = Vector2(331, 59)
+
+[node name="Character_Handler" type="Node2D" parent="."]
+position = Vector2(-479, 41)
+
+[node name="ENUMAN" parent="Character_Handler" instance=ExtResource("4_4f1gn")]
+position = Vector2(1.00001, 0)
+scale = Vector2(9.87784, 7.35566)
+
+[node name="Camera2D2" type="Camera2D" parent="Character_Handler/ENUMAN"]
+position = Vector2(-0.101238, 0)
+scale = Vector2(0.101237, 0.13595)
+
+[node name="FireTimerEnuman" type="Timer" parent="."]
+one_shot = true
+
+[node name="FireTimerBenson" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]
+[connection signal="timeout" from="FireTimerBenson" to="." method="_on_fire_timer_benson_timeout"]

@@ -2,6 +2,7 @@ extends Node2D
 # game chapter 3
 @onready var camera = $Character_Handler/ENUMAN/Camera2D
 @onready var collision_shape = $Character_Handler/ENUMAN/CollisionShape2D
+@onready var problem_identifier = $Character_Handler/ENUMAN/Camera2D/Panel/problem_identifier
 
 @onready var hallwayman1 = $HallwayMan1/CharacterBody2D
 @onready var hallwayman_area_2D1 = $HallwayMan1/CharacterBody2D/Area2D
@@ -57,6 +58,7 @@ extends Node2D
 @onready var prompt_label3 = $Character_Handler/ENUMAN/Camera2D/Panel/Label3
 @onready var prompt_label4 = $Character_Handler/ENUMAN/Camera2D/Panel/Label4
 @onready var prompt_label5 = $Character_Handler/ENUMAN/Camera2D/Panel/Label5
+@onready var prompt_label6 = $Character_Handler/ENUMAN/Camera2D/Panel/Label6
 
 @onready var answer = $Character_Handler/ENUMAN
 
@@ -362,13 +364,15 @@ func open_panel() -> void:
 	line_edit.grab_focus()
 	match (current_problem):
 		1:
+			prompt_label6.text = ""
 			for index in range(given_problem1.size()):
 				if get_value1[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s: ?" % [given_problem1[index]]
 					print("Missing value for: %s" % [given_problem1[index]])
 				else:
 					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
 		2:
+			prompt_label6.text = "Angle: %s" % [angle1]
 			for index in range(given_problem2.size()):
 				if get_value2[index] == null:
 					prompt_label_list[index].text = "?"
@@ -376,7 +380,6 @@ func open_panel() -> void:
 				else:
 					print("Debug: %s: %s" % [given_problem2[index], get_value2[index]])
 					prompt_label_list[index].text = "%s: %s" % [given_problem2[index], get_value2[index]]
-
 func formula(get_value: Array, given_problem: Array, given_problem_given1: String, given_problem_given2: String, find: String) -> float:
 	if get_value[given_problem.find(given_problem_given1)] != null and get_value[given_problem.find(given_problem_given2)] != null:
 		match (current_problem):
