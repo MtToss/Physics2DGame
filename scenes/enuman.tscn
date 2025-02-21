@@ -431,16 +431,6 @@ scale = Vector2(0.0351782, 0.0150187)
 text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
 
-[node name="Label6" type="Label" parent="Camera2D/Panel"]
-offset_left = 33.0178
-offset_top = 7.59526
-offset_right = 453.018
-offset_bottom = 144.596
-scale = Vector2(0.0351782, 0.0150187)
-text = "
-"
-label_settings = SubResource("LabelSettings_j6pck")
-
 [node name="LineEdit" type="LineEdit" parent="Camera2D/Panel"]
 light_mask = 31
 layout_mode = 0
@@ -449,15 +439,6 @@ offset_top = 11.9925
 offset_right = 69.3661
 offset_bottom = 42.9925
 scale = Vector2(0.495614, 0.109811)
-
-[node name="problem_identifier" type="Label" parent="Camera2D/Panel"]
-offset_left = 3.07144
-offset_top = -1.99873
-offset_right = 423.072
-offset_bottom = 135.002
-scale = Vector2(0.0320458, 0.0164373)
-text = "Prompt"
-label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="Timer" type="Timer" parent="."]
 

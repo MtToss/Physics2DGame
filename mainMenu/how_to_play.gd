@@ -29,27 +29,35 @@ func _process(delta: float) -> void:
 
 func update_page():
 	# Disable buttons if needed
-
-		
+	
 	back_button.disabled = current_page == 0
 	next_button.disabled = current_page == tutorial_pages.size() - 1
-
 	# Update content
-	texture_rect.texture = tutorial_pages[current_page]["image"]
+	var texture = tutorial_pages[current_page]["image"]
+	texture_rect.texture = texture
+	
+	
+	texture_rect.custom_minimum_size = Vector2(500, 500)
+	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	
 
 func slide_out(is_next: bool) -> void:
+	
 	if is_next:
 		animation_player.play("slide_out")
 	else:
 		animation_player.play("next_slide_out")
 	await animation_player.animation_finished 
 
+
 func slide_in(is_next: bool) -> void:
+	
 	if is_next:
 		animation_player.play("next_slide_in")
 	else:
 		animation_player.play("slide_in")
 	await animation_player.animation_finished
+	
 	
 func _on_back_pressed() -> void:
 	if current_page > 0:
@@ -57,6 +65,7 @@ func _on_back_pressed() -> void:
 		current_page -= 1
 		update_page()  # Update page content
 		await slide_in(false)  # Then slide in
+		
 
 func _on_next_pressed() -> void:
 	if current_page < tutorial_pages.size() - 1:
@@ -64,6 +73,7 @@ func _on_next_pressed() -> void:
 		current_page += 1
 		update_page()  # Update page content
 		await slide_in(true)  # Then slide in
+		
 
 
 func _on_main_back_pressed() -> void:

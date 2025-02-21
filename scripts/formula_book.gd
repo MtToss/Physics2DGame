@@ -1,9 +1,16 @@
 extends Control
 
-var tutorial_pages = [
-	{"image": preload("res://mainMenu/image_1.png")},
-	{"image": preload("res://mainMenu/image_2.jpg")},
-	{"image": preload("res://mainMenu/image_3.png")}
+var formulas = [
+	{"image": preload("res://assets/assets/Formulas/1.png")},
+	{"image": preload("res://assets/assets/Formulas/2.png")},
+	{"image": preload("res://assets/assets/Formulas/3.png")},
+	{"image": preload("res://assets/assets/Formulas/4.png")},
+	{"image": preload("res://assets/assets/Formulas/5.png")},
+	{"image": preload("res://assets/assets/Formulas/6.png")},
+	{"image": preload("res://assets/assets/Formulas/7.png")},
+	{"image": preload("res://assets/assets/Formulas/8.png")},
+	{"image": preload("res://assets/assets/Formulas/9.png")},
+	{"image": preload("res://assets/assets/Formulas/10.png")}
 ]
 
 # Current page index
@@ -18,7 +25,7 @@ var current_page = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	update_page()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,15 +44,15 @@ func pause():
 	get_tree().paused = true
 
 func formulaPanel_checker() -> bool:
-	return not $Panel.visible  # Return whether the panel is visible
+	return not $page1.visible  # Return whether the panel is visible
 
 
 func _on_texture_button_pressed() -> void:
-	if $Panel.visible == true:
-		$Panel.visible = false
+	if $page1.visible == true:
+		$page1.visible = false
 		resume()
-	elif $Panel.visible == false:
-		$Panel.visible = true
+	elif $page1.visible == false:
+		$page1.visible = true
 		pause()
 
 
@@ -54,10 +61,10 @@ func update_page():
 
 		
 	back_button.disabled = current_page == 0
-	next_button.disabled = current_page == tutorial_pages.size() - 1
+	next_button.disabled = current_page == formulas.size() - 1
 
 	# Update content
-	texture_rect.texture = tutorial_pages[current_page]["image"]
+	texture_rect.texture = formulas[current_page]["image"]
 
 func slide_out(is_next: bool) -> void:
 	if is_next:
@@ -72,3 +79,19 @@ func slide_in(is_next: bool) -> void:
 	else:
 		animation_player.play("slide_in")
 	await animation_player.animation_finished
+
+
+func _on_back_pressed() -> void:
+	if current_page > 0:
+		await slide_out(false)  # Slide out first
+		current_page -= 1
+		update_page()  # Update page content
+		await slide_in(false)  # Then slide in
+
+
+func _on_next_pressed() -> void:
+	if current_page < formulas.size() - 1:
+		await slide_out(true)  # Slide out first
+		current_page += 1
+		update_page()  # Update page content
+		await slide_in(true)  # Then slide in

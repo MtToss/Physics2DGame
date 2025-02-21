@@ -131,6 +131,8 @@ offset_top = -259.0
 offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
+expand_mode = 5
+stretch_mode = 4
 
 [node name="back" type="Button" parent="page1"]
 layout_mode = 0
@@ -153,3 +155,5 @@ libraries = {
 }
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="page1/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="page1/next" to="." method="_on_next_pressed"]

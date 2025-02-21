@@ -14,13 +14,25 @@ extends Node2D
 @onready var gun_benson = $Benson
 @onready var fire_timer_benson = $FireTimerBenson
 
+@onready var heart = $Character_Handler/ENUMAN/Camera2D2/HBoxContainer/heart
+@onready var heart2 = $Character_Handler/ENUMAN/Camera2D2/HBoxContainer/heart2
+@onready var heart3 = $Character_Handler/ENUMAN/Camera2D2/HBoxContainer/heart3
+@onready var heart4 = $Character_Handler/ENUMAN/Camera2D2/HBoxContainer/heart4
+
+@onready var container = $Character_Handler/ENUMAN/Camera2D2/HBoxContainer
+
 var new_bullet_benson
 var bullet_collision_benson
 var new_bullet_enuman
 var bullet_collision_enuman
 
 var hp: int = 100
-
+var empty_heart = [
+	{"image": preload("res://assets/assets/empty_heart.png")},
+]
+var full_heart = [
+	{"image": preload("res://assets/assets/hearts.png")},
+]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	camera.enabled = false 
@@ -43,6 +55,8 @@ func _ready() -> void:
 func _process(delta: float) -> void: 
 	firing()
 
+
+
 func _on_bullet_entered_hallwayman(body):
 	print("Debug: it satisfies", body.name)
 	if body.name == "Benson":
@@ -51,13 +65,14 @@ func _on_bullet_entered_hallwayman(body):
 		new_bullet_enuman.is_hit = true
 		benson.hp = benson.hp - enuman.hit_dmg
 		print("Debug: Benson's hp", benson.hp)
-		if(benson.hp <= 75):  # dagdagan mo ng and operator
+		
+		if(benson.hp <= 75) and (benson.hp <= 1):  # dagdagan mo ng and operator
 			print("Debug: 1/4 hp")
-		elif(benson.hp <= 150): 
+		elif(benson.hp <= 150) and (benson.hp <= 76): 
 			print("Debug: 2/4 hp")
-		elif(benson.hp <= 225): 
+		elif(benson.hp <= 225) and (benson.hp <= 151): 
 			print("Debug: 3/4 hp")
-		elif(benson.hp <=300): 
+		elif(benson.hp <=300) and (benson.hp <= 226): 
 			print("Debug: 4/4 hp")
 		else:
 			print("Game Over")
@@ -70,16 +85,20 @@ func _on_bullet_entered(body):
 		new_bullet_benson.is_hit = true
 		enuman.hp = enuman.hp - benson.hit_dmg
 		print("Debug: HP of enuman: ", enuman.hp)
-		if(enuman.hp <= 25): 
+		if(enuman.hp <= 25) and (enuman.hp >= 1): 
 			print("Debug: 1/4 hp")
-		elif(enuman.hp <= 50): 
+			heart2.texture = empty_heart[0]["image"]  # Change last heart to empty
+		elif(enuman.hp <= 50) and (enuman.hp >= 26): 
 			print("Debug: 2/4 hp")
-		elif(enuman.hp <= 75): 
+			heart3.texture = empty_heart[0]["image"]  # Change last heart to empty
+		elif(enuman.hp <= 75) and (enuman.hp >= 51): 
 			print("Debug: 3/4 hp")
-		elif(enuman.hp <= 100): 
+			heart4.texture = empty_heart[0]["image"]  # Change last heart to empty
+		elif(enuman.hp <= 100 ) and (enuman.hp >= 76): 
 			print("Debug: 4/4 hp")
 		else:
 			print("Game Over")
+			heart.texture = empty_heart[0]["image"]  # Change last heart to empty
 
 		
 	elif body.get_parent() != null && body.name != "Benson": 
