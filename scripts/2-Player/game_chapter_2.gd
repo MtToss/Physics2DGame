@@ -172,12 +172,11 @@ var current_floor: int = 1
 
 func _ready() -> void:
 	
-	if pcam:
-		pcam.set_auto_zoom_max(2)
-		pcam.set_auto_zoom(true)
-		pcam.set_auto_zoom_margin(Vector4(20, 30, 40, 20))
-	else:
-		print("Error: pcam is not initialized")
+
+	pcam.set_auto_zoom_max(2)
+	pcam.set_auto_zoom(true)
+	pcam.set_auto_zoom_margin(Vector4(20, 30, 40, 20))
+
 	doggi_area2D.connect("body_entered", Callable(self,"when_hallwayman_hit"))
 	
 	camera.enabled = false

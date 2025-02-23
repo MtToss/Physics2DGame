@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/2-Player/game_chapter_4.gd" id="1_3ik0a"]
 [ext_resource type="Texture2D" uid="uid://ct3nnjdjygc5h" path="res://assets/assets/Chapter_4.png" id="1_64ojg"]
 [ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="2_o40yd"]
-[ext_resource type="PackedScene" path="res://scenes/doggi.tscn" id="3_wx5fb"]
+[ext_resource type="PackedScene" uid="uid://duq78g8ost32f" path="res://scenes/doggi.tscn" id="3_wx5fb"]
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="4_doo6j"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_0b7io"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_dspyf"]

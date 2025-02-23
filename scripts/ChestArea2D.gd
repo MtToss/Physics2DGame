@@ -10,14 +10,14 @@ func _ready() -> void:
 	self.connect("body_exited", Callable(self, "_on_area2d_body_exited"))
 
 func _on_area2d_body_entered(body):
-	if body.name == "ENUMAN":
+	if body.name == "ENUMAN"  or (body.name == "Doggi" ):
 		if is_chest_opened:
 			$Label.hide()
 			
 		else:
 			$Label.show()
 func _on_area2d_body_exited(body):
-	if body.name == "ENUMAN":
+	if body.name == "ENUMAN"  or (body.name == "Doggi" ):
 		$Label.hide()
 
 func _open_chest():
