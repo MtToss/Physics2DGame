@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d38pvr7g0e3ns"]
+[gd_scene load_steps=13 format=3 uid="uid://d38pvr7g0e3ns"]
 
 [ext_resource type="Script" path="res://scripts/benson_projectile.gd" id="1_d2bfj"]
 [ext_resource type="Texture2D" uid="uid://ddx3k8m63mq25" path="res://assets/assets/All_Fire_Bullet_Pixel_16x16.png" id="1_kgiq3"]
@@ -6,43 +6,64 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_clu1i"]
 size = Vector2(176.452, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyvxa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_08idq"]
 atlas = ExtResource("1_kgiq3")
-region = Rect2(448, 196, 32, 28)
+region = Rect2(176, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rrqyx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtj5p"]
 atlas = ExtResource("1_kgiq3")
-region = Rect2(480, 196, 32, 28)
+region = Rect2(192, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k66am"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dq8v"]
 atlas = ExtResource("1_kgiq3")
-region = Rect2(512, 196, 32, 28)
+region = Rect2(208, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_44hff"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l28ps"]
 atlas = ExtResource("1_kgiq3")
-region = Rect2(544, 196, 32, 28)
+region = Rect2(224, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c06wc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuhyi"]
 atlas = ExtResource("1_kgiq3")
-region = Rect2(576, 196, 32, 28)
+region = Rect2(176, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5dkq"]
+atlas = ExtResource("1_kgiq3")
+region = Rect2(192, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hioaj"]
+atlas = ExtResource("1_kgiq3")
+region = Rect2(208, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2whv"]
+atlas = ExtResource("1_kgiq3")
+region = Rect2(224, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8dhuh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iyvxa")
+"texture": SubResource("AtlasTexture_08idq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rrqyx")
+"texture": SubResource("AtlasTexture_gtj5p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k66am")
+"texture": SubResource("AtlasTexture_8dq8v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_44hff")
+"texture": SubResource("AtlasTexture_l28ps")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c06wc")
+"texture": SubResource("AtlasTexture_xuhyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5dkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hioaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2whv")
 }],
 "loop": true,
 "name": &"shoot",
@@ -61,10 +82,10 @@ shape = SubResource("RectangleShape2D_clu1i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
 position = Vector2(110.069, 0)
-scale = Vector2(0.539429, -0.632284)
+scale = Vector2(1.67561, -1.08218)
 sprite_frames = SubResource("SpriteFrames_8dhuh")
 animation = &"shoot"
-frame_progress = 0.0624513
+frame_progress = 0.714911
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2

@@ -153,11 +153,11 @@ scale = Vector2(1, 0.614125)
 
 [node name="HallwayMan7" parent="." instance=ExtResource("6_xlv5m")]
 position = Vector2(417, 336)
-scale = Vector2(1, 0.614125)
+scale = Vector2(1, 0.723)
 
 [node name="HallwayMan8" parent="." instance=ExtResource("6_xlv5m")]
-position = Vector2(725, -168)
-scale = Vector2(1, 0.522006)
+position = Vector2(732, -179)
+scale = Vector2(1, 0.723)
 
 [node name="chest1" parent="." instance=ExtResource("7_1n2wv")]
 position = Vector2(-432, -151)

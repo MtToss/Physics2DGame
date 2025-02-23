@@ -1,0 +1,221 @@
+[gd_scene load_steps=22 format=3 uid="uid://1gascaics7do"]
+
+[ext_resource type="Script" path="res://scripts/2-Player/game_chapter_1.gd" id="1_08qfn"]
+[ext_resource type="Texture2D" uid="uid://d2ey3rj3wteyp" path="res://assets/assets/Chapter_1_Background.png" id="1_d80ml"]
+[ext_resource type="Texture2D" uid="uid://bkk2jbp45pkla" path="res://assets/assets/Chapter_1_Sun.png" id="2_4c0m1"]
+[ext_resource type="Texture2D" uid="uid://7poohk5oby33" path="res://assets/assets/Chapter_1_Silhouette4.png" id="3_0n8am"]
+[ext_resource type="Texture2D" uid="uid://cxs8a0ydm4idh" path="res://assets/assets/Chapter_1_Silhouette3.png" id="4_6gcoc"]
+[ext_resource type="Texture2D" uid="uid://4vuvtdr4s6u0" path="res://assets/assets/Chapter_1_Silhouette2.png" id="5_kod2a"]
+[ext_resource type="Texture2D" uid="uid://cnfb22xve25qv" path="res://assets/assets/Chapter_1_Silhouette1.png" id="6_bmqlt"]
+[ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="7_13ftg"]
+[ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="8_8mgoq"]
+[ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="10_akve7"]
+[ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="11_y64w0"]
+[ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="12_8fvhi"]
+[ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="13_j1nds"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="15_fstdb"]
+[ext_resource type="PackedScene" uid="uid://duq78g8ost32f" path="res://scenes/doggi.tscn" id="15_mgel7"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="16_7xfks"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="17_p6thj"]
+[ext_resource type="PackedScene" uid="uid://bxl2bo175nkkq" path="res://scenes/problem_panel.tscn" id="18_jm36g"]
+[ext_resource type="PackedScene" uid="uid://ds8sigjdte5dk" path="res://scenes/Popup.tscn" id="18_q414n"]
+
+[sub_resource type="Resource" id="Resource_f53d1"]
+script = ExtResource("17_p6thj")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g523n"]
+radius = 3.0
+height = 168.0
+
+[node name="GameChapter1" type="Node2D"]
+script = ExtResource("1_08qfn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
+position = Vector2(-517, 127)
+texture = ExtResource("1_d80ml")
+
+[node name="Sun" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sun"]
+position = Vector2(-517, 127)
+texture = ExtResource("2_4c0m1")
+
+[node name="Silhouette4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.4, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette4"]
+position = Vector2(-517, 127)
+texture = ExtResource("3_0n8am")
+
+[node name="Silhouette3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.6, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette3"]
+position = Vector2(-517, 127)
+texture = ExtResource("4_6gcoc")
+
+[node name="Silhouette2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+motion_scale = Vector2(0.95, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette2"]
+position = Vector2(-517, 127)
+texture = ExtResource("5_kod2a")
+
+[node name="Silhouette" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1029, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Silhouette"]
+light_mask = 5
+position = Vector2(-517, 127)
+texture = ExtResource("6_bmqlt")
+
+[node name="StaticBody2D1" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(6, 197)
+scale = Vector2(0.30835, 0.466913)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(74, 195)
+scale = Vector2(0.406388, 0.523574)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(146, 200)
+scale = Vector2(0.38154, 0.436009)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(226, 227)
+scale = Vector2(0.222077, 0.237462)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(275, 153)
+scale = Vector2(0.412706, 0.794251)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(400, 138)
+scale = Vector2(0.539041, 0.880094)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(515, 138)
+scale = Vector2(0.631706, 1.01294)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(654, 122)
+scale = Vector2(0.555208, 0.988627)
+
+[node name="StaticBody2D9" parent="." instance=ExtResource("7_13ftg")]
+position = Vector2(338, 145)
+rotation = -0.269276
+scale = Vector2(0.41894, 0.12644)
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="FireTimerEnuman" type="Timer" parent="."]
+one_shot = true
+
+[node name="chest1" parent="." instance=ExtResource("10_akve7")]
+position = Vector2(17, 189)
+
+[node name="chest2" parent="." instance=ExtResource("10_akve7")]
+position = Vector2(83, 186)
+
+[node name="chest3" parent="." instance=ExtResource("10_akve7")]
+position = Vector2(158, 192)
+
+[node name="chest4" parent="." instance=ExtResource("10_akve7")]
+position = Vector2(128, 187)
+
+[node name="pressure_plate1" parent="." instance=ExtResource("11_y64w0")]
+position = Vector2(185, 186.5)
+scale = Vector2(0.184, 0.288)
+
+[node name="Barrier1" parent="." instance=ExtResource("12_8fvhi")]
+position = Vector2(199, 109)
+scale = Vector2(0.571919, 0.847169)
+
+[node name="chest5" parent="." instance=ExtResource("10_akve7")]
+position = Vector2(293, 142)
+
+[node name="chest6" parent="." instance=ExtResource("10_akve7")]
+position = Vector2(577, 125)
+
+[node name="chest7" parent="." instance=ExtResource("10_akve7")]
+position = Vector2(523, 124)
+
+[node name="chest8" parent="." instance=ExtResource("10_akve7")]
+position = Vector2(563, 125)
+
+[node name="pressure_plate2" parent="." instance=ExtResource("11_y64w0")]
+position = Vector2(586, 118.5)
+scale = Vector2(0.184, 0.288)
+
+[node name="Barrier2" parent="." instance=ExtResource("12_8fvhi")]
+position = Vector2(602, 25)
+
+[node name="HallwayMan1" parent="." instance=ExtResource("13_j1nds")]
+position = Vector2(420, 123)
+scale = Vector2(0.1, 0.1)
+
+[node name="HallwayMan2" parent="." instance=ExtResource("13_j1nds")]
+position = Vector2(230, 218)
+scale = Vector2(0.1, 0.1)
+
+[node name="Character_Handler" type="Node2D" parent="."]
+position = Vector2(501, -63)
+
+[node name="PhantomCamera2D" type="Node2D" parent="Character_Handler" node_paths=PackedStringArray("follow_targets")]
+top_level = true
+position = Vector2(25, 187.5)
+script = ExtResource("16_7xfks")
+follow_mode = 3
+follow_targets = [NodePath("../Doggi"), NodePath("../ENUMAN")]
+zoom = Vector2(4, 4)
+tween_resource = SubResource("Resource_f53d1")
+draw_limits = true
+
+[node name="Doggi" parent="Character_Handler" instance=ExtResource("15_mgel7")]
+position = Vector2(-471, 250)
+scale = Vector2(0.350073, 0.321777)
+
+[node name="ENUMAN" parent="Character_Handler" instance=ExtResource("8_8mgoq")]
+position = Vector2(-481, 251)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(25, 187.5)
+zoom = Vector2(4, 4)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("15_fstdb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="CanvasLayer" instance=ExtResource("18_q414n")]
+position = Vector2(1091, 51)
+scale = Vector2(3, 1.6)
+
+[node name="problem_panel" parent="CanvasLayer" instance=ExtResource("18_jm36g")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(278, 139)
+shape = SubResource("CapsuleShape2D_g523n")
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]

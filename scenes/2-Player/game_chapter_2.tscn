@@ -1,0 +1,302 @@
+[gd_scene load_steps=24 format=3 uid="uid://ppsxybgkpota"]
+
+[ext_resource type="Script" path="res://scripts/2-Player/game_chapter_2.gd" id="1_kpx56"]
+[ext_resource type="Texture2D" uid="uid://djalb313rlba3" path="res://assets/assets/Chapter_2.png" id="2_x6u3e"]
+[ext_resource type="Texture2D" uid="uid://d38b3c6d1qfwk" path="res://assets/assets/room_chapter2.png" id="3_qlvv5"]
+[ext_resource type="Texture2D" uid="uid://dwtdqpw3ynkh5" path="res://assets/assets/room2_chapter2.png" id="4_c4cd6"]
+[ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="5_qf6gm"]
+[ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="6_x5hm0"]
+[ext_resource type="PackedScene" uid="uid://duq78g8ost32f" path="res://scenes/doggi.tscn" id="7_0ekm4"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="8_yvflc"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_30pet"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="10_fptd3"]
+[ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="11_eqxdd"]
+[ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="12_823vn"]
+[ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="13_p46fo"]
+[ext_resource type="PackedScene" uid="uid://c1ac7obm3gaip" path="res://scenes/door.tscn" id="14_knpl2"]
+[ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="15_v7lbl"]
+[ext_resource type="PackedScene" uid="uid://1qk21675bsli" path="res://scenes/elevator.tscn" id="16_w4cvp"]
+[ext_resource type="PackedScene" uid="uid://ds8sigjdte5dk" path="res://scenes/Popup.tscn" id="17_a6l0b"]
+[ext_resource type="PackedScene" uid="uid://bxl2bo175nkkq" path="res://scenes/problem_panel.tscn" id="18_xmsru"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ydht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2jp7"]
+size = Vector2(15, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knokf"]
+size = Vector2(15, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hcdv"]
+size = Vector2(15, 80)
+
+[sub_resource type="Resource" id="Resource_gsjrk"]
+script = ExtResource("9_30pet")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="GameChapter2" type="Node2D"]
+script = ExtResource("1_kpx56")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_x6u3e")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(3451, -1901)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(318, 2069)
+texture = ExtResource("3_qlvv5")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(4508, 1143)
+texture = ExtResource("4_c4cd6")
+
+[node name="StaticBody1" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(-922, 249)
+scale = Vector2(13.2164, 0.0647238)
+
+[node name="StaticBody2" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(-924, 125)
+scale = Vector2(13.1953, 0.0489552)
+
+[node name="StaticBody3" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(-928, -1)
+scale = Vector2(13.261, 0.04369)
+
+[node name="StaticBody4" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(-936, -131)
+scale = Vector2(13.3533, 0.0409336)
+
+[node name="StaticBody5" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(-1025, 267)
+rotation = 1.5708
+scale = Vector2(-4.09058, 0.374521)
+
+[node name="StaticBody6" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(1032, 226)
+rotation = -1.5708
+scale = Vector2(3.32805, 0.415735)
+
+[node name="StaticBody7" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(1063, -248)
+rotation = 3.14159
+scale = Vector2(15.372, 0.196414)
+
+[node name="StaticBody8" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(3483, 248)
+scale = Vector2(4.06006, 0.8135)
+
+[node name="StaticBody9" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(4057, 95)
+rotation = 3.14159
+scale = Vector2(4.11974, 0.637346)
+
+[node name="StaticBody10" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(3439, 104)
+rotation = 1.5708
+
+[node name="StaticBody11" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(4098, 242)
+rotation = -1.5708
+
+[node name="StaticBody12" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(3572, 1280)
+scale = Vector2(13.3204, 1.10642)
+
+[node name="StaticBody13" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(3477, 1039)
+rotation = 1.5708
+scale = Vector2(1.56018, 0.960845)
+
+[node name="StaticBody14" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(5495, 1015)
+rotation = 3.14159
+scale = Vector2(14.1661, 0.791766)
+
+[node name="StaticBody15" parent="." instance=ExtResource("5_qf6gm")]
+position = Vector2(5537, 1257)
+rotation = -1.5708
+scale = Vector2(1.57621, 0.965509)
+
+[node name="Blocker1" type="Area2D" parent="."]
+position = Vector2(387, 221)
+scale = Vector2(3.72369, 1.28988)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker1"]
+position = Vector2(0.805652, -18.6063)
+scale = Vector2(-0.458304, 4.38923)
+shape = SubResource("RectangleShape2D_7ydht")
+
+[node name="StaticBody16" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody16"]
+position = Vector2(3960.5, 1226)
+shape = SubResource("RectangleShape2D_j2jp7")
+
+[node name="StaticBody17" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody17"]
+position = Vector2(4472.5, 1226)
+shape = SubResource("RectangleShape2D_knokf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(4984.5, 1226)
+shape = SubResource("RectangleShape2D_1hcdv")
+
+[node name="Character_Handler" type="Node2D" parent="."]
+position = Vector2(-950, 164)
+
+[node name="ENUMAN" parent="Character_Handler" instance=ExtResource("6_x5hm0")]
+scale = Vector2(8.47911, 7.96436)
+
+[node name="Doggi" parent="Character_Handler" instance=ExtResource("7_0ekm4")]
+z_index = 2
+position = Vector2(95, 63)
+scale = Vector2(1.49919, 1.8093)
+
+[node name="PhantomCamera2D" type="Node2D" parent="Character_Handler" node_paths=PackedStringArray("follow_targets")]
+top_level = true
+position = Vector2(-877.5, 219.5)
+script = ExtResource("8_yvflc")
+follow_mode = 3
+follow_targets = [NodePath("../Doggi"), NodePath("../ENUMAN")]
+tween_resource = SubResource("Resource_gsjrk")
+draw_limits = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(-877.5, 219.5)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("10_fptd3")
+
+[node name="FireTimer" type="Timer" parent="."]
+
+[node name="FireTimerEnuman" type="Timer" parent="."]
+one_shot = true
+
+[node name="ElevatorTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="chest1" parent="." instance=ExtResource("11_eqxdd")]
+position = Vector2(-667, 230)
+scale = Vector2(205, 55.543)
+
+[node name="chest2" parent="." instance=ExtResource("11_eqxdd")]
+position = Vector2(-787, 102)
+scale = Vector2(205, 55.543)
+
+[node name="chest3" parent="." instance=ExtResource("11_eqxdd")]
+position = Vector2(575, -20)
+scale = Vector2(205, 55.543)
+
+[node name="chest4" parent="." instance=ExtResource("11_eqxdd")]
+position = Vector2(5321, 1242)
+scale = Vector2(205, 55.543)
+
+[node name="chest5" parent="." instance=ExtResource("11_eqxdd")]
+position = Vector2(738, -155)
+scale = Vector2(205, 55.543)
+
+[node name="chest6" parent="." instance=ExtResource("11_eqxdd")]
+position = Vector2(-782, -27)
+scale = Vector2(205, 55.543)
+
+[node name="chest7" parent="." instance=ExtResource("11_eqxdd")]
+position = Vector2(977, 106)
+scale = Vector2(205, 55.543)
+
+[node name="chest8" parent="." instance=ExtResource("11_eqxdd")]
+position = Vector2(4008, 205)
+scale = Vector2(205, 55.543)
+
+[node name="pressure_plate1" parent="." instance=ExtResource("12_823vn")]
+position = Vector2(400, 90.0001)
+
+[node name="pressure_plate2" parent="." instance=ExtResource("12_823vn")]
+position = Vector2(-494, -164)
+
+[node name="barrier1" parent="." instance=ExtResource("13_p46fo")]
+position = Vector2(538, 62)
+scale = Vector2(1, 0.629)
+
+[node name="barrier2" parent="." instance=ExtResource("13_p46fo")]
+position = Vector2(-555, -193)
+scale = Vector2(1, 0.629)
+
+[node name="door1" parent="." instance=ExtResource("14_knpl2")]
+position = Vector2(989, 212)
+
+[node name="door2" parent="." instance=ExtResource("14_knpl2")]
+position = Vector2(3554, 1227)
+
+[node name="door3" parent="." instance=ExtResource("14_knpl2")]
+position = Vector2(-714, -44)
+
+[node name="door4" parent="." instance=ExtResource("14_knpl2")]
+position = Vector2(3524, 192)
+
+[node name="HallwayMan1" parent="." instance=ExtResource("15_v7lbl")]
+position = Vector2(487, 50)
+
+[node name="HallwayMan2" parent="." instance=ExtResource("15_v7lbl")]
+position = Vector2(-569, 42)
+
+[node name="HallwayMan3" parent="." instance=ExtResource("15_v7lbl")]
+position = Vector2(679, -86)
+
+[node name="HallwayMan4" parent="." instance=ExtResource("15_v7lbl")]
+position = Vector2(501, -204)
+
+[node name="HallwayMan5" parent="." instance=ExtResource("15_v7lbl")]
+position = Vector2(4130, 1198)
+
+[node name="HallwayMan6" parent="." instance=ExtResource("15_v7lbl")]
+position = Vector2(4657, 1187)
+
+[node name="HallwayMan7" parent="." instance=ExtResource("15_v7lbl")]
+position = Vector2(-550, -75)
+
+[node name="HallwayMan8" parent="." instance=ExtResource("15_v7lbl")]
+position = Vector2(449, 184)
+
+[node name="Elevator1" parent="." instance=ExtResource("16_w4cvp")]
+z_index = -1
+position = Vector2(-4, 211)
+
+[node name="Elevator2" parent="." instance=ExtResource("16_w4cvp")]
+z_index = -1
+position = Vector2(-4, 83)
+
+[node name="Elevator3" parent="." instance=ExtResource("16_w4cvp")]
+z_index = -1
+position = Vector2(-4, -45)
+
+[node name="Elevator4" parent="." instance=ExtResource("16_w4cvp")]
+z_index = -1
+position = Vector2(-4, -173)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="CanvasLayer" instance=ExtResource("17_a6l0b")]
+position = Vector2(1178, 28)
+scale = Vector2(3.18445, 3.17429)
+
+[node name="problem_panel" parent="CanvasLayer" instance=ExtResource("18_xmsru")]
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]
+[connection signal="timeout" from="ElevatorTimer" to="." method="_on_elevator_timer_timeout"]

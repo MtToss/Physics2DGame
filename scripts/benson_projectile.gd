@@ -34,7 +34,3 @@ func _process(delta: float) -> void:
 
 	else:
 		position.x = position.x
-
-
-
-	

@@ -1,0 +1,135 @@
+[gd_scene load_steps=12 format=3 uid="uid://cl2rlivkecroh"]
+
+[ext_resource type="Script" path="res://scripts/2-Player/game_chapter_4.gd" id="1_3ik0a"]
+[ext_resource type="Texture2D" uid="uid://ct3nnjdjygc5h" path="res://assets/assets/Chapter_4.png" id="1_64ojg"]
+[ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="2_o40yd"]
+[ext_resource type="PackedScene" uid="uid://duq78g8ost32f" path="res://scenes/doggi.tscn" id="3_wx5fb"]
+[ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="4_doo6j"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_0b7io"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_dspyf"]
+[ext_resource type="Texture2D" uid="uid://dc56rmgssebql" path="res://assets/assets/hearts.png" id="7_5xjp3"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_s1nce"]
+[ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="9_74j0y"]
+
+[sub_resource type="Resource" id="Resource_uwblu"]
+script = ExtResource("6_dspyf")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="GameChapter4" type="Node2D"]
+script = ExtResource("1_3ik0a")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_64ojg")
+
+[node name="StaticBody2D1" parent="." instance=ExtResource("2_o40yd")]
+position = Vector2(-611, 107)
+scale = Vector2(4.15729, 1.09114)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_o40yd")]
+position = Vector2(-651, -146)
+rotation = 1.5708
+scale = Vector2(1.77692, 0.735849)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_o40yd")]
+position = Vector2(580, -161)
+rotation = 3.14159
+scale = Vector2(8.35216, 1.14411)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("2_o40yd")]
+position = Vector2(651, 145)
+rotation = -1.5708
+scale = Vector2(2.01596, 0.951502)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("2_o40yd")]
+position = Vector2(208, 108)
+scale = Vector2(3.00551, 1.13181)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("2_o40yd")]
+position = Vector2(-194, 39)
+scale = Vector2(0.138555, 0.433405)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("2_o40yd")]
+position = Vector2(-506, -4)
+scale = Vector2(0.825439, 0.051185)
+
+[node name="Character_Handler" type="Node2D" parent="."]
+position = Vector2(-524, 82)
+
+[node name="Doggi" parent="Character_Handler" instance=ExtResource("3_wx5fb")]
+position = Vector2(-1, -9)
+scale = Vector2(1.26054, 1.67157)
+
+[node name="ENUMAN" parent="Character_Handler" instance=ExtResource("4_doo6j")]
+position = Vector2(-34, -10)
+scale = Vector2(5.00367, 5.18507)
+
+[node name="PhantomCamera2D" type="Node2D" parent="Character_Handler" node_paths=PackedStringArray("follow_targets")]
+top_level = true
+position = Vector2(-541.5, 72.5)
+script = ExtResource("5_0b7io")
+follow_mode = 3
+follow_targets = [NodePath("../Doggi"), NodePath("../ENUMAN")]
+tween_resource = SubResource("Resource_uwblu")
+draw_limits = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 298.5
+offset_top = -294.5
+offset_right = 338.5
+offset_bottom = -254.5
+
+[node name="heart" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_5xjp3")
+expand_mode = 2
+
+[node name="heart2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_5xjp3")
+expand_mode = 2
+
+[node name="heart3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_5xjp3")
+expand_mode = 2
+
+[node name="heart4" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_5xjp3")
+expand_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(-541.5, 72.5)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("8_s1nce")
+
+[node name="Benson" parent="." instance=ExtResource("9_74j0y")]
+position = Vector2(230, 58)
+
+[node name="FireTimerEnuman" type="Timer" parent="."]
+one_shot = true
+
+[node name="FireTimerBenson" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="SpecialSkillTimerBenson" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]
+[connection signal="timeout" from="FireTimerBenson" to="." method="_on_fire_timer_benson_timeout"]
+[connection signal="timeout" from="SpecialSkillTimerBenson" to="." method="_on_special_skill_timer_benson_timeout"]
