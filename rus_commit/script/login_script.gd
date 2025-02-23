@@ -37,7 +37,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 
 		# Start the game session
 		FirebaseManager.store_start_time(user_id)
-
+		Timescore.record_time_score(user_id)
 		# Delay scene change
 		var timer = Timer.new()
 		timer.wait_time = 2.0

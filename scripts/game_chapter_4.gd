@@ -42,6 +42,8 @@ var full_heart = [
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Timescore.update_chapter_4()
+	
 	camera.enabled = false 
 	
 	collision_shape.global_position = enuman.global_position

@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 music_player="*res://mainMenu/music_player.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
+Timescore="*res://timescore.gd"
+FirebaseManager="*res://firebase_manager.gd"
 
 [display]
 
@@ -32,7 +34,7 @@ project/assembly_name="Physics"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg", "res://addons/http-sse-client/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")
 
 [global_group]
 
