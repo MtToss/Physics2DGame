@@ -43,25 +43,6 @@ func _on_restart_pressed() -> void:
 	backwards_blur()
 	get_tree().reload_current_scene()
 
-#func _on_quit_pressed() -> void:
-#	resume()
-#	get_tree().change_scene_to_file("res://mainMenu/main_menu.tscn")
-
 func _on_quit_pressed() -> void:
-	print("Debug: Quit button pressed.")
-	
-	var firebase = get_node("/root/FirebaseManager")  # Ensure this matches the Firebase node path
-
-	if not firebase:
-		print("Error: Firebase not found!")
-		return
-	
-	print("Debug: Calling Firebase.store_end_time()...")
-	firebase.store_end_time() 
-	
-	print("Debug: Waiting 1 second before quitting...")
-	await get_tree().create_timer(1.0).timeout  # Ensure request is sent
-	
-	print("Debug: Back to Menu")
 	resume()
 	get_tree().change_scene_to_file("res://mainMenu/main_menu.tscn")

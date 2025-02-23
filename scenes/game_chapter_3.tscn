@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_icr61"]
 [ext_resource type="Texture2D" uid="uid://dukek7m0bfmqf" path="res://assets/assets/Chapter_3.png" id="2_8eqar"]
 [ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="3_a00jn"]
-[ext_resource type="PackedScene" uid="uid://ci066dj5550ks" path="res://scenes/elevator_chapter3.tscn" id="5_bjvep"]
+[ext_resource type="PackedScene" path="res://scenes/elevator_chapter3.tscn" id="5_bjvep"]
 [ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="6_xlv5m"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="7_1n2wv"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="8_uh2n2"]
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="9_0euxa"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="10_1q2j0"]
 [ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="11_etb7c"]
-[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="12_5ha24"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="12_5ha24"]
 [ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="13_bohdh"]
 [ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="14_onjcq"]
 
@@ -153,11 +153,11 @@ scale = Vector2(1, 0.614125)
 
 [node name="HallwayMan7" parent="." instance=ExtResource("6_xlv5m")]
 position = Vector2(417, 336)
-scale = Vector2(1, 0.723)
+scale = Vector2(1, 0.614125)
 
 [node name="HallwayMan8" parent="." instance=ExtResource("6_xlv5m")]
-position = Vector2(732, -179)
-scale = Vector2(1, 0.723)
+position = Vector2(725, -168)
+scale = Vector2(1, 0.522006)
 
 [node name="chest1" parent="." instance=ExtResource("7_1n2wv")]
 position = Vector2(-432, -151)

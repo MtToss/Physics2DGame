@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="13_ltcbo"]
 [ext_resource type="Texture2D" uid="uid://cnfb22xve25qv" path="res://assets/assets/Chapter_1_Silhouette1.png" id="13_tecjy"]
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="16_jpg23"]
-[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="17_wb6gk"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="17_wb6gk"]
 [ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="18_i00bt"]
 
 [sub_resource type="Environment" id="Environment_avp0r"]
@@ -191,7 +191,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(4, 4)
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_5v5df")
 
