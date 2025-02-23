@@ -199,6 +199,7 @@ scale = Vector2(0.350073, 0.321777)
 position = Vector2(-481, 251)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
 position = Vector2(25, 187.5)
 zoom = Vector2(4, 4)
 
