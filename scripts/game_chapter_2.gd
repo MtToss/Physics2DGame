@@ -101,6 +101,8 @@ extends Node2D
 @onready var dialogue_data = $CanvasLayer/dialogue
 @onready var game_over = $CanvasLayer/game_over
 
+@onready var portal_door = $portal_door
+
 var current_shooter: int = 1 
 var current_problem: int = 0
 var correct_answer = 0
@@ -163,6 +165,7 @@ var current_floor: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	portal_door.scene = load("res://scenes/game_chapter_3.tscn")
 	randomize_problem_values()
 	
 	available_indices1 = range(given_problem1.size())
@@ -332,11 +335,11 @@ func perform_calculations() -> void:
 				if get_value1[index] == null:
 					match given_problem1[index]:
 						"Velocity":
-							answer.correct_answer = formula(get_value1, given_problem1, "Angle", "Time of Flight", "Velocity")
+							answer.correct_answer = formula(get_value1, given_problem1, "Angle", "Range", "Vel	ocity")
 							print("Debug: Velocity Calculated", answer.correct_answer)
 
 						"Angle":
-							answer.correct_answer = formula(get_value1, given_problem1, "Velocity", "Time of Flight", "Angle")
+							answer.correct_answer = formula(get_value1, given_problem1, "Velocity", "Range", "Angle")
 							print("Debug: P1: Angle Calculated: ", answer.correct_answer)
 
 						"Time of Flight":
@@ -370,36 +373,6 @@ func perform_calculations() -> void:
 							answer.correct_answer = formula(get_value2, given_problem2, "Work", "Time", "Power")
 							print("Debug: P2: Power Calculated: ", answer.correct_answer)
 
-func _on_pressure_plate_exited(body):
-	if body.name == "ENUMAN":
-		print("Debug: ENUMAN left the pressure plate!")
-		close_panel()
-		
-func open_panel() -> void:
-	print("Debug: Open_panel opened: ", current_problem)
-	prompt_panel.set_visible(true)
-	line_edit.grab_focus()
-	match (current_problem):
-		1:
-			prompt_label6.text = ""
-			problem_identifier.text = "Kinematics"
-			for index in range(given_problem1.size()):
-				if get_value1[index] == null:
-					prompt_label_list[index].text = "%s: ?" % given_problem1[index]
-					print("Missing value for: %s" % [given_problem1[index]])
-				else:
-					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
-		2:
-			prompt_label6.text = "Angle: " % [angle1]
-			problem_identifier.text = "Work & Kinematics"
-			for index in range(given_problem2.size()):
-				if get_value2[index] == null:
-					prompt_label_list[index].text = "%s: ?" % given_problem2[index]
-					print("Missing value for: %s" % [given_problem2[index]])
-				else:
-					print("Debug: %s: %s" % [given_problem2[index], get_value2[index]])
-					prompt_label_list[index].text = "%s: %s" % [given_problem2[index], get_value2[index]]
-
 func formula(get_value: Array, given_problem: Array, given_problem_given1: String, given_problem_given2: String, find: String) -> float:
 	if get_value[given_problem.find(given_problem_given1)] != null and get_value[given_problem.find(given_problem_given2)] != null:
 		match (current_problem):
@@ -412,7 +385,7 @@ func formula(get_value: Array, given_problem: Array, given_problem_given1: Strin
 						return (gravity * value2) / (2 * sin(deg_to_rad(value1)))
 					"Angle":
 						print("Debug: Current Problem: ", current_problem)
-						return rad_to_deg(asin((gravity * value2) / (2 * value1))) 
+						return 0.5 * rad_to_deg(asin((gravity * value2) / (value1 * value1)))
 					"Time of Flight":
 						print("Debug: Current Problem: ", current_problem)
 						return (2 * value1 * sin(deg_to_rad(value2))) / gravity 
@@ -448,6 +421,36 @@ func formula(get_value: Array, given_problem: Array, given_problem_given1: Strin
 	else:
 		print("Debug: Missing required values for calculation.")
 		return 0.0
+
+func _on_pressure_plate_exited(body):
+	if body.name == "ENUMAN":
+		print("Debug: ENUMAN left the pressure plate!")
+		close_panel()
+		
+func open_panel() -> void:
+	print("Debug: Open_panel opened: ", current_problem)
+	prompt_panel.set_visible(true)
+	line_edit.grab_focus()
+	match (current_problem):
+		1:
+			prompt_label6.text = ""
+			problem_identifier.text = "Kinematics"
+			for index in range(given_problem1.size()):
+				if get_value1[index] == null:
+					prompt_label_list[index].text = "%s: ?" % given_problem1[index]
+					print("Missing value for: %s" % [given_problem1[index]])
+				else:
+					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
+		2:
+			prompt_label6.text = "Angle: " % [angle1]
+			problem_identifier.text = "Work & Kinematics"
+			for index in range(given_problem2.size()):
+				if get_value2[index] == null:
+					prompt_label_list[index].text = "%s: ?" % given_problem2[index]
+					print("Missing value for: %s" % [given_problem2[index]])
+				else:
+					print("Debug: %s: %s" % [given_problem2[index], get_value2[index]])
+					prompt_label_list[index].text = "%s: %s" % [given_problem2[index], get_value2[index]]
 
 func close_panel() -> void:
 	prompt_panel.set_visible(false)

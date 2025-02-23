@@ -88,6 +88,8 @@ var current_shooter: int = 1
 @onready var dialogue_data = $CanvasLayer/dialogue
 @onready var game_over = $CanvasLayer/game_over
 
+@onready var portal_door = $portal_door
+
 
 var current_problem: int = 0
 
@@ -154,6 +156,8 @@ func randomize_problem_values() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	portal_door.scene = load("res://scenes/2-Player/game_chapter_2.tscn")
+	
 	camera2D.enabled = false
 	
 	pcam.set_auto_zoom_max(5)
@@ -439,11 +443,11 @@ func perform_calculations() -> void:
 				if get_value1[index] == null:
 					match given_problem1[index]:
 						"Velocity":
-							answer.correct_answer = formula(get_value1, given_problem1, "Angle", "Time of Flight", "Velocity")
+							answer.correct_answer = formula(get_value1, given_problem1, "Angle", "Range", "Vel	ocity")
 							print("Debug: Velocity Calculated", answer.correct_answer)
 
 						"Angle":
-							answer.correct_answer = formula(get_value1, given_problem1, "Velocity", "Time of Flight", "Angle")
+							answer.correct_answer = formula(get_value1, given_problem1, "Velocity", "Range", "Angle")
 							print("Debug: P1: Angle Calculated: ", answer.correct_answer)
 
 						"Time of Flight":
@@ -489,7 +493,7 @@ func formula(get_value: Array, given_problem: Array, given_problem_given1: Strin
 						return (gravity * value2) / (2 * sin(deg_to_rad(value1)))
 					"Angle":
 						print("Debug: Current Problem: ", current_problem)
-						return rad_to_deg(asin((gravity * value2) / (2 * value1))) 
+						return 0.5 * rad_to_deg(asin((gravity * value2) / (value1 * value1)))
 					"Time of Flight":
 						print("Debug: Current Problem: ", current_problem)
 						return (2 * value1 * sin(deg_to_rad(value2))) / gravity 

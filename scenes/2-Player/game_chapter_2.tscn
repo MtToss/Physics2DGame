@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ppsxybgkpota"]
+[gd_scene load_steps=31 format=3 uid="uid://ppsxybgkpota"]
 
 [ext_resource type="Script" path="res://scripts/2-Player/game_chapter_2.gd" id="1_kpx56"]
 [ext_resource type="Texture2D" uid="uid://djalb313rlba3" path="res://assets/assets/Chapter_2.png" id="2_x6u3e"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="22_gm1av"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="23_bl6vi"]
 [ext_resource type="PackedScene" uid="uid://cbq1kvk1ifqq5" path="res://scenes/game_over.tscn" id="23_sd4ua"]
+[ext_resource type="PackedScene" uid="uid://bw3hjomxwteyh" path="res://scenes/portal_door.tscn" id="25_1psgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ydht"]
 
@@ -319,6 +320,10 @@ visible = false
 visible = false
 
 [node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("23_bl6vi")]
+
+[node name="portal_door" parent="." instance=ExtResource("25_1psgf")]
+position = Vector2(-475, 214)
+scale = Vector2(1.03889, 1.16029)
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]

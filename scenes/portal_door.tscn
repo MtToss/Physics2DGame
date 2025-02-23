@@ -160,13 +160,13 @@ animations = [{
 size = Vector2(32, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pif3r"]
-size = Vector2(6.36023, 9.6119)
+size = Vector2(5.49092, 9.6119)
 
 [node name="portal_door" type="Node2D"]
 script = ExtResource("1_4lf6d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(35, 13)
+position = Vector2(-9.99999, 5)
 scale = Vector2(0.734375, 0.625)
 sprite_frames = SubResource("SpriteFrames_gfyjj")
 animation = &"close"
@@ -175,12 +175,12 @@ animation = &"close"
 position = Vector2(-4, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(36, 6)
+position = Vector2(-9, 4)
 shape = SubResource("RectangleShape2D_f44ka")
 
 [node name="Area2D2" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-136, 4)
+position = Vector2(-156.126, 4)
 scale = Vector2(46.3042, 5.93015)
 shape = SubResource("RectangleShape2D_pif3r")
