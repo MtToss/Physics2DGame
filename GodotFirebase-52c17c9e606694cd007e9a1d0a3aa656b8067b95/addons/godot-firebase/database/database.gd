@@ -3,6 +3,7 @@
 ## The Realtime Database API for Firebase.
 ## Documentation TODO.
 @tool
+class_name FirebaseDatabase
 extends Node
 
 var _base_url : String = ""

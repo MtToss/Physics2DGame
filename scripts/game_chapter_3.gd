@@ -155,7 +155,7 @@ var current_floor: int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Timescore.update_chapter_3()
+	Timescore.record_stopwatch_time(3)
 	
 	portal_door.scene = load("res://scenes/game_chapter_4.tscn")
 	randomize_problem_values()

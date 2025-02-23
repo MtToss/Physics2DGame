@@ -106,6 +106,6 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		var response_json = JSON.parse_string(body.get_string_from_utf8())
 		if "name" in response_json:
 			document_id = response_json["name"].split("/")[-1]  # Extract Firestore document ID
-			print("Document created with ID:", document_id)
+			print("Document for Game Session created with ID:", document_id)
 	else:
 		print("Error storing data:", response_code, body.get_string_from_utf8())

@@ -22,6 +22,7 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 Timescore="*res://timescore.gd"
 FirebaseManager="*res://firebase_manager.gd"
+stopwatch="*res://scripts/stopwatch.gd"
 
 [display]
 

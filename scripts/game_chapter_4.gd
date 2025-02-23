@@ -10,7 +10,6 @@ extends Node2D
 
 @onready var benson = $Benson
 
-
 @onready var gun_benson = $Benson
 @onready var fire_timer_benson = $FireTimerBenson
 
@@ -42,7 +41,7 @@ var full_heart = [
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Timescore.update_chapter_4()
+	Timescore.record_stopwatch_time(4)
 	
 	camera.enabled = false 
 	

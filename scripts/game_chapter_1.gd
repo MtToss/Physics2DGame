@@ -112,7 +112,6 @@ var available_indices2 = []
 
 var gravity = 9.8
 
-
 var formula1: float = 0.0
 var index = 0  # Tracks the current line
 var typing_speed = 0.0005  # Adjust typing speed (seconds per character)
@@ -148,7 +147,7 @@ func randomize_problem_values() -> void:
 	print("Debug: Work = ", work, " J | Force = ", force, " N | Distance = ", distance, " m | Angle = ", angle1, "° | Time = ", time, " s | Power = ", power, " W")
 
 func _ready() -> void:
-	Timescore.record_time_score
+	Timescore.record_stopwatch_time(1)
 	
 	portal_door.scene = load("res://scenes/game_chapter_2.tscn")
 	randomize_problem_values()
@@ -323,7 +322,7 @@ func open_panel() -> void:
 				else:
 					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
 		2:
-			prompt_label6.text = "Angle: " % [angle1]
+			prompt_label6.text = "Angle: %s " % [angle1]
 			problem_identifier.text = "Work & Power"
 			for index in range(given_problem2.size()):
 				if get_value2[index] == null:
