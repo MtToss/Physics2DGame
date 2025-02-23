@@ -107,3 +107,6 @@ offset_right = 423.993
 offset_bottom = 134.712
 scale = Vector2(0.0351782, 0.0150187)
 label_settings = SubResource("LabelSettings_w3uei")
+
+[connection signal="text_changed" from="Panel/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]

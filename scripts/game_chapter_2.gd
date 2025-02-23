@@ -57,6 +57,9 @@ extends Node2D
 @onready var prompt_label3 = $Character_Handler/ENUMAN/Camera2D/Panel/Label3
 @onready var prompt_label4 = $Character_Handler/ENUMAN/Camera2D/Panel/Label4
 @onready var prompt_label5 = $Character_Handler/ENUMAN/Camera2D/Panel/Label5
+@onready var prompt_label6 = $Character_Handler/ENUMAN/Camera2D/Panel/Label6
+
+@onready var problem_identifier = $Character_Handler/ENUMAN/Camera2D/Panel/ProblemIdentifier
 
 @onready var answer = $Character_Handler/ENUMAN
 
@@ -273,6 +276,7 @@ func comparing_answer(user_input: float, machine_calculated: float, current_prob
 					print("Debug: Correct Answer for Pressure Plate 1")
 					barrier1.disable = true
 					barrier1.disable_barrier()
+					pressure_plate1.disable_collision()
 				else:
 					print("Debug: Incorrect Answer!")
 		2:
@@ -281,6 +285,7 @@ func comparing_answer(user_input: float, machine_calculated: float, current_prob
 					print("Debug: Correct Answer for Pressure Plate 2")
 					barrier2.disable = true
 					barrier2.disable_barrier()
+					pressure_plate2.disable_collision()
 				else:
 					print("Debug: Incorrect Answer!")
 
@@ -297,7 +302,13 @@ func randomize_problem_values() -> void:
 	var time = (randi() % 30) + 5     
 	
 	var work = force * distance * cos(deg_to_rad(angle1))       
-	var power = work / time           
+	var power = work / time  
+		 
+	time_of_flight = snappedf(time_of_flight, 0.01)
+	max_height = snappedf(max_height, 0.01)
+	range = snappedf(range, 0.01)
+	work = snappedf(work, 0.01)
+	power = snappedf(power, 0.01)
 
 	problem_value1 = [velocity, angle, time_of_flight, max_height, range]
 	problem_value2 = [work, force, distance, time, power]
@@ -369,16 +380,20 @@ func open_panel() -> void:
 	line_edit.grab_focus()
 	match (current_problem):
 		1:
+			prompt_label6.text = ""
+			problem_identifier.text = "Kinematics"
 			for index in range(given_problem1.size()):
 				if get_value1[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s: ?" % given_problem1[index]
 					print("Missing value for: %s" % [given_problem1[index]])
 				else:
 					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
 		2:
+			prompt_label6.text = "Angle: " % [angle1]
+			problem_identifier.text = "Work & Kinematics"
 			for index in range(given_problem2.size()):
 				if get_value2[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s: ?" % given_problem2[index]
 					print("Missing value for: %s" % [given_problem2[index]])
 				else:
 					print("Debug: %s: %s" % [given_problem2[index], get_value2[index]])
@@ -545,6 +560,7 @@ func handle_chest_interaction(label: Label, chest, animation_control: Control, a
 		animation_control.set_visible(true)
 		chest._open_chest()
 		interact_with_chest(chest_name, current_problem)
+		chest.hide_label()
 		animation_player.play_slide()
 
 func interact_with_chest(chest_name: String, current_problem: int) -> void:

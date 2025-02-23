@@ -73,7 +73,7 @@ extends Node2D
 @onready var red_animation_panel = $Character_Handler/ENUMAN/Camera2D/Animation/Control
 @onready var animation_panel = $CanvasLayer/Node2D/Control
 
-@onready var answer = $Character_Handler/ENUMAN
+@onready var answer = $CanvasLayer/problem_panel
 
 @onready var label1 = $chest1/Area2D/Label
 @onready var label2 = $chest2/Area2D/Label
@@ -192,6 +192,7 @@ func _ready() -> void:
 	enuman.JUMP_VELOCITY = -275
 	
 	dog.speed = 250
+	dog.JUMP_VELOCITY = -375
 	
 	hallwayman1.speed = 100
 	hallwayman2.speed = 100
@@ -288,7 +289,13 @@ func randomize_problem_values() -> void:
 	var time = (randi() % 30) + 5     
 	
 	var work = force * distance * cos(deg_to_rad(angle1))       
-	var power = work / time           
+	var power = work / time    
+
+	time_of_flight = snappedf(time_of_flight, 0.01)
+	max_height = snappedf(max_height, 0.01)
+	range = snappedf(range, 0.01)
+	work = snappedf(work, 0.01)
+	power = snappedf(power, 0.01)       
 
 	problem_value1 = [velocity, angle, time_of_flight, max_height, range]
 	problem_value2 = [work, force, distance, time, power]
@@ -395,16 +402,20 @@ func open_panel() -> void:
 	line_edit.grab_focus()
 	match (current_problem):
 		1:
+			prompt_label6.text = ""
+			problem_identifier.text = "Kinematics"
 			for index in range(given_problem1.size()):
 				if get_value1[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s: ?" % [given_problem1[index]]
 					print("Missing value for: %s" % [given_problem1[index]])
 				else:
 					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
 		2:
+			prompt_label6.text = "Angle: %s" % [angle1]
+			problem_identifier.text = "Work & Power"
 			for index in range(given_problem2.size()):
 				if get_value2[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s: ?" % [given_problem2[index]]
 					print("Missing value for: %s" % [given_problem2[index]])
 				else:
 					print("Debug: %s: %s" % [given_problem2[index], get_value2[index]])
@@ -588,6 +599,7 @@ func handle_chest_interaction(label: Label, chest, animation_control: Control, a
 		animation_control.set_visible(true)
 		chest._open_chest()
 		interact_with_chest(chest_name, current_problem)
+		chest.hide_label()
 		animation_player.play_slide()
 
 func interact_with_chest(chest_name: String, current_problem: int) -> void:
@@ -828,7 +840,35 @@ func _on_fire_timer_timeout() -> void:
 				print("Debug: Bullet CollisionShape2D found:", bullet_collision)
 				print("Debug: HallwayMan global_position:", $HallwayMan8/CharacterBody2D.global_position)
 	change_of_hitting(current_shooter)
-
+func _on_answer_submitted(user_input: int) -> void:
+	current_problem = last_problem
+	comparing_answer(user_input, answer.correct_answer, current_problem)
+	
+func comparing_answer(user_input: float, machine_calculated: float, current_problem:int) -> void:
+	var tolerance = 0.01
+	print("Debug: Problem Current in comparing answer", current_problem)
+	match (current_problem):
+		1:
+			print("Debug: Pumapasok siya dito sa pressure plate 1")
+			if machine_calculated != null:
+				print("Machine Calculated: ", machine_calculated)
+				if abs(user_input - machine_calculated) < tolerance:
+					print("Debug: Correct Answer for Pressure Plate 1")
+					barrier1.disable = true
+					barrier1.disable_barrier()
+					pressure_plate1.disable_collision()
+				else:
+					print("Debug: Incorrect Answer!")
+		2:
+			if machine_calculated != null:
+				if abs(user_input - machine_calculated) < tolerance:
+					print("Debug: Correct Answer for Pressure Plate 2")
+					barrier2.disable = true
+					barrier2.disable_barrier()
+					pressure_plate2.disable_collision()
+				else:
+					print("Debug: Incorrect Answer!")
+					
 func _on_fire_timer_enuman_timeout() -> void:
 		new_bullet_enuman.change_to_visible()
 		new_bullet_enuman.change_scale_to()

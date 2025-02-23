@@ -64,12 +64,14 @@ extends Node2D
 @onready var prompt_label5 = $CanvasLayer/problem_panel/Panel/Label5
 @onready var prompt_label6 = $CanvasLayer/problem_panel/Panel/Label6
 
+@onready var problem_identifier = $CanvasLayer/problem_panel/Panel/ProblemIdentifier
+
 @onready var animation_player = $CanvasLayer/Node2D/AnimationPlayer
 @onready var animation_label = $CanvasLayer/Node2D/Control/Label
 @onready var red_animation_panel = $Character_Handler/ENUMAN/Camera2D/Animation/Control
 @onready var animation_panel = $CanvasLayer/Node2D/Control
 
-@onready var answer = $Character_Handler/ENUMAN
+@onready var answer = $CanvasLayer/problem_panel
 
 @onready var label1 = $chest1/Area2D/Label
 @onready var label2 = $chest2/Area2D/Label
@@ -246,6 +248,8 @@ func _ready() -> void:
 	else:
 		print("Debug: ERROR - answer_submitted signal not found in ENUMAN")
 	
+	
+	
 	interact_chess()
 	dialogue_data.pause()
 
@@ -299,6 +303,10 @@ func when_hallwayman_hit(body) -> void:
 		new_bullet_enuman.change_animation_hit()
 		new_bullet_enuman.is_hit = true
 		
+func _on_answer_submitted(user_input: int) -> void:
+	current_problem = last_problem
+	comparing_answer(user_input, answer.correct_answer, current_problem)
+	
 func comparing_answer(user_input: float, machine_calculated: float, current_problem:int) -> void:
 	var tolerance = 0.01
 	print("Debug: Problem Current in comparing answer", current_problem)
@@ -310,6 +318,7 @@ func comparing_answer(user_input: float, machine_calculated: float, current_prob
 					print("Debug: Correct Answer for Pressure Plate 1")
 					barrier1.disable = true
 					barrier1.disable_barrier()
+					pressure_plate1.disable_collision()
 				else:
 					print("Debug: Incorrect Answer!")
 		2:
@@ -318,6 +327,7 @@ func comparing_answer(user_input: float, machine_calculated: float, current_prob
 					print("Debug: Correct Answer for Pressure Plate 2")
 					barrier2.disable = true
 					barrier2.disable_barrier()
+					pressure_plate2.disable_collision()
 				else:
 					print("Debug: Incorrect Answer!")
 
@@ -335,7 +345,13 @@ func randomize_problem_values() -> void:
 	
 	var work = force * distance * cos(deg_to_rad(angle1))       
 	var power = work / time           
-
+	
+	time_of_flight = snappedf(time_of_flight, 0.01)
+	max_height = snappedf(max_height, 0.01)
+	range = snappedf(range, 0.01)
+	work = snappedf(work, 0.01)
+	power = snappedf(power, 0.01)
+	
 	problem_value1 = [velocity, angle, time_of_flight, max_height, range]
 	problem_value2 = [work, force, distance, time, power]
 	print("Debug: Velocity = ", velocity, "Detta | Angle = ", angle, "T | Time of Flight = ", time_of_flight, "M | Max Height = ", max_height, "R | Range = ", range)
@@ -407,16 +423,20 @@ func open_panel() -> void:
 	line_edit.grab_focus()
 	match (current_problem):
 		1:
+			prompt_label6.text = ""
+			problem_identifier = "Kinematics"
 			for index in range(given_problem1.size()):
 				if get_value1[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s: ?" % given_problem1[index]
 					print("Missing value for: %s" % [given_problem1[index]])
 				else:
 					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
 		2:
+			prompt_label6 = "Angle: %s" % [angle1]
+			problem_identifier = "Work & Kinematics"
 			for index in range(given_problem2.size()):
 				if get_value2[index] == null:
-					prompt_label_list[index].text = "?"
+					prompt_label_list[index].text = "%s: ?" % [given_problem2[index]]
 					print("Missing value for: %s" % [given_problem2[index]])
 				else:
 					print("Debug: %s: %s" % [given_problem2[index], get_value2[index]])

@@ -20,6 +20,9 @@ func _on_area2d_body_exited(body):
 	if body.name == "ENUMAN"  or (body.name == "Doggi" ):
 		$Label.hide()
 
+func hide_label():
+	$Label.hide()
+
 func _open_chest():
 	$AnimatedSprite2D.play("opened chest") 
 	
@@ -29,6 +32,7 @@ func _open_chest():
 func play():
 	$AnimatedSprite2D.play("closed chest")
 
-func stop():	$AnimatedSprite2D.stop()
+func stop():	
+	$AnimatedSprite2D.stop()
 	
 	

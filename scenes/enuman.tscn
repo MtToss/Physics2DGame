@@ -412,9 +412,9 @@ label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="Label4" type="Label" parent="Camera2D/Panel"]
 layout_mode = 0
-offset_left = 33.7856
-offset_top = 1.19925
-offset_right = 453.786
+offset_left = 33.0178
+offset_top = 1.19926
+offset_right = 453.018
 offset_bottom = 138.2
 scale = Vector2(0.0351782, 0.0150187)
 text = "Prompt"
@@ -422,10 +422,28 @@ label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="Label5" type="Label" parent="Camera2D/Panel"]
 layout_mode = 0
-offset_left = 33.7856
-offset_top = 3.99749
-offset_right = 453.786
+offset_left = 33.0178
+offset_top = 3.99751
+offset_right = 453.018
 offset_bottom = 140.998
+scale = Vector2(0.0351782, 0.0150187)
+text = "Prompt"
+label_settings = SubResource("LabelSettings_j6pck")
+
+[node name="Label6" type="Label" parent="Camera2D/Panel"]
+offset_left = 33.0178
+offset_top = 7.59526
+offset_right = 453.018
+offset_bottom = 144.596
+scale = Vector2(0.0351782, 0.0150187)
+text = "Prompt"
+label_settings = SubResource("LabelSettings_j6pck")
+
+[node name="ProblemIdentifier" type="Label" parent="Camera2D/Panel"]
+offset_left = 2.30358
+offset_top = -1.99873
+offset_right = 422.304
+offset_bottom = 135.002
 scale = Vector2(0.0351782, 0.0150187)
 text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
@@ -441,5 +459,6 @@ scale = Vector2(0.495614, 0.109811)
 
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="text_changed" from="Camera2D/Panel/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="Camera2D/Panel/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

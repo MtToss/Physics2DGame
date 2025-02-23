@@ -26,6 +26,7 @@ var hp: int = 100
 
 func _ready() -> void:
 	line_edit.grab_focus()
+	line_edit.text_changed.connect(_on_line_edit_text_changed)
 
 func _process(delta: float) -> void:
 	
@@ -124,3 +125,9 @@ func _on_timer_timeout() -> void:
 		is_moving_left = true
 	elif animated_sprite.flip_h == false:
 		is_moving_left = false
+
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	var regex = RegEx.create_from_string("^[0-9.]*$")
+	if regex.search(new_text) == null:
+		line_edit.text = line_edit.text.trim_suffix(new_text[-1])

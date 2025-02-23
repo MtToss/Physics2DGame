@@ -138,7 +138,13 @@ func randomize_problem_values() -> void:
 	var time = (randi() % 30) + 5     
 	
 	var work = force * distance * cos(deg_to_rad(angle1))       
-	var power = work / time           
+	var power = work / time      
+	
+	time_of_flight = snappedf(time_of_flight, 0.01)
+	max_height = snappedf(max_height, 0.01)
+	range = snappedf(range, 0.01)
+	work = snappedf(work, 0.01)
+	power = snappedf(power, 0.01)     
 
 	problem_value1 = [velocity, angle, time_of_flight, max_height, range]
 	problem_value2 = [work, force, distance, time, power]
@@ -199,8 +205,6 @@ func hideorshow_panels():
 		form_book.visible = true
 		manual_pause.visible = false
 
-
-
 func pause_by_pause_menu():
 	act_stopwatch.process_mode = Node.PROCESS_MODE_PAUSABLE
 
@@ -212,7 +216,6 @@ func teleporter_body(body):
 		dog.global_position = teleporter.global_position
 		
 func _on_bullet_entered(body):
-	
 	if (body.name == "ENUMAN") or (body.name == "Doggi"):
 		
 		fire_timer.stop()
@@ -393,6 +396,7 @@ func handle_chest_interaction(label: Label, chest, animation_control: Control, a
 		animation_control.set_visible(true)
 		chest._open_chest()
 		interact_with_chest(chest_name, current_problem)
+		chest.hide_label()
 		animation_player.play_slide()
 		label.hide()
 
@@ -527,6 +531,7 @@ func comparing_answer(user_input: float, machine_calculated: float, current_prob
 					print("Debug: Correct Answer for Pressure Plate 1")
 					barrier1.disable = true
 					barrier1.disable_barrier()
+					pressure_plate1.disable_collision()
 				else:
 					print("Debug: Incorrect Answer!")
 		2:
@@ -535,6 +540,7 @@ func comparing_answer(user_input: float, machine_calculated: float, current_prob
 					print("Debug: Correct Answer for Pressure Plate 2")
 					barrier2.disable = true
 					barrier2.disable_barrier()
+					pressure_plate2.disable_collision()
 				else:
 					print("Debug: Incorrect Answer!")
 
