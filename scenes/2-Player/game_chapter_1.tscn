@@ -181,7 +181,7 @@ position = Vector2(230, 218)
 scale = Vector2(0.1, 0.1)
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(1024, -135)
+position = Vector2(1169, -144)
 
 [node name="PhantomCamera2D" type="Node2D" parent="Character_Handler" node_paths=PackedStringArray("follow_targets")]
 top_level = true
@@ -201,7 +201,6 @@ scale = Vector2(0.350073, 0.321777)
 position = Vector2(-481, 251)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
 position = Vector2(548, 115.5)
 zoom = Vector2(4, 4)
 

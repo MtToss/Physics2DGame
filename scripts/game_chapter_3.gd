@@ -150,14 +150,14 @@ var current_floor: int = 5
 @onready var elevator5_body = $elevator5/Area2D
 @onready var elevator5_label = $elevator5/Label1
 
-
+@onready var animation_sensor = $portal_door/Area2D2
+@onready var portal_area = $portal_door/Area2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Timescore.update_chapter_3()
 	
-	portal_door.scene = load("res://scenes/game_chapter_4.tscn")
 	randomize_problem_values()
 	
 	available_indices1 = range(given_problem1.size())
@@ -243,7 +243,24 @@ func _ready() -> void:
 	
 	interact_chess()
 	dialogue_data.pause()
+	
+	if animation_sensor != null:
+		animation_sensor.connect("body_exited", Callable(self, "on_area2d_animation_exit"))
+	if portal_area != null:
+		portal_area.connect("body_entered", Callable(self, "on_area2d_portal_entered"))
+		
+func on_area2d_animation_enter(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		print("Debug: entered area 2d")
+		$portal_door/AnimatedSprite2D.play("open")
 
+func on_area2d_animation_exit(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		$portal_door/AnimatedSprite2D.play("close")
+
+func on_area2d_portal_entered(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		get_tree().change_scene_to_file("res://scenes/game_chapter_4.tscn")
 func hideorshow_panels():
 	if form_book.visible == true and manual_pause.visible == false:
 		form_book.visible = false

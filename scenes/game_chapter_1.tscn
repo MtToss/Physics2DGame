@@ -48,7 +48,7 @@ environment = SubResource("Environment_avp0r")
 [node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("6_sxtrt")]
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(-995, 181)
+position = Vector2(-362, 94)
 
 [node name="ENUMAN" parent="Character_Handler" instance=ExtResource("1_huqj3")]
 z_index = 100

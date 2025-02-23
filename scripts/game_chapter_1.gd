@@ -120,6 +120,9 @@ var is_typing = false  # Prevent skipping during typing
 var new_bullet
 var new_bullet_enuman
 
+@onready var animation_sensor = $portal_door/Area2D2
+@onready var portal_area = $portal_door/Area2D
+
 func randomize_problem_values() -> void:
 	var velocity = (randi() % 100) + 30  
 	var angle = (randi() % 60) + 30      
@@ -149,8 +152,6 @@ func randomize_problem_values() -> void:
 
 func _ready() -> void:
 	Timescore.record_time_score
-	
-	portal_door.scene = load("res://scenes/game_chapter_2.tscn")
 	randomize_problem_values()
 	available_indices1 = range(given_problem1.size())
 	available_indices2 = range(given_problem2.size())
@@ -187,7 +188,22 @@ func _ready() -> void:
 	camera.adjust_camera(50,50)
 	interact_chess()
 	dialogue_data.pause()
+	
+	animation_sensor.connect("body_exited", Callable(self, "on_area2d_animation_exit"))
+	portal_area.connect("body_entered", Callable(self, "on_area2d_portal_entered"))
 
+func on_area2d_animation_enter(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		print("Debug: entered area 2d")
+		$portal_door/AnimatedSprite2D.play("open")
+
+func on_area2d_animation_exit(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		$portal_door/AnimatedSprite2D.play("close")
+
+func on_area2d_portal_entered(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		get_tree().change_scene_to_file("res://scenes/game_chapter_2.tscn")
 
 
 func hideorshow_panels():
@@ -323,7 +339,7 @@ func open_panel() -> void:
 				else:
 					prompt_label_list[index].text = "%s: %s" % [given_problem1[index], get_value1[index]]
 		2:
-			prompt_label6.text = "Angle: " % [angle1]
+			prompt_label6.text = "Angle: %s" % [angle1]
 			problem_identifier.text = "Work & Power"
 			for index in range(given_problem2.size()):
 				if get_value2[index] == null:
@@ -405,7 +421,7 @@ func perform_calculations() -> void:
 				if get_value1[index] == null:
 					match given_problem1[index]:
 						"Velocity":
-							answer.correct_answer = formula(get_value1, given_problem1, "Angle", "Range", "Vel	ocity")
+							answer.correct_answer = formula(get_value1, given_problem1, "Angle", "Range", "Velocity")
 							print("Debug: Velocity Calculated", answer.correct_answer)
 
 						"Angle":

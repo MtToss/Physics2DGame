@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhr21cj32c0ys"]
+[gd_scene load_steps=24 format=3 uid="uid://dhr21cj32c0ys"]
 
 [ext_resource type="Script" path="res://scripts/game_chapter_2.gd" id="1_4w3sb"]
 [ext_resource type="Texture2D" uid="uid://djalb313rlba3" path="res://assets/assets/Chapter_2.png" id="1_hk8qa"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="9_o4unc"]
 [ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="13_lri0l"]
 [ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="14_7wair"]
+[ext_resource type="PackedScene" uid="uid://bw3hjomxwteyh" path="res://scenes/portal_door.tscn" id="14_xd23c"]
 [ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="15_cjj7l"]
 [ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="16_fboio"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="17_txcjj"]
@@ -236,6 +237,9 @@ scale = Vector2(13.3204, 1.10642)
 position = Vector2(3477, 1039)
 rotation = 1.5708
 scale = Vector2(1.56018, 0.960845)
+
+[node name="portal_door" parent="." instance=ExtResource("14_xd23c")]
+position = Vector2(-360, 216)
 
 [node name="StaticBody14" parent="." instance=ExtResource("3_ikg2l")]
 position = Vector2(5495, 1015)

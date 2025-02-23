@@ -106,7 +106,7 @@ func _on_bullet_entered_hallwayman(body):
 		elif(benson.hp <=300) and (benson.hp <= 226): 
 			print("Debug: 4/4 hp")
 		else:
-			print("Game Over")
+			get_tree().change_scene_to_file("res://scenes/Congratulation.tscn")
 
 func _on_bullet_entered(body):
 	print("satisfied: ", body.get_parent())
