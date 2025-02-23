@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dt7tfxtm50ia0"]
+[gd_scene load_steps=12 format=3 uid="uid://dt7tfxtm50ia0"]
 
 [ext_resource type="Script" path="res://scripts/game_chapter_4.gd" id="1_dokhx"]
 [ext_resource type="Texture2D" uid="uid://ct3nnjdjygc5h" path="res://assets/assets/Chapter_4.png" id="1_t0joh"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="4_4f1gn"]
 [ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="5_er856"]
 [ext_resource type="Texture2D" uid="uid://dc56rmgssebql" path="res://assets/assets/hearts.png" id="6_fc0qp"]
+[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="7_2waud"]
+[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="8_qitd6"]
+[ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="9_nwwhp"]
+[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="10_e3oqs"]
+[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="11_08pcn"]
 
 [node name="GameChapter4" type="Node2D"]
 script = ExtResource("1_dokhx")
@@ -63,10 +68,10 @@ position = Vector2(-0.101238, 0)
 scale = Vector2(0.101237, 0.13595)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Character_Handler/ENUMAN/Camera2D2"]
-offset_left = 323.999
-offset_top = -297.999
-offset_right = 467.999
-offset_bottom = -257.999
+offset_left = 340.999
+offset_top = -296.999
+offset_right = 484.999
+offset_bottom = -256.999
 
 [node name="heart" type="TextureRect" parent="Character_Handler/ENUMAN/Camera2D2/HBoxContainer"]
 layout_mode = 2
@@ -94,6 +99,23 @@ one_shot = true
 [node name="FireTimerBenson" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("7_2waud")]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
+
+[node name="dialogue" parent="CanvasLayer" instance=ExtResource("8_qitd6")]
+
+[node name="formula_book" parent="CanvasLayer" instance=ExtResource("9_nwwhp")]
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("10_e3oqs")]
+visible = false
+
+[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("11_08pcn")]
 
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]
 [connection signal="timeout" from="FireTimerBenson" to="." method="_on_fire_timer_benson_timeout"]

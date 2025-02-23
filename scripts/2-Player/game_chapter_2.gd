@@ -103,6 +103,11 @@ extends Node2D
 @onready var line_edit = $Character_Handler/ENUMAN/Camera2D/Panel/LineEdit
 @onready var animation_control = $Character_Handler/ENUMAN/Camera2D/Animation/Control
 
+@onready var form_book = $CanvasLayer/formula_book
+@onready var manual_pause = $CanvasLayer/pause_menu
+@onready var act_stopwatch = $Stopwatch
+@onready var dialogue_data = $CanvasLayer/dialogue
+
 var current_shooter: int = 1 
 var current_problem: int = 0
 var correct_answer = 0
@@ -163,11 +168,16 @@ var current_floor: int = 1
 @onready var door4_label = $door4/Label1
 
 
+
+
 func _ready() -> void:
 	
-	pcam.set_auto_zoom_max(2)
-	pcam.set_auto_zoom(true)
-	pcam.set_auto_zoom_margin(Vector4(20, 30, 40, 20))
+	if pcam:
+		pcam.set_auto_zoom_max(2)
+		pcam.set_auto_zoom(true)
+		pcam.set_auto_zoom_margin(Vector4(20, 30, 40, 20))
+	else:
+		print("Error: pcam is not initialized")
 	doggi_area2D.connect("body_entered", Callable(self,"when_hallwayman_hit"))
 	
 	camera.enabled = false
@@ -247,6 +257,24 @@ func _ready() -> void:
 	else:
 		print("Debug: ERROR - answer_submitted signal not found in ENUMAN")
 	interact_chess()
+	dialogue_data.pause()
+
+func hideorshow_panels():
+	if form_book.visible == true and manual_pause.visible == false:
+		form_book.visible = false
+		manual_pause.visible = true
+	elif form_book.visible == false and manual_pause.visible == true:
+		form_book.visible = true
+		manual_pause.visible = false
+
+
+
+func pause_by_pause_menu():
+	act_stopwatch.process_mode = Node.PROCESS_MODE_PAUSABLE
+
+func pause_by_formula_button():
+	act_stopwatch.process_mode = Node.PROCESS_MODE_ALWAYS
+	
 
 func randomize_problem_values() -> void:
 	var velocity = (randi() % 100) + 30  

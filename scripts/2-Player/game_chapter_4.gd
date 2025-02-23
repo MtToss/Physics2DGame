@@ -30,6 +30,10 @@ extends Node2D
 @onready var container = $Character_Handler/ENUMAN/Camera2D2/HBoxContainer
 
 @onready var phantomchu = $Camera2D/PhantomCameraHost
+@onready var form_book = $CanvasLayer/formula_book
+@onready var manual_pause = $CanvasLayer/pause_menu
+@onready var act_stopwatch = $Stopwatch
+@onready var dialogue_data = $CanvasLayer/dialogue
 
 var new_bullet_benson
 var bullet_collision_benson
@@ -74,6 +78,23 @@ func _ready() -> void:
 	
 	bullet_collision_benson = new_bullet_benson.get_node("Area2D")
 	bullet_collision_benson.connect("body_entered", Callable(self, "_on_bullet_entered"))
+	
+func hideorshow_panels():
+	if form_book.visible == true and manual_pause.visible == false:
+		form_book.visible = false
+		manual_pause.visible = true
+	elif form_book.visible == false and manual_pause.visible == true:
+		form_book.visible = true
+		manual_pause.visible = false
+
+
+
+func pause_by_pause_menu():
+	act_stopwatch.process_mode = Node.PROCESS_MODE_PAUSABLE
+
+func pause_by_formula_button():
+	act_stopwatch.process_mode = Node.PROCESS_MODE_ALWAYS
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack_dog"):
 		dog.change_animation_to_attack()

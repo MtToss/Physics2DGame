@@ -82,6 +82,11 @@ var current_shooter: int = 1
 
 @onready var teleporter = $Area2D/CollisionShape2D
 
+@onready var form_book = $CanvasLayer/formula_book
+@onready var manual_pause = $CanvasLayer/pause_menu
+@onready var act_stopwatch = $Stopwatch
+@onready var dialogue_data = $CanvasLayer/dialogue
+
 
 var current_problem: int = 0
 
@@ -184,6 +189,23 @@ func _ready() -> void:
 	
 	enuman_collision_shape.global_position = enuman.global_position
 	dog_collision_shape.global_position = dog.global_position
+	dialogue_data.pause()
+
+func hideorshow_panels():
+	if form_book.visible == true and manual_pause.visible == false:
+		form_book.visible = false
+		manual_pause.visible = true
+	elif form_book.visible == false and manual_pause.visible == true:
+		form_book.visible = true
+		manual_pause.visible = false
+
+
+
+func pause_by_pause_menu():
+	act_stopwatch.process_mode = Node.PROCESS_MODE_PAUSABLE
+
+func pause_by_formula_button():
+	act_stopwatch.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 func teleporter_body(body):
 	if(body.name == "ENUMAN"):

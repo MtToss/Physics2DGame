@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://1gascaics7do"]
+[gd_scene load_steps=27 format=3 uid="uid://1gascaics7do"]
 
 [ext_resource type="Script" path="res://scripts/2-Player/game_chapter_1.gd" id="1_08qfn"]
 [ext_resource type="Texture2D" uid="uid://d2ey3rj3wteyp" path="res://assets/assets/Chapter_1_Background.png" id="1_d80ml"]
@@ -14,11 +14,16 @@
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="12_8fvhi"]
 [ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="13_j1nds"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="15_fstdb"]
-[ext_resource type="PackedScene" uid="uid://duq78g8ost32f" path="res://scenes/doggi.tscn" id="15_mgel7"]
+[ext_resource type="PackedScene" path="res://scenes/doggi.tscn" id="15_mgel7"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="16_7xfks"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="17_p6thj"]
-[ext_resource type="PackedScene" uid="uid://bxl2bo175nkkq" path="res://scenes/problem_panel.tscn" id="18_jm36g"]
+[ext_resource type="PackedScene" path="res://scenes/problem_panel.tscn" id="18_jm36g"]
 [ext_resource type="PackedScene" uid="uid://ds8sigjdte5dk" path="res://scenes/Popup.tscn" id="18_q414n"]
+[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="20_6m5e4"]
+[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="21_5xmv5"]
+[ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="22_nirn4"]
+[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="23_ij5mx"]
+[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="24_46846"]
 
 [sub_resource type="Resource" id="Resource_f53d1"]
 script = ExtResource("17_p6thj")
@@ -194,7 +199,6 @@ scale = Vector2(0.350073, 0.321777)
 position = Vector2(-481, 251)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
 position = Vector2(25, 187.5)
 zoom = Vector2(4, 4)
 
@@ -211,11 +215,26 @@ scale = Vector2(3, 1.6)
 
 [node name="problem_panel" parent="CanvasLayer" instance=ExtResource("18_jm36g")]
 
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("20_6m5e4")]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
+
+[node name="dialogue" parent="CanvasLayer" instance=ExtResource("21_5xmv5")]
+
+[node name="formula_book" parent="CanvasLayer" instance=ExtResource("22_nirn4")]
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("23_ij5mx")]
+visible = false
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(278, 139)
 shape = SubResource("CapsuleShape2D_g523n")
+
+[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("24_46846")]
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]

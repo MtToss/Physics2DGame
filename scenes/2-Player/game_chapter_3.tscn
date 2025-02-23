@@ -1,20 +1,25 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbfseh00lhmoy"]
+[gd_scene load_steps=22 format=3 uid="uid://bbfseh00lhmoy"]
 
 [ext_resource type="Script" path="res://scripts/2-Player/game_chapter_3.gd" id="1_13ul6"]
 [ext_resource type="Texture2D" uid="uid://dukek7m0bfmqf" path="res://assets/assets/Chapter_3.png" id="2_kkgal"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_nihfc"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_5wx88"]
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="5_5bw1l"]
-[ext_resource type="PackedScene" uid="uid://duq78g8ost32f" path="res://scenes/doggi.tscn" id="6_pxq5x"]
+[ext_resource type="PackedScene" path="res://scenes/doggi.tscn" id="6_pxq5x"]
 [ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="7_mkr2k"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_k8rmd"]
 [ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="9_n3o6m"]
 [ext_resource type="PackedScene" uid="uid://ds8sigjdte5dk" path="res://scenes/Popup.tscn" id="9_udvm1"]
 [ext_resource type="PackedScene" uid="uid://ci066dj5550ks" path="res://scenes/elevator_chapter3.tscn" id="10_gmoiw"]
-[ext_resource type="PackedScene" uid="uid://bxl2bo175nkkq" path="res://scenes/problem_panel.tscn" id="10_hovwg"]
+[ext_resource type="PackedScene" path="res://scenes/problem_panel.tscn" id="10_hovwg"]
+[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="11_10hen"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="11_tnaal"]
+[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="12_ojhc0"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="12_reli3"]
+[ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="13_lsybc"]
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="13_o77iw"]
+[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="14_0xa7v"]
+[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="20_3jg22"]
 
 [sub_resource type="Resource" id="Resource_yes7r"]
 script = ExtResource("4_5wx88")
@@ -127,9 +132,7 @@ position = Vector2(-392, 260)
 scale = Vector2(0.0498637, 0.339966)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
 position = Vector2(-882, -159.5)
-process_callback = 0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
@@ -143,6 +146,19 @@ position = Vector2(950, 28)
 scale = Vector2(0.549391, 0.690947)
 
 [node name="problem_panel" parent="CanvasLayer" instance=ExtResource("10_hovwg")]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("11_10hen")]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
+
+[node name="dialogue" parent="CanvasLayer" instance=ExtResource("12_ojhc0")]
+
+[node name="formula_book" parent="CanvasLayer" instance=ExtResource("13_lsybc")]
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("14_0xa7v")]
+visible = false
 
 [node name="FireTimer" type="Timer" parent="."]
 
@@ -244,6 +260,8 @@ position = Vector2(171, 350)
 [node name="barrier2" parent="." instance=ExtResource("13_o77iw")]
 position = Vector2(246, 320)
 scale = Vector2(0.782376, 0.601777)
+
+[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("20_3jg22")]
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]

@@ -1,15 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://cl2rlivkecroh"]
+[gd_scene load_steps=13 format=3 uid="uid://cl2rlivkecroh"]
 
 [ext_resource type="Script" path="res://scripts/2-Player/game_chapter_4.gd" id="1_3ik0a"]
 [ext_resource type="Texture2D" uid="uid://ct3nnjdjygc5h" path="res://assets/assets/Chapter_4.png" id="1_64ojg"]
 [ext_resource type="PackedScene" uid="uid://nbwy5mbhv6jt" path="res://scenes/StaticBody2D.tscn" id="2_o40yd"]
-[ext_resource type="PackedScene" uid="uid://duq78g8ost32f" path="res://scenes/doggi.tscn" id="3_wx5fb"]
+[ext_resource type="PackedScene" path="res://scenes/doggi.tscn" id="3_wx5fb"]
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="4_doo6j"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_0b7io"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_dspyf"]
 [ext_resource type="Texture2D" uid="uid://dc56rmgssebql" path="res://assets/assets/hearts.png" id="7_5xjp3"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_s1nce"]
 [ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="9_74j0y"]
+[ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="11_6gpsb"]
 
 [sub_resource type="Resource" id="Resource_uwblu"]
 script = ExtResource("6_dspyf")
@@ -81,10 +82,10 @@ draw_limits = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 298.5
-offset_top = -294.5
-offset_right = 338.5
-offset_bottom = -254.5
+offset_left = 802.0
+offset_top = 32.0
+offset_right = 974.0
+offset_bottom = 72.0
 
 [node name="heart" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
@@ -109,7 +110,6 @@ expand_mode = 2
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
 position = Vector2(-541.5, 72.5)
-process_callback = 0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
@@ -129,6 +129,8 @@ one_shot = true
 [node name="SpecialSkillTimerBenson" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("11_6gpsb")]
 
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]
 [connection signal="timeout" from="FireTimerBenson" to="." method="_on_fire_timer_benson_timeout"]

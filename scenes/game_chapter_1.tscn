@@ -191,7 +191,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(4, 4)
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_5v5df")
 
