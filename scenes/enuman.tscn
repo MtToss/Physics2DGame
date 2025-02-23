@@ -369,7 +369,7 @@ zoom = Vector2(12, 12)
 position_smoothing_enabled = true
 
 [node name="Animation" parent="Camera2D" instance=ExtResource("7_xx60k")]
-position = Vector2(179.707, -29.6524)
+position = Vector2(105.947, -34.5945)
 scale = Vector2(0.381215, 0.409193)
 
 [node name="Panel" type="Panel" parent="Camera2D"]

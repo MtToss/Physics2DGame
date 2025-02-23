@@ -30,10 +30,12 @@ extends Node2D
 @onready var container = $Character_Handler/ENUMAN/Camera2D2/HBoxContainer
 
 @onready var phantomchu = $Camera2D/PhantomCameraHost
+
 @onready var form_book = $CanvasLayer/formula_book
 @onready var manual_pause = $CanvasLayer/pause_menu
 @onready var act_stopwatch = $Stopwatch
 @onready var dialogue_data = $CanvasLayer/dialogue
+@onready var red_animation_panel = $Character_Handler/ENUMAN/Camera2D/Animation/Control
 
 var new_bullet_benson
 var bullet_collision_benson
@@ -78,6 +80,8 @@ func _ready() -> void:
 	
 	bullet_collision_benson = new_bullet_benson.get_node("Area2D")
 	bullet_collision_benson.connect("body_entered", Callable(self, "_on_bullet_entered"))
+	red_animation_panel.visible = false
+	dialogue_data.pause()
 	
 func hideorshow_panels():
 	if form_book.visible == true and manual_pause.visible == false:
@@ -104,11 +108,13 @@ func _input(event: InputEvent) -> void:
 		dog.change_animation_to_shield()
 
 func _process(delta: float) -> void: 
+	red_animation_panel.visible = false
 	firing()
 	if target_enuman != null:
 		var direction = (target_enuman.global_position - new_bullet_benson.global_position).normalized()
 		var speed = 200 
 		new_bullet_benson.global_position += direction * speed * delta
+	
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cl2rlivkecroh"]
+[gd_scene load_steps=17 format=3 uid="uid://cl2rlivkecroh"]
 
 [ext_resource type="Script" path="res://scripts/2-Player/game_chapter_4.gd" id="1_3ik0a"]
 [ext_resource type="Texture2D" uid="uid://ct3nnjdjygc5h" path="res://assets/assets/Chapter_4.png" id="1_64ojg"]
@@ -9,8 +9,12 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_dspyf"]
 [ext_resource type="Texture2D" uid="uid://dc56rmgssebql" path="res://assets/assets/hearts.png" id="7_5xjp3"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_s1nce"]
+[ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="9_0vlre"]
 [ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="9_74j0y"]
+[ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="10_8pnuo"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="11_6gpsb"]
+[ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="11_42yof"]
+[ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="12_2aoef"]
 
 [sub_resource type="Resource" id="Resource_uwblu"]
 script = ExtResource("6_dspyf")
@@ -106,6 +110,19 @@ expand_mode = 2
 layout_mode = 2
 texture = ExtResource("7_5xjp3")
 expand_mode = 2
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("9_0vlre")]
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
+
+[node name="dialogue" parent="CanvasLayer" instance=ExtResource("10_8pnuo")]
+
+[node name="formula_book" parent="CanvasLayer" instance=ExtResource("11_42yof")]
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("12_2aoef")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
