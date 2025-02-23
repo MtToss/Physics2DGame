@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c47lfhiyqiqag"]
+[gd_scene load_steps=17 format=3 uid="uid://c47lfhiyqiqag"]
 
 [ext_resource type="Script" path="res://scripts/game_chapter_3.gd" id="1_f2chw"]
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_icr61"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ci066dj5550ks" path="res://scenes/elevator_chapter3.tscn" id="5_bjvep"]
 [ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="6_xlv5m"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="7_1n2wv"]
+[ext_resource type="PackedScene" uid="uid://bw3hjomxwteyh" path="res://scenes/portal_door.tscn" id="7_p8xiy"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="8_uh2n2"]
 [ext_resource type="PackedScene" uid="uid://r66ov7m83ypm" path="res://scenes/barrier.tscn" id="9_0euxa"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="10_1q2j0"]
@@ -135,6 +136,9 @@ scale = Vector2(1, 0.85)
 [node name="HallwayMan2" parent="." instance=ExtResource("6_xlv5m")]
 position = Vector2(-973, -52)
 scale = Vector2(1, 0.7225)
+
+[node name="portal_door" parent="." instance=ExtResource("7_p8xiy")]
+position = Vector2(-511, -160)
 
 [node name="HallwayMan3" parent="." instance=ExtResource("6_xlv5m")]
 position = Vector2(-888, 78)
