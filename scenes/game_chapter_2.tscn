@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhr21cj32c0ys"]
+[gd_scene load_steps=23 format=3 uid="uid://dhr21cj32c0ys"]
 
 [ext_resource type="Script" path="res://scripts/game_chapter_2.gd" id="1_4w3sb"]
 [ext_resource type="Texture2D" uid="uid://djalb313rlba3" path="res://assets/assets/Chapter_2.png" id="1_hk8qa"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="15_cjj7l"]
 [ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="16_fboio"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="17_txcjj"]
+[ext_resource type="PackedScene" uid="uid://cbq1kvk1ifqq5" path="res://scenes/game_over.tscn" id="18_4p8t1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xslv"]
 
@@ -277,6 +278,9 @@ offset_bottom = 5.0
 [node name="formula_book" parent="CanvasLayer" instance=ExtResource("15_cjj7l")]
 
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource("16_fboio")]
+visible = false
+
+[node name="game_over" parent="CanvasLayer" instance=ExtResource("18_4p8t1")]
 visible = false
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

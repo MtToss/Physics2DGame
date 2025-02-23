@@ -431,6 +431,7 @@ text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="Label6" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
 offset_left = 33.0178
 offset_top = 7.59526
 offset_right = 453.018
@@ -440,6 +441,7 @@ text = "Prompt"
 label_settings = SubResource("LabelSettings_j6pck")
 
 [node name="ProblemIdentifier" type="Label" parent="Camera2D/Panel"]
+layout_mode = 0
 offset_left = 2.30358
 offset_top = -1.99873
 offset_right = 422.304

@@ -107,6 +107,7 @@ extends Node2D
 @onready var manual_pause = $CanvasLayer/pause_menu
 @onready var act_stopwatch = $Stopwatch
 @onready var dialogue_data = $CanvasLayer/dialogue
+@onready var game_over = $CanvasLayer/game_over
 
 var current_shooter: int = 1 
 var current_problem: int = 0
@@ -641,6 +642,8 @@ func _on_bullet_entered(body):
 		fire_timer.stop()
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
+		game_over.visible = true
+		game_over.showup()
 		print("napatay siya")
 	if(body.name == "StaticBody2D"):
 		new_bullet.change_animation_hit()

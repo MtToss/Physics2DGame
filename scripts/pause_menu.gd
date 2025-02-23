@@ -9,7 +9,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	test_esc()
+	pass
 
 func resume():
 	get_tree().paused = false
@@ -43,7 +43,7 @@ func test_esc():
 		pause()
 		blur()
 		print("Debug: Game Paused")
-	elif Input.is_action_just_pressed("escape") and get_tree().paused == true and self.visible : #add to this elif the condition that the pause_menu scene where this code is in is not visible
+	elif Input.is_action_just_pressed("escape") and get_tree().paused == true and self.visible: #add to this elif the condition that the pause_menu scene where this code is in is not visible
 		if game_chapter:
 			game_chapter.hideorshow_panels()
 		resume()

@@ -26,6 +26,8 @@ extends Node2D
 @onready var act_stopwatch = $Stopwatch
 @onready var dialogue_data = $CanvasLayer/dialogue
 
+@onready var game_over = $CanvasLayer/game_over
+
 var new_bullet_benson
 var bullet_collision_benson
 var new_bullet_enuman
@@ -75,6 +77,12 @@ func pause_by_formula_button():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: 
 	firing()
+	if (enuman.global_position.y > 300):
+		fell_off_map()
+
+func fell_off_map():
+	game_over.visible = true
+	game_over.showup()
 
 
 
@@ -120,6 +128,8 @@ func _on_bullet_entered(body):
 		else:
 			print("Game Over")
 			heart.texture = empty_heart[0]["image"]  # Change last heart to empty
+			game_over.visible = true
+			game_over.showup()
 
 		
 	elif body.get_parent() != null && body.name != "Benson": 

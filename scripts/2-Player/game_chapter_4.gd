@@ -37,6 +37,8 @@ extends Node2D
 @onready var dialogue_data = $CanvasLayer/dialogue
 @onready var red_animation_panel = $Character_Handler/ENUMAN/Camera2D/Animation/Control
 
+@onready var game_over = $CanvasLayer/game_over
+
 var new_bullet_benson
 var bullet_collision_benson
 var new_bullet_enuman
@@ -106,6 +108,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("skill_dog"):
 		dog.change_animation_to_shield()
+		dog.disable_collision()
 
 func _process(delta: float) -> void: 
 	red_animation_panel.visible = false
@@ -114,12 +117,16 @@ func _process(delta: float) -> void:
 		var direction = (target_enuman.global_position - new_bullet_benson.global_position).normalized()
 		var speed = 200 
 		new_bullet_benson.global_position += direction * speed * delta
-	
+	if (enuman.global_position.y > 300) or (dog.global_position.y > 300):
+		fell_off_map()
+
+func fell_off_map():
+	game_over.visible = true
+	game_over.showup()
 
 
 
 func _on_bullet_entered_hallwayman(body):
-	print("Debug: it satisfies", body.name)
 	if body.name == "Benson":
 		print("Debug: natamaan si benson")
 		new_bullet_enuman.change_animation_hit()
@@ -140,7 +147,11 @@ func _on_bullet_entered_hallwayman(body):
 
 func _on_bullet_entered(body):
 	print("satisfied: ", body.name)
-	if body.name == "ENUMAN" or body.name == "Doggi":
+	if body.name == "StaticBody2D8":
+		new_bullet_benson.change_animation_hit()
+		new_bullet_benson.is_hit = true
+		print("Shielded")
+	elif body.name == "ENUMAN" or body.name == "Doggi":
 		print("Debug: namatay")
 		new_bullet_benson.change_animation_hit()
 		new_bullet_benson.is_hit = true
@@ -160,6 +171,8 @@ func _on_bullet_entered(body):
 		else:
 			print("Game Over")
 			heart.texture = empty_heart[0]["image"]  # Change last heart to empty
+			game_over.visible = true
+			game_over.showup()
 
 		
 	elif body.get_parent() != null && body.name != "Benson": 

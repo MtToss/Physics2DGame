@@ -79,6 +79,7 @@ var current_shooter: int = 1
 
 
 @onready var dialogue_data = $CanvasLayer/dialogue
+@onready var game_over = $CanvasLayer/game_over
 
 
 var current_problem: int = 0
@@ -207,6 +208,8 @@ func _on_bullet_entered(body):
 		fire_timer.stop()
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
+		game_over.visible = true
+		game_over.showup()
 		print("napatay siya")
 		
 func _on_bullet_entered_hallwayman(body):
@@ -337,6 +340,12 @@ func _process(delta: float) -> void:
 	camera.adjust_camera(50,50)
 	interact_chess()
 	firing()
+	if (enuman.global_position.y > 300):
+		fell_off_map()
+
+func fell_off_map():
+	game_over.visible = true
+	game_over.showup()
 
 func firing() -> void:
 	if(Input.is_action_just_pressed("fire")):

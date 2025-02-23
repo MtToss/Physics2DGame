@@ -18,7 +18,8 @@ func _process(delta: float) -> void:
 func resume():
 	get_tree().paused = false
 	$Panel.visible = false
-	$Panel/skip.visible = false
+	$skip.visible = false
+	set_process_input(false)  # Disable _input() when the panel is hidden
 
 
 #func blur():
@@ -31,7 +32,8 @@ func resume():
 func pause():
 	get_tree().paused = true
 	$Panel.visible = true
-	$Panel/skip.visible = true
+	$skip.visible = true
+	set_process_input(true)  # Enable _input() when the panel is shown
 
 func set_dialogue(new_dialogue: Array) -> void:
 	dialogue = new_dialogue
@@ -68,7 +70,7 @@ func _input(event: InputEvent) -> void:
 	# Only handle clicks that aren't on the button
 	if event is InputEventMouseButton and event.pressed:
 		# Check if the click is not on the button (adjust the condition as needed)
-		if !$Panel/skip.get_global_rect().has_point(event.position):
+		if !$skip.get_global_rect().has_point(event.position):
 			if !is_typing:
 				print('play')
 				play_scene()

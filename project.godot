@@ -31,7 +31,7 @@ project/assembly_name="Physics"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 

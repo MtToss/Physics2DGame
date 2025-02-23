@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://1gascaics7do"]
+[gd_scene load_steps=29 format=3 uid="uid://1gascaics7do"]
 
 [ext_resource type="Script" path="res://scripts/2-Player/game_chapter_1.gd" id="1_08qfn"]
 [ext_resource type="Texture2D" uid="uid://d2ey3rj3wteyp" path="res://assets/assets/Chapter_1_Background.png" id="1_d80ml"]
@@ -23,7 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://crf16ys08eyly" path="res://scenes/dialogue.tscn" id="21_5xmv5"]
 [ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="22_nirn4"]
 [ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="23_ij5mx"]
+[ext_resource type="PackedScene" uid="uid://cbq1kvk1ifqq5" path="res://scenes/game_over.tscn" id="24_4echn"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="24_46846"]
+[ext_resource type="PackedScene" uid="uid://bw3hjomxwteyh" path="res://scenes/portal_door.tscn" id="26_3tomc"]
 
 [sub_resource type="Resource" id="Resource_f53d1"]
 script = ExtResource("17_p6thj")
@@ -168,7 +170,7 @@ position = Vector2(586, 118.5)
 scale = Vector2(0.184, 0.288)
 
 [node name="Barrier2" parent="." instance=ExtResource("12_8fvhi")]
-position = Vector2(602, 25)
+position = Vector2(1038, 33)
 
 [node name="HallwayMan1" parent="." instance=ExtResource("13_j1nds")]
 position = Vector2(420, 123)
@@ -179,11 +181,11 @@ position = Vector2(230, 218)
 scale = Vector2(0.1, 0.1)
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(501, -63)
+position = Vector2(1024, -135)
 
 [node name="PhantomCamera2D" type="Node2D" parent="Character_Handler" node_paths=PackedStringArray("follow_targets")]
 top_level = true
-position = Vector2(25, 187.5)
+position = Vector2(548, 115.5)
 script = ExtResource("16_7xfks")
 follow_mode = 3
 follow_targets = [NodePath("../Doggi"), NodePath("../ENUMAN")]
@@ -200,7 +202,7 @@ position = Vector2(-481, 251)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(25, 187.5)
+position = Vector2(548, 115.5)
 zoom = Vector2(4, 4)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
@@ -229,6 +231,9 @@ offset_bottom = 5.0
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource("23_ij5mx")]
 visible = false
 
+[node name="game_over" parent="CanvasLayer" instance=ExtResource("24_4echn")]
+visible = false
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -236,6 +241,10 @@ position = Vector2(278, 139)
 shape = SubResource("CapsuleShape2D_g523n")
 
 [node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("24_46846")]
+
+[node name="portal_door" parent="." instance=ExtResource("26_3tomc")]
+position = Vector2(730, 103)
+scale = Vector2(0.25, 0.25)
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]

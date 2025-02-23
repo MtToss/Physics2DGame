@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ppsxybgkpota"]
+[gd_scene load_steps=30 format=3 uid="uid://ppsxybgkpota"]
 
 [ext_resource type="Script" path="res://scripts/2-Player/game_chapter_2.gd" id="1_kpx56"]
 [ext_resource type="Texture2D" uid="uid://djalb313rlba3" path="res://assets/assets/Chapter_2.png" id="2_x6u3e"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://ciejolr8fp3tg" path="res://scenes/formula_book.tscn" id="21_85v1w"]
 [ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="22_gm1av"]
 [ext_resource type="PackedScene" uid="uid://byl65drvs2smy" path="res://scenes/stopwatch.tscn" id="23_bl6vi"]
+[ext_resource type="PackedScene" uid="uid://cbq1kvk1ifqq5" path="res://scenes/game_over.tscn" id="23_sd4ua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ydht"]
 
@@ -312,6 +313,9 @@ offset_bottom = 5.0
 [node name="formula_book" parent="CanvasLayer" instance=ExtResource("21_85v1w")]
 
 [node name="pause_menu" parent="CanvasLayer" instance=ExtResource("22_gm1av")]
+visible = false
+
+[node name="game_over" parent="CanvasLayer" instance=ExtResource("23_sd4ua")]
 visible = false
 
 [node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("23_bl6vi")]

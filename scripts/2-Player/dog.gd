@@ -57,7 +57,8 @@ func flip_body() -> void:
 		animated_sprite_shield.flip_h = false
 		animated_sprite_shield.global_position = global_position + Vector2(0.2,-2)
 
-
+func disable_collision():
+	$CollisionShape2D.disabled = true
 func dynamic_animation() -> void:
 
 	if velocity.y < 0:
@@ -95,3 +96,4 @@ func _on_shield_timer_timeout() -> void:
 	animated_sprite_shield.animation = "off"
 	shield_collision_shape.disabled = true
 	is_shield_available = true
+	$CollisionShape2D.disabled = false

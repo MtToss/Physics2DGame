@@ -154,6 +154,7 @@ var current_floor: int = 5
 @onready var elevator5 = $elevator5
 @onready var elevator5_body = $elevator5/Area2D
 @onready var elevator5_label = $elevator5/Label1
+@onready var game_over = $CanvasLayer/game_over
 
 
 func _ready() -> void:
@@ -646,30 +647,12 @@ func _on_bullet_entered(body):
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
 		print("napatay siya")
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan1:
+		game_over.visible = true
+		game_over.showup()
+	if body.name == "StaticBody2D":
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan2:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan3:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan4:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan5:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan6:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan7:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan8:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
+		print("Shielded")
 
 func _on_hallway_enemy_entered(body, enemy_id: int):
 	if body.name == "ENUMAN" or (body.name == "Doggi"):

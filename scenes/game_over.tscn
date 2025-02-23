@@ -1,0 +1,143 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbq1kvk1ifqq5"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_r0y18"]
+[ext_resource type="Shader" path="res://pause_menu.gdshader" id="2_mj600"]
+[ext_resource type="Texture2D" uid="uid://dnqbv15rofqts" path="res://assets/assets/game over (1).png" id="3_akeyd"]
+[ext_resource type="Texture2D" uid="uid://be7n7ho7pt8h2" path="res://assets/assets/game_over button yes.png" id="4_dh8hy"]
+[ext_resource type="Texture2D" uid="uid://bdq11bachgdig" path="res://assets/assets/game_over button quit (1).png" id="5_lme5p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogepq"]
+shader = ExtResource("2_mj600")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_tfyyr"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_ogepq"), SubResource("ShaderMaterial_ogepq")]
+}
+
+[sub_resource type="Animation" id="Animation_rxydj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_ogepq")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cixgq"]
+_data = {
+"RESET": SubResource("Animation_rxydj"),
+"blur": SubResource("Animation_tfyyr")
+}
+
+[node name="game_over" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r0y18")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ogepq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.5
+offset_top = -256.5
+offset_right = 342.5
+offset_bottom = 256.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_akeyd")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="retry" type="Button" parent="Panel/TextureRect"]
+layout_mode = 0
+offset_left = 157.5
+offset_top = 490.0
+offset_right = 307.5
+offset_bottom = 565.0
+icon = ExtResource("4_dh8hy")
+icon_alignment = 1
+expand_icon = true
+
+[node name="main_menu" type="Button" parent="Panel/TextureRect"]
+offset_left = 383.5
+offset_top = 490.0
+offset_right = 533.5
+offset_bottom = 565.0
+icon = ExtResource("5_lme5p")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cixgq")
+}
+
+[connection signal="pressed" from="Panel/TextureRect/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Panel/TextureRect/main_menu" to="." method="_on_main_menu_pressed"]

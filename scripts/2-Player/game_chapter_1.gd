@@ -86,6 +86,7 @@ var current_shooter: int = 1
 @onready var manual_pause = $CanvasLayer/pause_menu
 @onready var act_stopwatch = $Stopwatch
 @onready var dialogue_data = $CanvasLayer/dialogue
+@onready var game_over = $CanvasLayer/game_over
 
 
 var current_problem: int = 0
@@ -221,13 +222,18 @@ func _on_bullet_entered(body):
 		fire_timer.stop()
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
+		game_over.visible = true
+		game_over.showup()
 		print("napatay siya")
 		
 	if(body.name == "StaticBody2D"):
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
 
-		
+func fell_off_map():
+	game_over.visible = true
+	game_over.showup()
+	
 func _on_bullet_entered_hallwayman(body):
 	print("Debug: it satisfies", body.name)
 	if body.get_parent() == $HallwayMan1:
@@ -355,6 +361,10 @@ func _process(delta: float) -> void:
 	interact_chess()
 	firing()
 	red_animation_panel.visible = false
+	if (enuman.global_position.y > 300) or (dog.global_position.y > 300):
+		fell_off_map()
+
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack_dog"):

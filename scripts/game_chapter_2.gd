@@ -99,6 +99,7 @@ extends Node2D
 @onready var manual_pause = $CanvasLayer/pause_menu
 @onready var act_stopwatch = $Stopwatch
 @onready var dialogue_data = $CanvasLayer/dialogue
+@onready var game_over = $CanvasLayer/game_over
 
 var current_shooter: int = 1 
 var current_problem: int = 0
@@ -542,6 +543,7 @@ func firing() -> void:
 func _process(delta: float) -> void:
 	firing()
 	interact_chess()
+	
 
 func interact_chess() -> void:
 	handle_chest_interaction(label1, chest1, animation_control, animation_player, "chest1", 1)
@@ -603,6 +605,8 @@ func _on_bullet_entered(body):
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
 		print("napatay siya")
+		game_over.visible = true
+		game_over.showup()
 	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan1:
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
