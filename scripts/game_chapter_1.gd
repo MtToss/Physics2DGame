@@ -147,7 +147,7 @@ func randomize_problem_values() -> void:
 	print("Debug: Work = ", work, " J | Force = ", force, " N | Distance = ", distance, " m | Angle = ", angle1, "° | Time = ", time, " s | Power = ", power, " W")
 
 func _ready() -> void:
-	Timescore.record_stopwatch_time(1)
+	Timescore.record_time_score
 	
 	portal_door.scene = load("res://scenes/game_chapter_2.tscn")
 	randomize_problem_values()

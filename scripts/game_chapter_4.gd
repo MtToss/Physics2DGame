@@ -41,7 +41,7 @@ var full_heart = [
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Timescore.record_stopwatch_time(4)
+	Timescore.update_chapter_4
 	
 	camera.enabled = false 
 	
