@@ -43,7 +43,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "Prompt"
+text = "Mouse Click for Dialogue"
 autowrap_mode = 2
 
 [connection signal="pressed" from="skip" to="." method="_on_button_pressed"]

@@ -143,7 +143,7 @@ position = Vector2(83, 186)
 position = Vector2(158, 192)
 
 [node name="chest4" parent="." instance=ExtResource("10_akve7")]
-position = Vector2(128, 187)
+position = Vector2(128, 182)
 
 [node name="pressure_plate1" parent="." instance=ExtResource("11_y64w0")]
 position = Vector2(185, 186.5)
@@ -154,13 +154,13 @@ position = Vector2(199, 109)
 scale = Vector2(0.571919, 0.847169)
 
 [node name="chest5" parent="." instance=ExtResource("10_akve7")]
-position = Vector2(293, 142)
+position = Vector2(293, 144)
 
 [node name="chest6" parent="." instance=ExtResource("10_akve7")]
 position = Vector2(577, 125)
 
 [node name="chest7" parent="." instance=ExtResource("10_akve7")]
-position = Vector2(523, 124)
+position = Vector2(523, 125)
 
 [node name="chest8" parent="." instance=ExtResource("10_akve7")]
 position = Vector2(563, 125)
@@ -170,7 +170,7 @@ position = Vector2(586, 118.5)
 scale = Vector2(0.184, 0.288)
 
 [node name="Barrier2" parent="." instance=ExtResource("12_8fvhi")]
-position = Vector2(1038, 33)
+position = Vector2(603, 26)
 
 [node name="HallwayMan1" parent="." instance=ExtResource("13_j1nds")]
 position = Vector2(420, 123)
@@ -181,11 +181,11 @@ position = Vector2(230, 218)
 scale = Vector2(0.1, 0.1)
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(1169, -144)
+position = Vector2(506, -62)
 
 [node name="PhantomCamera2D" type="Node2D" parent="Character_Handler" node_paths=PackedStringArray("follow_targets")]
 top_level = true
-position = Vector2(548, 115.5)
+position = Vector2(30, 188.5)
 script = ExtResource("16_7xfks")
 follow_mode = 3
 follow_targets = [NodePath("../Doggi"), NodePath("../ENUMAN")]
@@ -201,7 +201,8 @@ scale = Vector2(0.350073, 0.321777)
 position = Vector2(-481, 251)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(548, 115.5)
+physics_interpolation_mode = 1
+position = Vector2(30, 188.5)
 zoom = Vector2(4, 4)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]

@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://r66ov7m83ypm"]
 
 [ext_resource type="Script" path="res://scripts/barrier.gd" id="1_5njhn"]
-[ext_resource type="Texture2D" uid="uid://dv28p1skgwxdt" path="res://icon.svg" id="1_laa5p"]
+[ext_resource type="Texture2D" uid="uid://blgscqpnvdlnh" path="res://assets/assets/barrier.png" id="2_24q1g"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ya3o"]
-atlas = ExtResource("1_laa5p")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffjt8"]
+atlas = ExtResource("2_24q1g")
+region = Rect2(0, 0, 300, 168)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nelqb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8ya3o")
+"texture": SubResource("AtlasTexture_ffjt8")
 }],
 "loop": true,
 "name": &"default",
@@ -24,8 +24,8 @@ animations = [{
 script = ExtResource("1_5njhn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.52588e-05, 1.00003)
-scale = Vector2(0.0952486, 1.57804)
+position = Vector2(-0.5, 1.5)
+scale = Vector2(0.0366667, 1.18452)
 sprite_frames = SubResource("SpriteFrames_nelqb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

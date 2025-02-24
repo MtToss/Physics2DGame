@@ -66,7 +66,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_k4tyk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3yjaf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_84nn1")
-text = "Start"
+text = "Single Player"
 
 [node name="how_to_play_button" type="Button" parent="VBoxContainer2/VBoxContainer"]
 layout_mode = 2
@@ -79,7 +79,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_k4tyk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3yjaf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_84nn1")
-text = "How to Play"
+text = "Two Player CO-OP"
 
 [node name="settings_button" type="Button" parent="VBoxContainer2/VBoxContainer"]
 layout_mode = 2

@@ -10,6 +10,33 @@
 shader = ExtResource("2_mj600")
 shader_parameter/lod = 0.0
 
+[sub_resource type="Animation" id="Animation_rxydj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_ogepq")]
+}
+
 [sub_resource type="Animation" id="Animation_tfyyr"]
 resource_name = "blur"
 length = 0.3
@@ -36,33 +63,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [SubResource("ShaderMaterial_ogepq"), SubResource("ShaderMaterial_ogepq")]
-}
-
-[sub_resource type="Animation" id="Animation_rxydj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:material")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("ShaderMaterial_ogepq")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cixgq"]
@@ -126,6 +126,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="main_menu" type="Button" parent="Panel/TextureRect"]
+layout_mode = 0
 offset_left = 383.5
 offset_top = 490.0
 offset_right = 533.5

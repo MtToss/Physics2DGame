@@ -71,15 +71,15 @@ position = Vector2(-922, 249)
 scale = Vector2(13.2164, 0.0647238)
 
 [node name="StaticBody2" parent="." instance=ExtResource("5_qf6gm")]
-position = Vector2(-924, 125)
+position = Vector2(-923, 121)
 scale = Vector2(13.1953, 0.0489552)
 
 [node name="StaticBody3" parent="." instance=ExtResource("5_qf6gm")]
-position = Vector2(-928, -1)
+position = Vector2(-929, -6)
 scale = Vector2(13.261, 0.04369)
 
 [node name="StaticBody4" parent="." instance=ExtResource("5_qf6gm")]
-position = Vector2(-936, -131)
+position = Vector2(-936, -135)
 scale = Vector2(13.3533, 0.0409336)
 
 [node name="StaticBody5" parent="." instance=ExtResource("5_qf6gm")]
@@ -98,7 +98,7 @@ rotation = 3.14159
 scale = Vector2(15.372, 0.196414)
 
 [node name="StaticBody8" parent="." instance=ExtResource("5_qf6gm")]
-position = Vector2(3483, 248)
+position = Vector2(3481, 240)
 scale = Vector2(4.06006, 0.8135)
 
 [node name="StaticBody9" parent="." instance=ExtResource("5_qf6gm")]
@@ -115,7 +115,7 @@ position = Vector2(4098, 242)
 rotation = -1.5708
 
 [node name="StaticBody12" parent="." instance=ExtResource("5_qf6gm")]
-position = Vector2(3572, 1280)
+position = Vector2(3569, 1278)
 scale = Vector2(13.3204, 1.10642)
 
 [node name="StaticBody13" parent="." instance=ExtResource("5_qf6gm")]
@@ -161,7 +161,8 @@ position = Vector2(4984.5, 1226)
 shape = SubResource("RectangleShape2D_1hcdv")
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(-950, 164)
+position = Vector2(-954, 158)
+scale = Vector2(1.1, 1.1)
 
 [node name="ENUMAN" parent="Character_Handler" instance=ExtResource("6_x5hm0")]
 scale = Vector2(8.47911, 7.96436)
@@ -173,7 +174,7 @@ scale = Vector2(1.49919, 1.8093)
 
 [node name="PhantomCamera2D" type="Node2D" parent="Character_Handler" node_paths=PackedStringArray("follow_targets")]
 top_level = true
-position = Vector2(-877.5, 219.5)
+position = Vector2(-874.25, 219.05)
 script = ExtResource("8_yvflc")
 follow_mode = 3
 follow_targets = [NodePath("../Doggi"), NodePath("../ENUMAN")]
@@ -182,7 +183,7 @@ draw_limits = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(-877.5, 219.5)
+position = Vector2(-874.25, 219.05)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
@@ -222,7 +223,7 @@ position = Vector2(-782, -27)
 scale = Vector2(205, 55.543)
 
 [node name="chest7" parent="." instance=ExtResource("11_eqxdd")]
-position = Vector2(977, 106)
+position = Vector2(976, 101)
 scale = Vector2(205, 55.543)
 
 [node name="chest8" parent="." instance=ExtResource("11_eqxdd")]
@@ -233,7 +234,7 @@ scale = Vector2(205, 55.543)
 position = Vector2(400, 90.0001)
 
 [node name="pressure_plate2" parent="." instance=ExtResource("12_823vn")]
-position = Vector2(-494, -164)
+position = Vector2(-495, -166)
 
 [node name="barrier1" parent="." instance=ExtResource("13_p46fo")]
 position = Vector2(538, 62)
@@ -322,7 +323,8 @@ visible = false
 [node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("23_bl6vi")]
 
 [node name="portal_door" parent="." instance=ExtResource("25_1psgf")]
-position = Vector2(-475, 214)
+position = Vector2(-1007, -159)
+rotation = -3.14159
 scale = Vector2(1.03889, 1.16029)
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

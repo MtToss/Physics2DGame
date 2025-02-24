@@ -43,6 +43,7 @@ func move_character():
 	
 
 func detect_turn_around():
-	if not $RayCast2D.is_colliding() or $RayCast2D2.is_colliding():
-		is_moving_left = !is_moving_left
-		scale.x = -scale.x
+	if is_dead == false:
+		if not $RayCast2D.is_colliding() or $RayCast2D2.is_colliding():
+			is_moving_left = !is_moving_left
+			scale.x = -scale.x

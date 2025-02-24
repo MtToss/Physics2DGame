@@ -58,7 +58,7 @@ scale = Vector2(0.825439, 0.051185)
 position = Vector2(331, 59)
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(-479, 41)
+position = Vector2(-595, 68)
 
 [node name="ENUMAN" parent="Character_Handler" instance=ExtResource("4_4f1gn")]
 position = Vector2(1.00001, 0)

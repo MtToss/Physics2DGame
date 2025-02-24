@@ -21,7 +21,10 @@ func showup():
 	print("Debug: game over")
 	pause()
 	blur()
-	
+
+func resume():
+	get_tree().paused = false
+	$Panel/TextureRect.visible = false
 func _on_retry_pressed() -> void:
 	var current_scene_path: String = get_tree().current_scene.scene_file_path
 	
@@ -38,5 +41,6 @@ func _on_stop_button_pressed():
 	stopwatch.save_time_to_firestore 
 
 func _on_main_menu_pressed() -> void:
+	resume()
 	get_tree().change_scene_to_file("res://mainMenu/main_menu.tscn")
 	FirebaseManager.delete_document()

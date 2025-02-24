@@ -1,10 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://3g0ef8y2thgt"]
+[gd_scene load_steps=25 format=3 uid="uid://3g0ef8y2thgt"]
 
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_huqj3"]
 [ext_resource type="Script" path="res://scripts/game_chapter_1.gd" id="1_xt0vt"]
 [ext_resource type="PackedScene" uid="uid://csxvl5yjvxdsl" path="res://scenes/hallway_man.tscn" id="2_krcld"]
 [ext_resource type="PackedScene" uid="uid://oqidklx0r0cv" path="res://scenes/chest.tscn" id="4_kui56"]
-[ext_resource type="PackedScene" uid="uid://dfy0yoy0e3ecm" path="res://scenes/benson.tscn" id="5_2m2j8"]
 [ext_resource type="PackedScene" uid="uid://cfoacft6v0cjs" path="res://scenes/pressure_plate.tscn" id="5_lamfs"]
 [ext_resource type="PackedScene" uid="uid://s57wgxah44w7" path="res://scenes/pause_menu.tscn" id="5_vxkdo"]
 [ext_resource type="PackedScene" uid="uid://dn4x23j5m215n" path="res://scenes/hud.tscn" id="6_flrwj"]
@@ -48,15 +47,11 @@ environment = SubResource("Environment_avp0r")
 [node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("6_sxtrt")]
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(-362, 94)
+position = Vector2(-1022, 182)
 
 [node name="ENUMAN" parent="Character_Handler" instance=ExtResource("1_huqj3")]
 z_index = 100
 position = Vector2(0, 0)
-
-[node name="Benson" parent="." instance=ExtResource("5_2m2j8")]
-position = Vector2(-951.48, 177.69)
-scale = Vector2(0.155, 0.149)
 
 [node name="chest1" parent="." instance=ExtResource("4_kui56")]
 position = Vector2(-926, 180)
@@ -89,7 +84,7 @@ position = Vector2(-702, 135)
 position = Vector2(-584, 119)
 
 [node name="chest8" parent="." instance=ExtResource("4_kui56")]
-position = Vector2(-729, 134)
+position = Vector2(-729, 135)
 
 [node name="Barrier2" parent="." instance=ExtResource("16_jpg23")]
 position = Vector2(-427, 68)

@@ -43,6 +43,12 @@ var full_heart = [
 func _ready() -> void:
 	Timescore.update_chapter_4
 	
+	dialogue_data.set_dialogue([
+	 # Final Chapter: The Showdown
+	"Benson: You just don’t know when to quit, do you, Enyu Man? Every time you stop me, I come back stronger.",
+	"Enyu Man: And every time, I put you down. This ends tonight, Benson.",
+	"Benson: Oh, I agree. But let’s see who’s left standing when the dust settles."])
+	
 	camera.enabled = false 
 	
 	collision_shape.global_position = enuman.global_position
@@ -106,6 +112,8 @@ func _on_bullet_entered_hallwayman(body):
 			print("Debug: 4/4 hp")
 		else:
 			print("Game Over")
+			FirebaseManager.store_end_time()
+			get_tree().change_scene_to_file("res://scenes/Congratulation.tscn")
 
 func _on_bullet_entered(body):
 	print("satisfied: ", body.get_parent())

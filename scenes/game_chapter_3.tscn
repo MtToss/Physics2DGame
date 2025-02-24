@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c47lfhiyqiqag"]
+[gd_scene load_steps=17 format=3 uid="uid://cqsdhg1o7wdnl"]
 
 [ext_resource type="Script" path="res://scripts/game_chapter_3.gd" id="1_f2chw"]
 [ext_resource type="PackedScene" uid="uid://0t12b51hf0vy" path="res://scenes/enuman.tscn" id="1_icr61"]
@@ -138,7 +138,7 @@ position = Vector2(-973, -52)
 scale = Vector2(1, 0.7225)
 
 [node name="portal_door" parent="." instance=ExtResource("7_p8xiy")]
-position = Vector2(-511, -160)
+position = Vector2(937, 348)
 
 [node name="HallwayMan3" parent="." instance=ExtResource("6_xlv5m")]
 position = Vector2(-888, 78)
@@ -165,11 +165,11 @@ position = Vector2(732, -179)
 scale = Vector2(1, 0.723)
 
 [node name="chest1" parent="." instance=ExtResource("7_1n2wv")]
-position = Vector2(-432, -151)
+position = Vector2(-433, -152)
 scale = Vector2(180, 60)
 
 [node name="chest2" parent="." instance=ExtResource("7_1n2wv")]
-position = Vector2(-842, -21)
+position = Vector2(-841, -24)
 scale = Vector2(180, 60)
 
 [node name="chest3" parent="." instance=ExtResource("7_1n2wv")]

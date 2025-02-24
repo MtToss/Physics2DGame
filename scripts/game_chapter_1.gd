@@ -82,6 +82,8 @@ var current_shooter: int = 1
 @onready var game_over = $CanvasLayer/game_over
 
 @onready var portal_door = $portal_door
+@onready var animation_sensor = $portal_door/Area2D2
+@onready var portal_area = $portal_door/Area2D
 
 var current_problem: int = 0
 
@@ -149,15 +151,14 @@ func randomize_problem_values() -> void:
 func _ready() -> void:
 	Timescore.record_time_score
 	
-	portal_door.scene = load("res://scenes/game_chapter_2.tscn")
 	randomize_problem_values()
 	available_indices1 = range(given_problem1.size())
 	available_indices2 = range(given_problem2.size())
 	dialogue_data.set_dialogue([
-	"The possibilities are endless. The world is your canvas, waiting for your brushstrokes of imagination to breathe life into it.",
-	"From the depths of the ocean to the vastness of space, there are stories to be told and adventures to be had.",
-	"Take a leap of faith into the unknown, for it is there that the magic happens.",
-	"Embrace the uncertainty, the challenges, and the beauty that lies within every step of the journey. So, go forth, and create your own masterpiece."])
+	# Chapter 1: The Rooftop Chase
+	"Enyu Man: Benson’s been at this for too long… I won’t let him get away this time.",
+	"Esemaralda (via comm): Enyu Man! It’s Benson—he’s got me!",
+	"Enyu Man: Hang on, Esemaralda. I’m coming."])
 	prompt_label_list = [prompt_label1, prompt_label2, prompt_label3, prompt_label4, prompt_label5]
 	pressure_plate1.connect("body_entered", Callable(self, "_on_pressure_plate_entered").bind(1))
 	pressure_plate1.connect("body_exited", Callable(self, "_on_pressure_plate_exited"))
@@ -186,6 +187,31 @@ func _ready() -> void:
 	camera.adjust_camera(50,50)
 	interact_chess()
 	dialogue_data.pause()
+	if answer.has_signal("answer_submitted"):
+		answer.connect("answer_submitted", Callable(self, "_on_answer_submitted"))
+		print("Debug: Successfully connected answer_submitted signal")
+	else:
+		print("Debug: ERROR - answer_submitted signal not found in ENUMAN")
+	interact_chess()
+	dialogue_data.pause()
+	if animation_sensor != null:
+		animation_sensor.connect("body_exited", Callable(self, "on_area2d_animation_exit"))
+	if portal_area != null:
+		portal_area.connect("body_entered", Callable(self, "on_area2d_portal_entered"))
+
+func on_area2d_animation_enter(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		print("Debug: entered area 2d")
+		$portal_door/AnimatedSprite2D.play("open")
+
+func on_area2d_animation_exit(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		$portal_door/AnimatedSprite2D.play("close")
+
+func on_area2d_portal_entered(body):
+	if (body.name == "ENUMAN") or (body.name == "Doggi"):
+		get_tree().change_scene_to_file("res://scenes/game_chapter_2.tscn")
+		
 
 
 

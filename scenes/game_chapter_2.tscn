@@ -82,7 +82,7 @@ position = Vector2(4508, 1143)
 texture = ExtResource("5_ww3dh")
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(2.00006, -69)
+position = Vector2(-188, -63)
 scale = Vector2(11.5304, 8.04405)
 
 [node name="ENUMAN" parent="Character_Handler" instance=ExtResource("4_v1b10")]
@@ -102,7 +102,7 @@ position = Vector2(-924, 125)
 scale = Vector2(13.1953, 0.0489552)
 
 [node name="StaticBody3" parent="." instance=ExtResource("3_ikg2l")]
-position = Vector2(-928, -1)
+position = Vector2(-929, -2)
 scale = Vector2(13.261, 0.04369)
 
 [node name="StaticBody4" parent="." instance=ExtResource("3_ikg2l")]
@@ -146,7 +146,7 @@ position = Vector2(5338, 1249)
 scale = Vector2(205, 55.543)
 
 [node name="chest2" parent="." instance=ExtResource("6_pvlf2")]
-position = Vector2(769, -29)
+position = Vector2(770, -24)
 scale = Vector2(205, 55.543)
 
 [node name="chest3" parent="." instance=ExtResource("6_pvlf2")]
@@ -166,11 +166,11 @@ position = Vector2(4924, 1249)
 scale = Vector2(205, 64.862)
 
 [node name="chest7" parent="." instance=ExtResource("6_pvlf2")]
-position = Vector2(823, -165)
+position = Vector2(823, -156)
 scale = Vector2(205, 64.862)
 
 [node name="chest8" parent="." instance=ExtResource("6_pvlf2")]
-position = Vector2(4006, 214)
+position = Vector2(4006, 212)
 scale = Vector2(205, 64.862)
 
 [node name="pressure_plate1" parent="." instance=ExtResource("8_krhrc")]
@@ -213,7 +213,7 @@ position = Vector2(-714, -41)
 position = Vector2(3526, 195)
 
 [node name="StaticBody8" parent="." instance=ExtResource("3_ikg2l")]
-position = Vector2(3483, 248)
+position = Vector2(3483, 245)
 scale = Vector2(4.06006, 0.8135)
 
 [node name="StaticBody9" parent="." instance=ExtResource("3_ikg2l")]
@@ -239,7 +239,8 @@ rotation = 1.5708
 scale = Vector2(1.56018, 0.960845)
 
 [node name="portal_door" parent="." instance=ExtResource("14_xd23c")]
-position = Vector2(-360, 216)
+position = Vector2(-978, -156)
+rotation = -3.14159
 
 [node name="StaticBody14" parent="." instance=ExtResource("3_ikg2l")]
 position = Vector2(5495, 1015)

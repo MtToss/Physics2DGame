@@ -161,11 +161,18 @@ var current_floor: int = 5
 @onready var portal_area = $portal_door/Area2D
 
 func _ready() -> void:
-	portal_door.scene = load("res://scenes/2-Player/game_chapter_4.tscn")
 	pcam.set_auto_zoom_max(2)
 	pcam.set_auto_zoom(true)
 	pcam.set_auto_zoom_margin(Vector4(40, 30, 40, 40))
 	doggi_area2D.connect("body_entered", Callable(self,"when_hallwayman_hit"))
+	
+	dialogue_data.set_dialogue([
+	 # Chapter 3: The Hidden Lab
+	"Esemaralda: Enyu Man… you found me.",
+	"Endogg: *Excited woof!*",
+	"Benson: Touching. But do you really think I’d make this easy for you?",
+	"Endogg: *Angry woof!*",
+	"Enyu Man: I didn’t come here for easy. I came to stop you."])
 	
 	randomize_problem_values()
 	
@@ -273,7 +280,7 @@ func on_area2d_animation_exit(body):
 
 func on_area2d_portal_entered(body):
 	if (body.name == "ENUMAN") or (body.name == "Doggi"):
-		get_tree().change_scene_to_file("res://scripts/2-Player/game_chapter_4.gd")
+		get_tree().change_scene_to_file("res://scenes/2-Player/game_chapter_4.tscn")
 		
 func hideorshow_panels():
 	if form_book.visible == true and manual_pause.visible == false:
@@ -663,16 +670,29 @@ func insremove(random_index: int, current_problem: int) -> void:
 				get_given_value2.remove_at(random_index)
 				get_given_value2.insert(random_index, given_problem2[random_index])
 func _on_bullet_entered(body):
-	if body.name == "ENUMAN" or (body.name == "Doggi"): 
+	if body.name in ["ENUMAN", "Doggi"]: 
 		fire_timer.stop()
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
 		print("napatay siya")
 		game_over.visible = true
 		game_over.showup()
-	if body.name == "StaticBody2D":
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
+		return  # Exit function early to avoid unnecessary checks
+
+	# Handle bullet hitting any HallwayMan object
+	var hallway_men = [$HallwayMan1, $HallwayMan2, $HallwayMan3, $HallwayMan4, 
+					   $HallwayMan5, $HallwayMan6, $HallwayMan7, $HallwayMan8]
+	
+	for man in hallway_men:
+		if body.get_parent() == man:
+			return  # Skip processing if the body is part of a HallwayMan
+
+	# If bullet hits anything else
+	new_bullet.change_animation_hit()
+	new_bullet.is_hit = true
+
+	# Handle special case for StaticBody2D shield
+	if body.name == "StaticBody2D" and body.get_parent() == $Character_Handler:
 		print("Shielded")
 
 func _on_hallway_enemy_entered(body, enemy_id: int):

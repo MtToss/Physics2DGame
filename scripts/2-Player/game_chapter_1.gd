@@ -166,6 +166,13 @@ func _ready() -> void:
 	pcam.set_auto_zoom(true)
 	pcam.set_auto_zoom_margin(Vector4(40, 30, 40, 40))
 	
+	dialogue_data.set_dialogue([
+	 # Chapter 1: The Rooftop Chase
+	"Enyu Man: Benson’s been at this for too long… I won’t let him get away this time.",
+	"Endogg: Woof!",
+	"Esemaralda (via comm): Enyu Man! It’s Benson—he’s got me!",
+	"Enyu Man: Hang on, Esemaralda. I’m coming.",
+	"Endogg: Woof woof!"])
 	
 	randomize_problem_values()
 	available_indices1 = range(given_problem1.size())
@@ -220,7 +227,7 @@ func on_area2d_animation_exit(body):
 
 func on_area2d_portal_entered(body):
 	if (body.name == "ENUMAN") or (body.name == "Doggi"):
-		get_tree().change_scene_to_file("res://scripts/2-Player/game_chapter_2.gd")
+		get_tree().change_scene_to_file("res://scenes/2-Player/game_chapter_2.tscn")
 	
 func hideorshow_panels():
 	if form_book.visible == true and manual_pause.visible == false:

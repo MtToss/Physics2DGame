@@ -65,6 +65,13 @@ func _ready() -> void:
 	pcam.set_auto_zoom_margin(Vector4(70, 30, 40, 70))
 	doggi_area2D.connect("body_entered", Callable(self,"when_hallwayman_hit"))
 	
+	dialogue_data.set_dialogue([
+	 # Final Chapter: The Showdown
+	"Benson: You just don’t know when to quit, do you, Enyu Man? Every time you stop me, I come back stronger.",
+	"Endogg: *Barks loudly!*",
+	"Enyu Man: And every time, I put you down. This ends tonight, Benson.",
+	"Benson: Oh, I agree. But let’s see who’s left standing when the dust settles.",
+	"Endogg: *Determined woof!*"])
 	
 	camera.enabled = false 
 	
@@ -134,16 +141,20 @@ func _on_bullet_entered_hallwayman(body):
 		benson.hp = benson.hp - enuman.hit_dmg
 		print("Debug: Benson's hp", benson.hp)
 		
-		if(benson.hp <= 75) and (benson.hp <= 1):  # dagdagan mo ng and operator
+		if(benson.hp <= 75) and (benson.hp >= 1):  # dagdagan mo ng and operator
 			print("Debug: 1/4 hp")
-		elif(benson.hp <= 150) and (benson.hp <= 76): 
+		elif(benson.hp <= 150) and (benson.hp >= 76): 
 			print("Debug: 2/4 hp")
-		elif(benson.hp <= 225) and (benson.hp <= 151): 
+		elif(benson.hp <= 225) and (benson.hp >= 151): 
 			print("Debug: 3/4 hp")
-		elif(benson.hp <=300) and (benson.hp <= 226): 
+		elif(benson.hp <=300) and (benson.hp >= 226): 
 			print("Debug: 4/4 hp")
 		else:
+			FirebaseManager.store_end_time()
 			get_tree().change_scene_to_file("res://scenes/Congratulation.tscn")
+	elif body.name == "StaticBody2D8":
+		new_bullet_enuman.change_animation_hit()
+		new_bullet_enuman.is_hit = true
 
 func _on_bullet_entered(body):
 	print("satisfied: ", body.name)

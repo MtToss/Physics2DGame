@@ -35,12 +35,10 @@ func store_end_time():
 	if document_id == "":
 		print("Error: No document ID found! End time cannot be stored.")
 		return
-
 	# Check if end_time is null (it could mean an incomplete session)
 	var url = FIREBASE_URL + "/" + document_id  # Firestore document path
 	var headers = ["Content-Type: application/json"]
 	var error = http_request.request(url, headers, HTTPClient.METHOD_GET)  # GET request to check if end_time exists
-
 	if error != OK:
 		print("Error: Failed to retrieve document for end_time check.")
 		return

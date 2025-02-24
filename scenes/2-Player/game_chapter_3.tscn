@@ -40,11 +40,11 @@ script = ExtResource("1_13ul6")
 texture = ExtResource("2_kkgal")
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(-936, -143)
+position = Vector2(-935, -141)
 
 [node name="PhantomCamera2D" type="Node2D" parent="Character_Handler" node_paths=PackedStringArray("follow_targets")]
 top_level = true
-position = Vector2(-882, -159.5)
+position = Vector2(-881, -157.5)
 script = ExtResource("3_nihfc")
 follow_mode = 3
 follow_targets = [NodePath("../Doggi"), NodePath("../ENUMAN")]
@@ -134,7 +134,8 @@ position = Vector2(-392, 260)
 scale = Vector2(0.0498637, 0.339966)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-882, -159.5)
+physics_interpolation_mode = 1
+position = Vector2(-881, -157.5)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
@@ -221,23 +222,23 @@ position = Vector2(-320, -40)
 position = Vector2(-320, -168)
 
 [node name="chest1" parent="." instance=ExtResource("11_tnaal")]
-position = Vector2(-453, -151)
+position = Vector2(-453, -153)
 scale = Vector2(180, 60)
 
 [node name="chest2" parent="." instance=ExtResource("11_tnaal")]
-position = Vector2(-455, -20)
+position = Vector2(-455, -23)
 scale = Vector2(180, 60)
 
 [node name="chest3" parent="." instance=ExtResource("11_tnaal")]
-position = Vector2(-459, 105)
+position = Vector2(-455, 105)
 scale = Vector2(180, 60)
 
 [node name="chest4" parent="." instance=ExtResource("11_tnaal")]
-position = Vector2(-449, 233)
+position = Vector2(-449, 231)
 scale = Vector2(180, 60)
 
 [node name="chest5" parent="." instance=ExtResource("11_tnaal")]
-position = Vector2(-934, 363)
+position = Vector2(-934, 362)
 scale = Vector2(180, 60)
 
 [node name="chest6" parent="." instance=ExtResource("11_tnaal")]
@@ -269,7 +270,7 @@ scale = Vector2(0.782376, 0.601777)
 [node name="Stopwatch" parent="." groups=["stopwatch"] instance=ExtResource("20_3jg22")]
 
 [node name="portal_door" parent="." instance=ExtResource("22_4142x")]
-position = Vector2(-570, -164)
+position = Vector2(935, 350)
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="FireTimerEnuman" to="." method="_on_fire_timer_enuman_timeout"]
