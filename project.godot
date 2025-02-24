@@ -27,6 +27,7 @@ stopwatch="*res://scripts/stopwatch.gd"
 [display]
 
 window/size/viewport_width=1024
+window/size/mode=2
 window/stretch/mode="viewport"
 
 [dotnet]

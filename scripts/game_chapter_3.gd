@@ -614,37 +614,26 @@ func insremove(random_index: int, current_problem: int) -> void:
 				get_given_value2.remove_at(random_index)
 				get_given_value2.insert(random_index, given_problem2[random_index])
 func _on_bullet_entered(body):
-	if body.name == "ENUMAN":
+	if body.name == "ENUMAN": 
 		fire_timer.stop()
 		new_bullet.change_animation_hit()
 		new_bullet.is_hit = true
 		print("napatay siya")
 		game_over.visible = true
 		game_over.showup()
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan1:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan2:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan3:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan4:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan5:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan6:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan7:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
-	elif body.name != "ENUMAN" and body.get_parent() != $HallwayMan8:
-		new_bullet.change_animation_hit()
-		new_bullet.is_hit = true
+		return  # Exit function early to avoid unnecessary checks
+
+	# Handle bullet hitting any HallwayMan object
+	var hallway_men = [$HallwayMan1, $HallwayMan2, $HallwayMan3, $HallwayMan4, 
+					   $HallwayMan5, $HallwayMan6, $HallwayMan7, $HallwayMan8]
+	
+	for man in hallway_men:
+		if body.get_parent() == man:
+			return  # Skip processing if the body is part of a HallwayMan
+
+	# If bullet hits anything else
+	new_bullet.change_animation_hit()
+	new_bullet.is_hit = true
 
 func _on_hallway_enemy_entered(body, enemy_id: int):
 	if body.name == "ENUMAN":

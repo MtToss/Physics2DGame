@@ -102,18 +102,21 @@ func _on_bullet_entered_hallwayman(body):
 		benson.hp = benson.hp - enuman.hit_dmg
 		print("Debug: Benson's hp", benson.hp)
 		
-		if(benson.hp <= 75) and (benson.hp <= 1):  # dagdagan mo ng and operator
+		if(benson.hp <= 75) and (benson.hp >= 1):  # dagdagan mo ng and operator
 			print("Debug: 1/4 hp")
-		elif(benson.hp <= 150) and (benson.hp <= 76): 
+		elif(benson.hp <= 150) and (benson.hp >= 76): 
 			print("Debug: 2/4 hp")
-		elif(benson.hp <= 225) and (benson.hp <= 151): 
+		elif(benson.hp <= 225) and (benson.hp >= 151): 
 			print("Debug: 3/4 hp")
-		elif(benson.hp <=300) and (benson.hp <= 226): 
+		elif(benson.hp <=300) and (benson.hp >= 226): 
 			print("Debug: 4/4 hp")
 		else:
 			print("Game Over")
 			FirebaseManager.store_end_time()
 			get_tree().change_scene_to_file("res://scenes/Congratulation.tscn")
+	elif body.name == "StaticBody2D8":
+		new_bullet_enuman.change_animation_hit()
+		new_bullet_enuman.is_hit = true
 
 func _on_bullet_entered(body):
 	print("satisfied: ", body.get_parent())
@@ -139,7 +142,6 @@ func _on_bullet_entered(body):
 			heart.texture = empty_heart[0]["image"]  # Change last heart to empty
 			game_over.visible = true
 			game_over.showup()
-
 		
 	elif body.get_parent() != null && body.name != "Benson": 
 		print("Debug: Collided")

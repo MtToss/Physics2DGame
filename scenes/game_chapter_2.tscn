@@ -82,16 +82,15 @@ position = Vector2(4508, 1143)
 texture = ExtResource("5_ww3dh")
 
 [node name="Character_Handler" type="Node2D" parent="."]
-position = Vector2(-188, -63)
-scale = Vector2(11.5304, 8.04405)
+position = Vector2(-402, -84)
+scale = Vector2(8.5, 8.5)
 
 [node name="ENUMAN" parent="Character_Handler" instance=ExtResource("4_v1b10")]
-position = Vector2(-63.0507, 34.0624)
-scale = Vector2(1.04836, 1.15661)
+position = Vector2(-63.4286, 33.2857)
 
 [node name="Camera2D2" type="Camera2D" parent="Character_Handler/ENUMAN"]
 scale = Vector2(1.02302, 1.17478)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.25, 1.25)
 
 [node name="StaticBody1" parent="." instance=ExtResource("3_ikg2l")]
 position = Vector2(-922, 249)

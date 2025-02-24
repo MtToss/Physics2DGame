@@ -13,6 +13,7 @@ func play_slide() -> void:
 	current = 1
 	is_sliding = true
 	time_elapsed = 0.0
+	print("Debug: slide")
 
 func play_slide_part_2() -> void:
 	play("slide_part2")
